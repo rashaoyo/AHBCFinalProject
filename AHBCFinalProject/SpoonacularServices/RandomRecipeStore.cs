@@ -13,7 +13,7 @@ namespace AHBCFinalProject.SpoonacularServices
             using(var httpClient = new HttpClient { BaseAddress = new Uri("spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/") })
             {
                 httpClient.DefaultRequestHeaders.Add("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com");
-                httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", "a20e2189eamsh62909a90994a81ep16f226jsn158ad197afec");
+                httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", "dc427c57ac7d4169bdb990b3893ebe80");
 
                 var result = await httpClient.GetStringAsync("recipes/random/?number=7");
                 return JsonConvert.DeserializeObject<ListOfRecipesResponse>(result);
