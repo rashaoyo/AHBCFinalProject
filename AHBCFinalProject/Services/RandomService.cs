@@ -20,11 +20,14 @@ namespace AHBCFinalProject.Services
         {
             var result = await _randomRecipeStore.GetRandomRecipes();
 
-            var listOfRecipesViewModel = new ListOfRecipesViewModel();
+            var listOfRecipesViewModel = new ListOfRecipesViewModel
+            {
+                ListOfRecipes = new List<RecipeViewModel>()
+            };
 
             foreach(var recipe in result.Recipes)
             {
-                var recipeViewModel = new RecipesViewModel
+                var recipeViewModel = new RecipeViewModel
                 {
                     Title = recipe.Title
                 };
