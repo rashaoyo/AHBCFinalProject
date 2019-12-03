@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AHBCFinalProject.Models;
+using AHBCFinalProject.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AHBCFinalProject.Controllers
 {
     public class RecipeController : Controller
     {
-        //private readonly IRandomService _randomService;
-        //public RecipeController(IRandomService randomService)
-        //{
-        //    _randomService = randomService;    
-        //}
+        private readonly IRandomService _randomService;
+        public RecipeController(IRandomService randomService)
+        {
+            _randomService = randomService;
+        }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+        public IActionResult Index()
+        {
+            return View();
+        }
 
-        //public IActionResult ViewRecipes(IRandomService _randomService)
-        //{
-        //    var randomRecipes = new List<RecipeResponse>();
-        //    var recipeStuff = _randomService.GetRandomRecipe();
+        public async Task<IActionResult> ViewRecipes()
+        {
+            //var viewModel = new ListOfRecipesViewModel();
 
-        //    return View(recipeStuff);
-        //}
+            var viewModel = await _randomService.GetAllRandomRecipes();
+        
+            return View(viewModel);
+        }
 
 
     }
