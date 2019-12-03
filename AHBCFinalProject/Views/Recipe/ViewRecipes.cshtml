@@ -1,4 +1,4 @@
-﻿@model RecipesViewModel
+﻿@model ListOfRecipesViewModel
 @{
     ViewData["Title"] = "ViewRecipes";
 }
@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var recipe in Model.Recipes)
+            @foreach (var recipe in Model.ListOfRecipes)
             {
                 <tr>
 
