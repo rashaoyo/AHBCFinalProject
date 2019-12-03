@@ -1,0 +1,40 @@
+﻿@model RecipesViewModel
+@{
+    ViewData["Title"] = "ViewRecipes";
+}
+
+<h1>View All Recipes</h1>
+
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var recipe in Model.Recipes)
+            {
+                <tr>
+
+                    <td>
+                        @recipe.Title 
+
+
+
+
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
