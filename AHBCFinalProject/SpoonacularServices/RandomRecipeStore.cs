@@ -10,7 +10,7 @@ namespace AHBCFinalProject.SpoonacularServices
     {
         const string ApiKey = "dc427c57ac7d4169bdb990b3893ebe80";
 
-        public async Task<ListOfRecipesResponse> GetRandomRecipe()
+        public async Task<ListOfRecipesResponse> GetRandomRecipes()
         {
             using(var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/random") })
             {

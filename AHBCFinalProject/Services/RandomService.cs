@@ -1,4 +1,5 @@
 ﻿using AHBCFinalProject.Models;
+using AHBCFinalProject.SpoonacularServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,23 @@ namespace AHBCFinalProject.Services
             _randomRecipeStore = randomRecipeStore ?? throw new ArgumentNullException(nameof(randomRecipeStore));
         }
 
-        public async Task<RecipeViewModel> GetAllRandomRecipes()
+        public async Task<ListOfRecipesViewModel> GetAllRandomRecipes()
         {
-            var result = await _randomRecipeStore.GetAllRandomRecipes();
+            var result = await _randomRecipeStore.GetRandomRecipes();
 
-            var recipeViewModel = new RecipeViewModel
+            var listOfRecipesViewModel = new ListOfRecipesViewModel();
+
+            foreach(var recipe in result.Recipes)
+            {
+                var recipeViewModel = new RecipeViewModel
+                {
+                    Title = recipe.Title
+                };
+
+                listOfRecipesViewModel.ListOfRecipes.Add(recipeViewModel);
+            }
+
+            /*
             {
                 Recipes = result.Results.Select(randomRecipe =>
                 new Recipe
@@ -27,7 +40,10 @@ namespace AHBCFinalProject.Services
                     Name = randomRecipe.Name,
                 })
             };
-            return recipeViewModel;
+            to be refactored
+            */
+
+            return listOfRecipesViewModel;
         }
     }
 }

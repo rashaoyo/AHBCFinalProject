@@ -6,6 +6,6 @@ namespace AHBCFinalProject.SpoonacularServices
 {
     public interface IRandomRecipeStore
     {
-        Task<ListOfRecipesResponse> GetRandomRecipe();
+        Task<ListOfRecipesResponse> GetRandomRecipes();
     }
 }
