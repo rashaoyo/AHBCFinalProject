@@ -21,7 +21,7 @@ namespace AHBCFinalProject.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ViewRecipes(IRandomService _randomService)
+        public async Task<IActionResult> ViewRecipes()
         {
             //var viewModel = new ListOfRecipesViewModel();
 
