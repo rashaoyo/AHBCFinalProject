@@ -8,14 +8,13 @@ namespace AHBCFinalProject.SpoonacularServices
 {
     public class RandomRecipeStore : IRandomRecipeStore
     {
+        const string ApiKey = "dc427c57ac7d4169bdb990b3893ebe80";
+
         public async Task<ListOfRecipesResponse> GetRandomRecipe()
         {
-            using(var httpClient = new HttpClient { BaseAddress = new Uri("spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/") })
+            using(var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/random") })
             {
-                httpClient.DefaultRequestHeaders.Add("x-rapidapi-host", "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com");
-                httpClient.DefaultRequestHeaders.Add("x-rapidapi-key", "dc427c57ac7d4169bdb990b3893ebe80");
-
-                var result = await httpClient.GetStringAsync("recipes/random/?number=7");
+                var result = await httpClient.GetStringAsync($"?number=7&apiKey={ApiKey}");
                 return JsonConvert.DeserializeObject<ListOfRecipesResponse>(result);
             }
         }
