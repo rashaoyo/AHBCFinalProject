@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AHBCFinalProject.Services
 {
-    interface IRandomService
+    public interface IRandomService
     {
-        Task<RecipeViewModel> GetAllRandomRecipes();
+        Task<ListOfRecipesViewModel> GetAllRandomRecipes();
     }
 }

@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{9F21B38D-CD04-471C-9EB2-6A5771901715}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/ListOfRecipesViewModel.cs">
+    <Files>
+      <File FileName="Models/IngredientResponse.cs" Line="1" Column="1" />
+      <File FileName="Models/RecipeResponse.cs" />
+      <File FileName="SpoonacularServices/IRandomRecipeStore.cs" Line="9" Column="53" />
+      <File FileName="SpoonacularServices/RandomRecipeStore.cs" Line="13" Column="66" />
+      <File FileName="Models/ListOfRecipesResponse.cs" Line="10" Column="2" />
+      <File FileName="Services/RandomService.cs" Line="20" Column="10" />
+      <File FileName="Services/IRandomService.cs" Line="9" Column="12" />
+      <File FileName="Models/RecipeViewModel.cs" Line="1" Column="1" />
+      <File FileName="Models/ListOfRecipesViewModel.cs" Line="6" Column="9" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AHBCFinalProject" expanded="True">
+            <Node name="AHBCFinalProject" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="ListOfRecipesViewModel.cs" selected="True" />
+              </Node>
+              <Node name="Services" expanded="True" />
+              <Node name="SpoonacularServices" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.AHBCFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
