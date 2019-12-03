@@ -24,7 +24,7 @@ namespace AHBCFinalProject.Services
 
             foreach(var recipe in result.Recipes)
             {
-                var recipeViewModel = new RecipesViewModel
+                var recipeViewModel = new RecipeViewModel
                 {
                     Title = recipe.Title
                 };
