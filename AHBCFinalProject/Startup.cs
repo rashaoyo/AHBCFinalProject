@@ -59,6 +59,13 @@ namespace AHBCFinalProject
             //        .ConfigureDapperIdentityCryptography(Configuration.GetSection("DapperIdentityCryptography"))
             //        .ConfigureDapperIdentityOptions(new DapperIdentityOptions { UseTransactionalBehavior = false }); //Change to True to use Transactions in all operations
 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddIdentity<DapperIdentityUser, DapperIdentityRole>(x =>
             {
                 x.Password.RequireDigit = false;
@@ -87,12 +94,16 @@ namespace AHBCFinalProject
             config.Bind("AHBCFinalProjectConfiguration", appConfig);
             services.AddSingleton(appConfig);
 
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
 
             services.AddSingleton<IRandomRecipeStore, RandomRecipeStore>();
             services.AddSingleton<IRandomService, RandomService>();
