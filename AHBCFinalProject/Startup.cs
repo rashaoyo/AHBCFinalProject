@@ -5,10 +5,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using AHBCFinalProject.Services;
 using AHBCFinalProject.SpoonacularServices;
+using Identity.Dapper;
+using Identity.Dapper.Entities;
+using Identity.Dapper.Models;
+using Identity.Dapper.SqlServer.Connections;
+using Identity.Dapper.SqlServer.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,9 +23,21 @@ namespace AHBCFinalProject
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        //public Startup(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
+
+        public Startup(IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+
+            builder.AddEnvironmentVariables();
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -27,6 +45,37 @@ namespace AHBCFinalProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureDapperConnectionProvider<SqlServerConnectionProvider>(
+                Configuration.GetSection("ConnectionStrings"))
+                .ConfigureDapperIdentityCryptography(Configuration.GetSection("DapperIdentityCryptography"))
+                .ConfigureDapperIdentityOptions(new DapperIdentityOptions { UseTransactionalBehavior = false }); //Change to True to use Transactions in all operations
+
+            //services.ConfigureDapperConnectionProvider<MySqlConnectionProvider>(Configuration.GetSection("DapperIdentity"))
+            //        .ConfigureDapperIdentityCryptography(Configuration.GetSection("DapperIdentityCryptography"))
+            //        .ConfigureDapperIdentityOptions(new DapperIdentityOptions { UseTransactionalBehavior = false }); //Change to True to use Transactions in all operations
+
+            //services.ConfigureDapperConnectionProvider<PostgreSqlConnectionProvider>(Configuration.GetSection("ConnectionStrings"))
+            //services.ConfigureDapperConnectionProvider<PostgreSqlConnectionProvider>(Configuration.GetSection("DapperIdentity"))
+            //        .ConfigureDapperIdentityCryptography(Configuration.GetSection("DapperIdentityCryptography"))
+            //        .ConfigureDapperIdentityOptions(new DapperIdentityOptions { UseTransactionalBehavior = false }); //Change to True to use Transactions in all operations
+
+            services.AddIdentity<DapperIdentityUser, DapperIdentityRole>(x =>
+            {
+                x.Password.RequireDigit = false;
+                x.Password.RequiredLength = 1;
+                x.Password.RequireLowercase = false;
+                x.Password.RequireNonAlphanumeric = false;
+                x.Password.RequireUppercase = false;
+            })
+                    //.AddDapperIdentityFor<PostgreSqlConfiguration>()
+                    .AddDapperIdentityFor<SqlServerConfiguration>()
+                    //.AddDapperIdentityFor<MySqlConfiguration>()
+                    .AddDefaultTokenProviders();
+
+            // Add application services.
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true)
@@ -67,6 +116,8 @@ namespace AHBCFinalProject
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
