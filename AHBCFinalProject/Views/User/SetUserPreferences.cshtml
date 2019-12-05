@@ -1,0 +1,67 @@
+﻿@model SetUserPreferencesViewModel
+
+@{
+    ViewData["Title"] = "SetUserPreferences";
+}
+
+<h1>Set your preferences!</h1>
+
+
+<div>
+    <h4>What type of diet are you on?</h4>
+
+    <input type="radio" asp-for="Diet" value="Gluten Free"> Gluten Free
+    <br />
+    <input type="radio" asp-for="Diet" value="Ketogenic"> Ketogenic
+    <br />
+    <input type="radio" asp-for="Diet" value="Vegetarian"> Vegetarian
+    <br />
+    <input type="radio" asp-for="Diet" value="Lacto-Vegetarian"> Lacto-Vegetarian
+    <br />
+    <input type="radio" asp-for="Diet" value="Ovo-Vegetarian"> Ovo-Vegetarian
+    <br />
+    <input type="radio" asp-for="Diet" value="Vegan"> Vegan
+    <br />
+    <input type="radio" asp-for="Diet" value="Pescetarian"> Pescetarian
+    <br />
+    <input type="radio" asp-for="Diet" value="Paleo"> Paleo
+    <br />
+    <input type="radio" asp-for="Diet" value="Primal"> Primal
+    <br />
+    <input type="radio" asp-for="Diet" value="Whole30"> Whole30
+    <br />
+</div>
+
+<div>
+    <h4>Which intolerance would you like to avoid?</h4>
+
+    <input type="radio" asp-for="Intolerances" value="Dairy"> Dairy
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Egg"> Egg
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Gluten"> Gluten
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Grain"> Grain
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Peanut"> Peanut
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Seafood"> Seafood
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Sesame"> Sesame
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Shellfish"> Shellfish
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Soy"> Soy
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Sulfite"> Sulfite
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Tree Nut"> Tree Nut
+    <br />
+    <input type="radio" asp-for="Intolerances" value="Wheat"> Wheat
+    <br />
+</div>
+
+
+
+
+
