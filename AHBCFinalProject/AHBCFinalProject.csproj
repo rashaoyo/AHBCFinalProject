@@ -3,16 +3,20 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>78b43415-3798-4110-9270-2c013ec26784</UserSecretsId>
   </PropertyGroup>
 
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.30" />
+    <PackageReference Include="Identity.Dapper" Version="0.8.3-alpha" />
+    <PackageReference Include="Identity.Dapper.SqlServer" Version="0.8.4-alpha" />
     <PackageReference Include="Microsoft.AspNetCore.App">
       <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
       <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 </Project>
