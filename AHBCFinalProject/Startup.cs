@@ -30,10 +30,14 @@ namespace AHBCFinalProject
 
         public Startup(IHostingEnvironment env)
         {
+
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"secrets.json", optional: true)
+                .AddUserSecrets<AHBCFinalProjectConfiguration>();
 
 
             builder.AddEnvironmentVariables();
