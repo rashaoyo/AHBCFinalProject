@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Threading.Tasks;
+using AHBCFinalProject.Models;
+using Dapper;
+
+namespace AHBCFinalProject.DAL
+{
+    public class MealPlanHistoryStore : IMealPlanHistoryStore
+    {
+        private readonly Database _config;
+
+        public MealPlanHistoryStore(AHBCFinalProjectConfiguration config)
+        {
+            _config = config.Database;
+        }
+
+        public bool InsertWeeklyMealPlan(MealPlanHistoryViewModel dalModel)
+        {
+            var sql = $@"INSERT INTO MealPlanHistory (Id, Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, StartDate, EndDate) 
+                            VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.Monday)},@{nameof(dalModel.Tuesday)},@{nameof(dalModel.Wednesday)},@{nameof(dalModel.Thursday)},@{nameof(dalModel.Friday)},@{nameof(dalModel.Saturday)}, @{nameof(dalModel.StartDate)}, @{nameof(dalModel.EndDate)})";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.Execute(sql, dalModel);
+
+                return true;
+            }
+        }
+
+        public MealPlanHistoryDALModel ViewWeeklyMealPlan(ViewMealPlanViewModel dalModel)
+        {
+            var sql = @"SELECT * FROM MealPlanHistory WHERE Id = @{nameof(dalModel.Id)} AND StartDate = @{nameof(dalModel.StartDate)}";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.QueryFirstOrDefault<MealPlanHistoryDALModel>(sql, dalModel);
+                return results;
+
+            }
+        }
+
+    }
+}

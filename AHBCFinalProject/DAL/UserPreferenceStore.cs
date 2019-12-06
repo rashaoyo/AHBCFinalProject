@@ -17,6 +17,7 @@ namespace AHBCFinalProject.DAL
         {
             _config = config.Database;
         }
+
         public bool InsertUserPreferences(UserPreferenceDALModel dalModel)
         {
             var sql = $@"INSERT INTO UserPreferences (UserId, Diet, Intolerances) 
