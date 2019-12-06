@@ -5,6 +5,6 @@ namespace AHBCFinalProject.Models
 {
     public class ListOfRecipesViewModel
     {
-        public List<RecipeViewModel> ListOfRecipes;
+        public List<RecipesViewModel> ListOfRecipes;
     }
 }

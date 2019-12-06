@@ -18,17 +18,37 @@ namespace AHBCFinalProject.DAL
 
         public bool DeleteAFaveMeal(int recipeId)
         {
-            throw new NotImplementedException();
+            var sql = @"delete from FavoriteMeals where recipeId = @recipeId";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var result = connection.Execute(sql, new { recipeId = recipeId });
+                return true;
+            }
         }
 
         public bool InsertAFaveMeal(FavoriteMealDALModel dalModel)
         {
-            throw new NotImplementedException();
+            var sql = $@"INSERT INTO FavoriteMeals (Id, RecipeID, AdditionalComments) 
+                            VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.RecipeID)},@{nameof(dalModel.AdditionalComments)}";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.Execute(sql, dalModel);
+
+                return true;
+            }
         }
 
         public FavoriteMealDALModel SelectAFavMeal(int recipeId)
         {
-            throw new NotImplementedException();
+            var sql = @"select * from FavoriteMeals where recipeId = @recipeId";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var result = connection.QueryFirstOrDefault<FavoriteMealDALModel>(sql, new { recipeId = recipeId });
+                return result;
+            }
         }
 
         public IEnumerable<FavoriteMealDALModel> SelectAllFavMeals()
