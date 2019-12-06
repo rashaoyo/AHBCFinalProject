@@ -19,13 +19,14 @@ namespace AHBCFinalProject.Controllers
 
         public IActionResult ViewUserPreferences(int userId)
         {
-            var result = _userPreferenceService.ViewUserPreferences(userId);
+            var result = _userPreferenceService.GetUserPreferencesFromId(userId);
             return View(result);
         }
 
-        public IActionResult SetUserPreferences(SetUserPreferencesViewModel model)
+        public IActionResult SetUserPreferences(UserPreferencesViewModel model)
         {
-            var result = _userPreferenceService.SetUserPreferences(model);
+            _userPreferenceService.CreateUserPreferences(model);
+            var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
             return View(result);
         }
     }
