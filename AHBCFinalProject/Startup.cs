@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AHBCFinalProject.DAL;
 using AHBCFinalProject.Services;
 using AHBCFinalProject.SpoonacularServices;
 using Identity.Dapper;
@@ -108,7 +109,10 @@ namespace AHBCFinalProject
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddSingleton<IMealPlanHistoryService, MealPlanHistoryService>();
+            services.AddSingleton<IMealPlanHistoryStore, MealPlanHistoryStore>();
+            services.AddSingleton<IUserPreferenceService, UserPreferenceService>();
+            services.AddSingleton<IUserPreferenceStore, UserPreferenceStore>();
             services.AddSingleton<IRandomRecipeStore, RandomRecipeStore>();
             services.AddSingleton<IRandomService, RandomService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
