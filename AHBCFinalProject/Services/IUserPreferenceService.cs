@@ -1,4 +1,5 @@
-﻿using AHBCFinalProject.Models;
+﻿using AHBCFinalProject.DAL;
+using AHBCFinalProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,8 @@ namespace AHBCFinalProject.Services
 {
     public interface IUserPreferenceService
     {
-        UserPreferencesViewModel ViewUserPreferences(int userId);
-        UserPreferencesViewModel SetUserPreferences(SetUserPreferencesViewModel model);
-
+        UserPreferencesViewModel GetUserPreferencesFromId(int userId);
+        void CreateUserPreferences(UserPreferencesViewModel model);
+        UserPreferenceDALModel GetUserDALFromViewModel(UserPreferencesViewModel viewModel);
     }
 }

@@ -7,6 +7,7 @@ namespace AHBCFinalProject.Models
 {
     public class UserPreferencesViewModel
     {
+        public int UserId { get; set; }
         public bool GlutenFree { get; set; }
         public bool Ketogenic { get; set; }
         public bool Vegetarian { get; set; }

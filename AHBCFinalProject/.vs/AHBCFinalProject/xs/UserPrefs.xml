@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{9F21B38D-CD04-471C-9EB2-6A5771901715}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Services/UserPreferenceService.cs">
+    <Files>
+      <File FileName="Models/UserPreferencesViewModel.cs" Line="10" Column="40" />
+      <File FileName="SpoonacularServices/IComplexSearchStore.cs" Line="1" Column="1" />
+      <File FileName="SpoonacularServices/ComplexSearchStore.cs" Line="1" Column="1" />
+      <File FileName="Services/IUserPreferenceService.cs" Line="10" Column="44" />
+      <File FileName="Services/UserPreferenceService.cs" Line="5" Column="19" />
+      <File FileName="DAL/UserPreferenceStore.cs" Line="1" Column="1" />
+      <File FileName="Views/User/SetUserPreferences.cshtml" Line="62" Column="7" />
+      <File FileName="Views/User/ViewUserPreferences.cshtml" Line="1" Column="1" />
+      <File FileName="Models/RecipeViewModel.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="AHBCFinalProject" expanded="True">
+            <Node name="AHBCFinalProject" expanded="True">
+              <Node name="DAL" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+              <Node name="SpoonacularServices" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Recipe" expanded="True" />
+                <Node name="User" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.AHBCFinalProject PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
