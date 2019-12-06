@@ -22,12 +22,12 @@ namespace AHBCFinalProject.Services
 
             var listOfRecipesViewModel = new ListOfRecipesViewModel
             {
-                ListOfRecipes = new List<RecipeViewModel>()
+                ListOfRecipes = new List<RecipesViewModel>()
             };
 
             foreach(var recipe in result.Recipes)
             {
-                var recipeViewModel = new RecipeViewModel
+                var recipeViewModel = new RecipesViewModel
                 {
                     Title = recipe.Title
                 };
