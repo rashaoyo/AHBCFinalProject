@@ -11,6 +11,5 @@ namespace AHBCFinalProject.DAL
         FavoriteMealDALModel SelectAFavMeal(int recipeId);
         bool InsertAFaveMeal(FavoriteMealDALModel dalModel);
         bool DeleteAFaveMeal(int recipeId);
-
     }
 }
