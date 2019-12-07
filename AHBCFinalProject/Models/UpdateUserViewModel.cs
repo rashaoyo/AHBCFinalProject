@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AHBCFinalProject.DAL
+namespace AHBCFinalProject.Models
 {
-    public class UserPreferenceDALModel
+    public class UpdateUserViewModel
     {
+        [HiddenInput]
         public int UserId { get; set; }
         public string Diet { get; set; }
         public string Intolerances { get; set; }

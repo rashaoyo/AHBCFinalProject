@@ -42,6 +42,18 @@ namespace AHBCFinalProject.Controllers
             return View("ViewMealPlanResults", result);
         }
 
+        public IActionResult UpdatePreference(int userId)
+        {
+            var model = _userPreferenceService.GetUpdatedPreferenceView(userId);
+            return View(model);
+        }
+
+        public IActionResult UpdatePreferenceResult(UpdateUserViewModel model)
+        {
+            var newModel = _userPreferenceService.EditPreference(model);
+            return View("ViewUserPreferences", newModel);
+        }
+
 
     }
 }
