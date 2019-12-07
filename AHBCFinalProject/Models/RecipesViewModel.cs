@@ -7,6 +7,6 @@ namespace AHBCFinalProject.Models
 {
     public class RecipesViewModel
     {
-        public string Title { get; set; }
+        public string Title { get; set; }   //needs to show ID, to fix "add to mealplanhistory"
     }
 }
