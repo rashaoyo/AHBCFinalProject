@@ -17,8 +17,6 @@ namespace AHBCFinalProject.Services
             _favoriteMealStore = favoriteMealStore;
         }
 
-
-
         public void DeleteAFavoriteMeal(int recipeId)
         {
             _favoriteMealStore.DeleteAFaveMeal(recipeId);

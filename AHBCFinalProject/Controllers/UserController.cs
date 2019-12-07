@@ -12,11 +12,13 @@ namespace AHBCFinalProject.Controllers
     {
         private readonly IUserPreferenceService _userPreferenceService;
         private readonly IMealPlanHistoryService _mealPlanHistoryService;
+        private readonly IFavoriteMealService _FavoriteMealService;
 
-        public UserController(IUserPreferenceService userPreferenceService, IMealPlanHistoryService mealPlanHistoryService)
+        public UserController(IUserPreferenceService userPreferenceService, IMealPlanHistoryService mealPlanHistoryService, IFavoriteMealService favoriteMealService)
         {
             _userPreferenceService = userPreferenceService;
             _mealPlanHistoryService = mealPlanHistoryService;
+            _FavoriteMealService = favoriteMealService;
         }
 
         public IActionResult ViewUserPreferences(int userId)
@@ -43,6 +45,11 @@ namespace AHBCFinalProject.Controllers
             return View("ViewMealPlanResults", result);
         }
 
+        public IActionResult FavoriteMealsView()
+        {
+            var viewModel = _FavoriteMealService.SelectAllFavoriteMeals();
+            return View();
+        }
 
     }
 }
