@@ -26,7 +26,7 @@ namespace AHBCFinalProject.Services
             {   Id = _userIdService.UserId,
                 Sunday = model.Id,
                 Monday = result.ListOfRecipes[0].Id,
-                Tuesday = result.ListOfRecipes[1].Id,
+                Tuesday = result.ListOfRecipes[1].Id, 
                 Wednesday = result.ListOfRecipes[2].Id,
                 Thursday = result.ListOfRecipes[3].Id,
                 Friday = result.ListOfRecipes[4].Id,

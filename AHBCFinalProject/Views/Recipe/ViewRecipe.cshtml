@@ -4,5 +4,35 @@
     ViewData["Title"] = "ViewRecipe";
 }
 
-<h1>ViewRecipe</h1>
+<h1>@Model.Title</h1>
+<img src="@Html.DisplayNameFor(model => model.Image)" alt="Altern" />
+
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Servings)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Servings)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.HealthScore)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.HealthScore)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ReadyInMinutes)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ReadyInMinutes)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Instructions)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Instructions)
+    </dd>
+  
+</dl>
 
