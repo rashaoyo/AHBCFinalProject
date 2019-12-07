@@ -7,7 +7,12 @@ namespace AHBCFinalProject.Services
 {
     public class UserIdService : IUserIdService
     {
-        public string UserId { get; set; }
+        public int UserId { get; set; }
+
+        public UserIdService(string userId)
+        {
+            UserId = int.Parse(userId);
+        }
 
     }
 }
