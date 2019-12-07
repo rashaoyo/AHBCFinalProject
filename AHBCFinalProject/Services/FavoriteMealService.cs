@@ -9,7 +9,9 @@ namespace AHBCFinalProject.Services
 {
     public class FavoriteMealService : IFavoriteMealService
     {
-        private readonly IFavoriteMealsStore _favoriteMealStore; 
+        private readonly IFavoriteMealsStore _favoriteMealStore;
+        public string userId { get; set; }
+
         public FavoriteMealService(IFavoriteMealsStore favoriteMealStore)
         {
             _favoriteMealStore = favoriteMealStore;

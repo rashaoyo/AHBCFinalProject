@@ -12,5 +12,6 @@ namespace AHBCFinalProject.Services
         void DeleteAFavoriteMeal(int recipeId);
         FavoriteMealsViewModel SelectAllFavoriteMeals();
         RecipeViewModel SelectAFavoriteMeal(int recipeId);
+
     }
 }
