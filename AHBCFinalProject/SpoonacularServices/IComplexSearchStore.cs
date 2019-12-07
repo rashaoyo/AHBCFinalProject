@@ -9,6 +9,6 @@ namespace AHBCFinalProject.SpoonacularServices
 {
     interface IComplexSearchStore
     {
-        Task<ListOfRecipesResponse> GetRecipesComplexSearch(User user, int number);
+        Task<ListOfRecipesResponse> GetRecipesComplexSearch();
     }
 }
