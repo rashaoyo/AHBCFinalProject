@@ -15,15 +15,21 @@ namespace AHBCFinalProject.Services
             _favoriteMealStore = favoriteMealStore;
         }
 
-        public FavoriteMealViewModel DeleteAFavoriteMeal(int recipeId)
+        public void DeleteAFavoriteMeal(int recipeId)
         {
-        
-            throw new NotImplementedException();
+            _favoriteMealStore.DeleteAFaveMeal(recipeId);
         }
 
-        public FavoriteMealViewModel InsertAFavoriteMeal(int recipeId)
+        public void InsertAFavoriteMeal(int recipeId, string comments, int userId)
         {
-            throw new NotImplementedException();
+            var dalModel = new FavoriteMealDALModel
+            {
+                RecipeID = recipeId,
+                AdditionalComments = comments,
+                Id = userId
+            };
+
+            _favoriteMealStore.InsertAFaveMeal(dalModel);
         }
 
         public RecipeViewModel SelectAFavoriteMeal(int recipeId)
@@ -31,9 +37,18 @@ namespace AHBCFinalProject.Services
             throw new NotImplementedException();
         }
 
-        public FavoriteMealViewModel SelectAllFavoriteMeals()
+        public FavoriteMealsViewModel SelectAllFavoriteMeals()
         {
-            throw new NotImplementedException();
+            var allMeals = _favoriteMealStore.SelectAllFavMeals();
+            var viewModel = new FavoriteMealsViewModel
+            {
+                FavoriteMeals = allMeals.ToList()
+            };
+
+            return (viewModel);
         }
+
+
+
     }
 }
