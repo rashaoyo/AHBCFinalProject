@@ -20,7 +20,7 @@ namespace AHBCFinalProject.DAL
 
         public bool InsertUserPreferences(UserPreferenceDALModel dalModel)
         {
-            var sql = $@"INSERT INTO DietaryRestrictions (UserId, Diet, Intolerances) 
+            var sql = $@"INSERT INTO UserPreferences (UserId, Diet, Intolerances) 
                             VALUES (@{nameof(dalModel.UserId)}), (@{nameof(dalModel.Diet)}), (@{nameof(dalModel.Intolerances)})";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
@@ -33,7 +33,7 @@ namespace AHBCFinalProject.DAL
 
         public UserPreferenceDALModel SelectUserPreferences(int userId)
         {
-            var sql = @"SELECT * FROM DietaryRestrictions WHERE UserID = @UserID";
+            var sql = @"SELECT * FROM UserPreferences WHERE UserID = @UserID";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
