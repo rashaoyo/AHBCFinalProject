@@ -1,10 +1,4 @@
-﻿using System;
-using System.Reflection
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AHBCFinalProject.Models
+﻿namespace AHBCFinalProject.Models
 {
     public class RecipeViewModel
     {
