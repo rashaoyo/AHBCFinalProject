@@ -28,7 +28,8 @@ namespace AHBCFinalProject.Controllers
         public IActionResult SetUserPreferences(UserPreferencesViewModel model)
         {
             _userPreferenceService.CreateUserPreferences(model);
-            return View();
+            var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
+            return View(result);
         }
 
         public IActionResult SearchMealPlanHistory()
