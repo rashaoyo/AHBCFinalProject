@@ -8,5 +8,6 @@ namespace AHBCFinalProject.Services
     {
         Task<RecipeViewModel> GetSeedRecipeFromPreferences(UserPreferencesViewModel viewModel);
         Task<ListOfRecipesViewModel> GetWeekOfRecipesFromSeed(RecipeViewModel seedRecipe);
+        Task<RecipeViewModel> ViewARecipe(int userId);
     }
 }

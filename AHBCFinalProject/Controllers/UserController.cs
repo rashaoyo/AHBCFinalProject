@@ -42,8 +42,9 @@ namespace AHBCFinalProject.Controllers
         public IActionResult ViewMealPlanResults(ViewMealPlanViewModel model)
         {
             var result = _mealPlanHistoryService.ViewMealPlan(model);
-            return View("ViewMealPlanResults", result);
+            return View(result);
         }
+
 
 
         public IActionResult UpdatePreference(int userId)
