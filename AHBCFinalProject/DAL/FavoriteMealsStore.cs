@@ -54,7 +54,7 @@ namespace AHBCFinalProject.DAL
 
         public IEnumerable<FavoriteMealDALModel> SelectAllFavMeals()
         {
-            var sql = @"SELECT * FROM FavoriteMeals WHERE  ORDER BY ProductName ASC";
+            var sql = @"SELECT * FROM FavoriteMeals ORDER BY RecipeID ASC";
 
             using (var connection = new SqlConnection(_config.ConnectionString))   
             {

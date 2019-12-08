@@ -22,9 +22,11 @@ namespace AHBCFinalProject.DAL
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-                var result = connection.QueryFirstOrDefault<string>(sql);
-                return int.Parse(result);
+                var result = connection.QueryFirstOrDefault<int>(sql, new { Email = email });
+                return (result);
             }
         }
+
+ 
     }
 }

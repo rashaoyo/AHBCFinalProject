@@ -73,6 +73,7 @@ namespace AHBCFinalProject.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
+                    setUserIds(model.Email);
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -103,6 +104,8 @@ namespace AHBCFinalProject.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
             
+           
+            
             return View();
         }
 
@@ -131,7 +134,7 @@ namespace AHBCFinalProject.Controllers
 
                     // return RedirectToSetUserPrefs();
                    
-                    //setUserIds(model.Email);
+                    setUserIds(model.Email);
 
                     return RedirectToLocal(returnUrl);
                 }
