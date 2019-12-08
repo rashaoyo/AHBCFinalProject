@@ -32,4 +32,6 @@ namespace AHBCFinalProject.Models
         public bool Wheat { get; set; }
         public string ExcludedIngredients { get; set; }
     }
+
+
 }

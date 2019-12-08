@@ -44,12 +44,27 @@ namespace AHBCFinalProject.Controllers
             var result = _mealPlanHistoryService.ViewMealPlan(model);
             return View(result);
         }
-         
-        public IActionResult FavoriteMealsView() 
+
+
+
+        public IActionResult UpdatePreference(int userId)
+        {
+            var model = _userPreferenceService.GetUpdatedPreferenceView(userId);
+            return View(model);
+        }
+
+        public IActionResult UpdatePreferenceResult(UpdateUserViewModel model)
+        {
+            var newModel = _userPreferenceService.EditPreference(model);
+            return View("ViewUserPreferences", newModel);
+        }
+
+        public IActionResult FavoriteMealsView()
         {
             var viewModel = _FavoriteMealService.SelectAllFavoriteMeals();
             return View();
         }
+
 
     }
 }

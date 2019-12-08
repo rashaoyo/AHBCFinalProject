@@ -46,7 +46,7 @@ namespace AHBCFinalProject.Controllers
             var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             var userId = claim.Value;
 
-            _userIdService.UserId = userId;
+            _userIdService.UserId = int.Parse(userId);
         }
 
 

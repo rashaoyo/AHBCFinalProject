@@ -10,6 +10,8 @@ namespace AHBCFinalProject.DAL
     {
         UserPreferenceDALModel SelectUserPreferences(int userId);
         bool InsertUserPreferences(UserPreferenceDALModel dalModel);
+        bool UpdateUserPreferences(UserPreferenceDALModel dalModel);
+
 
     }
 }

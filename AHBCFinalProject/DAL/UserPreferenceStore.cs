@@ -29,8 +29,8 @@ namespace AHBCFinalProject.DAL
                 
                 return true;
             }
-
-
+            
+            
         }
 
         public UserPreferenceDALModel SelectUserPreferences(int userId)
@@ -42,6 +42,17 @@ namespace AHBCFinalProject.DAL
                 var results = connection.QueryFirstOrDefault<UserPreferenceDALModel>(sql, new { UserID = userId });
                 return results;
 
+            }
+        }
+
+        public bool UpdateUserPreferences(UserPreferenceDALModel dalModel)
+        {
+            var sql = $@"UPDATE DietaryRestrictions SET Diet = @{nameof(dalModel.Diet)}, Intolerances = @{nameof(dalModel.Intolerances)}, ExcludedIngredients = @{nameof(dalModel.ExcludedIngredients)} WHERE UserId = @UserId";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var result = connection.Execute(sql, dalModel);
+                return true;
             }
         }
     }
