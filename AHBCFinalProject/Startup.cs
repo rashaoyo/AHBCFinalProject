@@ -111,12 +111,14 @@ namespace AHBCFinalProject
 
             services.AddSingleton<IUserIDStore, UserIDStore>();
             services.AddSingleton<IUserIdService, UserIdService>();
+            services.AddSingleton<IFavoriteMealsStore, FavoriteMealsStore>();
+            services.AddSingleton<IFavoriteMealService, FavoriteMealService>();
             services.AddSingleton<IMealPlanHistoryService, MealPlanHistoryService>();
             services.AddSingleton<IMealPlanHistoryStore, MealPlanHistoryStore>();
             services.AddSingleton<IUserPreferenceService, UserPreferenceService>();
             services.AddSingleton<IUserPreferenceStore, UserPreferenceStore>();
-            services.AddSingleton<IRandomRecipeStore, RandomRecipeStore>();
-            services.AddSingleton<IRandomService, RandomService>();
+            services.AddSingleton<IComplexSearchStore, ComplexSearchStore>();
+            services.AddSingleton<IComplexSearchService, ComplexSearchService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

@@ -130,7 +130,8 @@ namespace AHBCFinalProject.Controllers
                     _logger.LogInformation(3, "User created a new account with password.");
 
                     // return RedirectToSetUserPrefs();
-                    setUserIds(model.Email);
+                   
+                    //setUserIds(model.Email);
 
                     return RedirectToLocal(returnUrl);
                 }
