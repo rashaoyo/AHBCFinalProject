@@ -12,6 +12,8 @@ namespace AHBCFinalProject.Services
         private readonly IComplexSearchStore _complexSearchStore;
         private readonly IUserPreferenceService _userPreferenceService;
 
+
+
         public ComplexSearchService(IComplexSearchStore complexSearchStore, IUserPreferenceService userPreferenceService)
         {
             _complexSearchStore = complexSearchStore;

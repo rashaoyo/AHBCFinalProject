@@ -7,5 +7,6 @@ namespace AHBCFinalProject.SpoonacularServices
     public interface IRecipeByIdStore
     {
         Task<RecipeResponse> GetRecipeResponseFromId(int recipeId);
+
     }
 }

@@ -8,7 +8,7 @@ namespace AHBCFinalProject.DAL
 {
     public interface IMealPlanHistoryStore
     {
-        MealPlanHistoryDALModel ViewWeeklyMealPlan(ViewMealPlanViewModel dalModel);
+        IEnumerable<MealPlanHistoryDALModel> ViewWeeklyMealPlan(ViewMealPlanViewModel dalModel);
         bool InsertWeeklyMealPlan(MealPlanHistoryViewModel dalModel);
     }
 }
