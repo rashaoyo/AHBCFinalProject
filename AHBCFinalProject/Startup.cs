@@ -93,9 +93,9 @@ namespace AHBCFinalProject
                 .Build();
 
             var appConfig = new AHBCFinalProjectConfiguration();
-            config.Bind("AHBCFinalProjectConfiguration", appConfig);
+            config.Bind(nameof(AHBCFinalProjectConfiguration), appConfig);
             services.AddSingleton(appConfig);
-
+            
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
@@ -121,6 +121,7 @@ namespace AHBCFinalProject
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+          
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
