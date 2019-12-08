@@ -10,11 +10,12 @@ namespace AHBCFinalProject.Services
     public class MealPlanHistoryService : IMealPlanHistoryService
     {
         private readonly IMealPlanHistoryStore _mealPlanHistoryStore;
-        
-        public MealPlanHistoryService(IMealPlanHistoryStore mealPlanHistoryStore)
+        private readonly IUserIdService _userIdService;
+
+        public MealPlanHistoryService(IMealPlanHistoryStore mealPlanHistoryStore, IUserIdService userIdService)
         {
             _mealPlanHistoryStore = mealPlanHistoryStore;
-            
+            _userIdService = userIdService;
         }
                 
         public void AddMealPlanToHistory(RecipeViewModel model, ListOfRecipesViewModel result)  //Might need to change input, based on ComplexSearchService
@@ -22,10 +23,10 @@ namespace AHBCFinalProject.Services
             var today = DateTime.Today;
 
             var mealPlanHistoryViewModel = new MealPlanHistoryViewModel //might need to adjust UserId based on how the SetUserIdService is set up
-            {   Id = UserId,
+            {   Id = _userIdService.UserId,
                 Sunday = model.Id,
                 Monday = result.ListOfRecipes[0].Id,
-                Tuesday = result.ListOfRecipes[1].Id,
+                Tuesday = result.ListOfRecipes[1].Id, 
                 Wednesday = result.ListOfRecipes[2].Id,
                 Thursday = result.ListOfRecipes[3].Id,
                 Friday = result.ListOfRecipes[4].Id,
