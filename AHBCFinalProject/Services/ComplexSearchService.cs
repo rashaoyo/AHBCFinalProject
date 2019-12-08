@@ -11,11 +11,15 @@ namespace AHBCFinalProject.Services
     {
         private readonly IComplexSearchStore _complexSearchStore;
         private readonly IUserPreferenceService _userPreferenceService;
+        private readonly IMealPlanHistoryService _mealPlanHistoryService;
 
-        public ComplexSearchService(IComplexSearchStore complexSearchStore, IUserPreferenceService userPreferenceService)
+
+
+        public ComplexSearchService(IComplexSearchStore complexSearchStore, IUserPreferenceService userPreferenceService, IMealPlanHistoryService mealPlanHistoryService)
         {
             _complexSearchStore = complexSearchStore;
             _userPreferenceService = userPreferenceService;
+            _mealPlanHistoryService = mealPlanHistoryService;
         }
 
         public async Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel)
@@ -33,6 +37,8 @@ namespace AHBCFinalProject.Services
                 var recipeVM = ConvertRecipeResponseToVM(recipe);
                 result.ListOfRecipes.Add(recipeVM);
             }
+
+            _mealPlanHistoryService.AddMealPlanToHistory(result);
 
             return result;
         }

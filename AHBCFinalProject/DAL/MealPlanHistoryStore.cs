@@ -30,13 +30,13 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public MealPlanHistoryDALModel ViewWeeklyMealPlan(ViewMealPlanViewModel dalModel)
+        public IEnumerable<MealPlanHistoryDALModel> ViewWeeklyMealPlan(ViewMealPlanViewModel dalModel)
         {
-            var sql = @"SELECT * FROM MealPlanHistory WHERE Id = @{nameof(dalModel.Id)} AND StartDate = @{nameof(dalModel.StartDate)}";
+            var sql = $@"SELECT * FROM MealPlanHistory WHERE Id = @{nameof(dalModel.Id)} AND StartDate = @{nameof(dalModel.StartDate)} BETWEEN @{nameof(dalModel.TodaysDate)} AND @{nameof(dalModel.StartDate)}";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-                var results = connection.QueryFirstOrDefault<MealPlanHistoryDALModel>(sql, dalModel);
+                var results = connection.Query<MealPlanHistoryDALModel>(sql, dalModel);
                 return results;
 
             }

@@ -9,5 +9,8 @@ namespace AHBCFinalProject.Models
     {
         public int Id { get; set; }
         public DateTime StartDate { get; set; }
+        public DateTime TodaysDate { get; set; }
+
+
     }
 }

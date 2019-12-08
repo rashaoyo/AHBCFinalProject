@@ -11,74 +11,93 @@ namespace AHBCFinalProject.Services
     {
         private readonly IMealPlanHistoryStore _mealPlanHistoryStore;
         private readonly IUserIdService _userIdService;
-        private readonly IComplexSearchService _complexSearchService;
+        private readonly IRecipeByIdService _recipeByIdService;
 
-        public MealPlanHistoryService(IMealPlanHistoryStore mealPlanHistoryStore, IUserIdService userIdService, IComplexSearchService complexSearchService)
+        public MealPlanHistoryService(IMealPlanHistoryStore mealPlanHistoryStore, IUserIdService userIdService, IRecipeByIdService recipeByIdService)
         {
             _mealPlanHistoryStore = mealPlanHistoryStore;
             _userIdService = userIdService;
-            _complexSearchService = complexSearchService;
+            _recipeByIdService = recipeByIdService;
         }
                 
-        public void AddMealPlanToHistory(RecipeViewModel model, ListOfRecipesViewModel result)  //Might need to change input, based on ComplexSearchService
+        public void AddMealPlanToHistory(ListOfRecipesViewModel result) 
         {
             var today = DateTime.Today;
 
             var mealPlanHistoryViewModel = new MealPlanHistoryViewModel 
             {   Id = _userIdService.UserId,
-                Sunday = model.Id,
-                Monday = result.ListOfRecipes[0].Id,
-                Tuesday = result.ListOfRecipes[1].Id, 
-                Wednesday = result.ListOfRecipes[2].Id,
-                Thursday = result.ListOfRecipes[3].Id,
-                Friday = result.ListOfRecipes[4].Id,
-                Saturday = result.ListOfRecipes[5].Id,
+                Sunday = result.ListOfRecipes[0].Id,
+                Monday = result.ListOfRecipes[1].Id,
+                Tuesday = result.ListOfRecipes[2].Id, 
+                Wednesday = result.ListOfRecipes[3].Id,
+                Thursday = result.ListOfRecipes[4].Id,
+                Friday = result.ListOfRecipes[5].Id,
+                Saturday = result.ListOfRecipes[6].Id,
                 StartDate = today,
                 EndDate = today.AddDays(7)
 
             };
 
+            _mealPlanHistoryStore.InsertWeeklyMealPlan(mealPlanHistoryViewModel);
+        }
+
+        public async Task<MPsViewModel> ViewMealPlanHistory(ViewMealPlanViewModel model)
+        {
+            model.TodaysDate = DateTime.Today;
+
+            var dalResults = _mealPlanHistoryStore.ViewWeeklyMealPlan(model);
+            var viewMealPlansModel = new List<ViewPlanViewModel>();
             
+            foreach (var dalResult in dalResults)
+            {                             
+                var mealPlan = new MealPlanHistoryViewModel();
+                mealPlan.Sunday = dalResult.Sunday;
+                mealPlan.Monday = dalResult.Monday;
+                mealPlan.Tuesday = dalResult.Tuesday;
+                mealPlan.Wednesday = dalResult.Wednesday;
+                mealPlan.Thursday = dalResult.Thursday;
+                mealPlan.Friday = dalResult.Friday;
+                mealPlan.Saturday = dalResult.Saturday;
+
+                var sunday = await _recipeByIdService.GetRecipeVMById(mealPlan.Sunday);
+                var monday = await _recipeByIdService.GetRecipeVMById(mealPlan.Monday);
+                var tues = await _recipeByIdService.GetRecipeVMById(mealPlan.Tuesday);
+                var wed = await _recipeByIdService.GetRecipeVMById(mealPlan.Wednesday);
+                var thur = await _recipeByIdService.GetRecipeVMById(mealPlan.Thursday);
+                var fri = await _recipeByIdService.GetRecipeVMById(mealPlan.Friday);
+                var sat = await _recipeByIdService.GetRecipeVMById(mealPlan.Saturday);
+
+
+                var viewPlan = new ViewPlanViewModel
+                {
+                    SundayId = sunday.Id,
+                    SundayName = sunday.Title,
+                    MondayId = monday.Id,
+                    MondayName = monday.Title,
+                    TuesdayId = tues.Id,
+                    TuesdayName = tues.Title,
+                    WednesdayId = wed.Id,
+                    WednesdayName = wed.Title,
+                    ThursdayId = thur.Id,
+                    ThursdayName = thur.Title,
+                    FridayId = fri.Id,
+                    FridayName = fri.Title,
+                    SaturdayId = sat.Id,
+                    SaturdayName = sat.Title
+
+                };
+
+                viewMealPlansModel.Add(viewPlan);
+            }
+
+            var mpsViewModel = new MPsViewModel();
+            mpsViewModel.MealPlans = viewMealPlansModel;
+
+
+            return mpsViewModel;
         }
 
-        public ViewPlanViewModel ViewMealPlan(ViewMealPlanViewModel model)
-        {                      
-            var dalModel = _mealPlanHistoryStore.ViewWeeklyMealPlan(model);
-
-            var viewModel = new MealPlanHistoryViewModel
-            {
-                Id = dalModel.Id,
-                Sunday = dalModel.Monday,
-                Monday = dalModel.Monday,
-                Tuesday = dalModel.Tuesday,
-                Wednesday = dalModel.Wednesday,
-                Thursday = dalModel.Thursday,
-                Friday = dalModel.Friday,
-                Saturday = dalModel.Saturday
-            };
-
-            var viewPlanViewModel = new ViewPlanViewModel
-            {
-                //SundayId = _complexSearchService.ViewARecipe(dalModel.Sunday),
-                //SundayName = _complexSearchService.ViewARecipe(dalModel.Sunday)
-                //MondayId = _complexSearchService.ViewARecipe(viewModel.Monday).Id,
-                //MondayName
-
-                //TuesdayId = _complexSearchService.ViewARecipe(viewModel.Tuesday).Id,
-                //TuesdayName
-                //WednesdayId = _complexSearchService.ViewARecipe(viewModel.Wednesday),
-                //WednesdviewPlanViewModelayName,
-                //ThursdayId = _complexSearchService.ViewARecipe(viewModel.Thursday),
-                //ThursdayName,
-                //FridayId = _complexSearchService.ViewARecipe(viewModel.Friday),
-                //FridayName,
-                //SaturdayId = _complexSearchService.ViewARecipe(viewModel.Wednesday),
-                //SaturdayName = _complexSearchService.ViewARecipe(viewModel.Sunday).Name
-            };
-
-
-            return viewPlanViewModel;
-        }
+        
     }
 }
 
