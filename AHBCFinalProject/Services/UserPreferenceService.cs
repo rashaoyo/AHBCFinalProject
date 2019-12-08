@@ -153,23 +153,5 @@ namespace AHBCFinalProject.Services
 
             return updatedPreference;
         }
-
-        public UserPreferencesViewModel EditPreference(UserPreferenceDALModel model)
-        {
-            _userPreferenceStore.UpdateUserPreferences(model);
-            var dalModel = _userPreferenceStore.SelectUserPreferences(model.UserId);
-            var newModel = new UserPreferencesViewModel();
-            return newModel;
-        }
-
-        public UserPreferencesViewModel EditPreference(UpdateUserViewModel model)
-        {
-            //_userPreferenceStore.UpdateUserPreferences(model);
-            var dalModel = _userPreferenceStore.SelectUserPreferences(model.UserId);
-            var newModel = new UserPreferencesViewModel();
-            // FIGURING OUT THIS PART.
-            return newModel;
-        }
-
     }
 }

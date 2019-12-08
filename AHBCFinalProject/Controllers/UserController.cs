@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AHBCFinalProject.Models;
 using AHBCFinalProject.Services;
+using AHBCFinalProject.DAL;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AHBCFinalProject.Controllers
@@ -13,25 +14,37 @@ namespace AHBCFinalProject.Controllers
         private readonly IUserPreferenceService _userPreferenceService;
         private readonly IMealPlanHistoryService _mealPlanHistoryService;
         private readonly IFavoriteMealService _FavoriteMealService;
+        private readonly IUserPreferenceStore _userPreferenceStore;
 
-        public UserController(IUserPreferenceService userPreferenceService, IMealPlanHistoryService mealPlanHistoryService, IFavoriteMealService favoriteMealService)
+        public UserController(IUserPreferenceService userPreferenceService,
+            IMealPlanHistoryService mealPlanHistoryService,
+            IFavoriteMealService favoriteMealService,
+            IUserPreferenceStore userPreferenceStore)
         {
             _userPreferenceService = userPreferenceService;
             _mealPlanHistoryService = mealPlanHistoryService;
             _FavoriteMealService = favoriteMealService;
+            _userPreferenceStore = userPreferenceStore;
         }
 
-        public IActionResult ViewUserPreferences(int userId)
+        public IActionResult ViewUserPreferences(UserPreferencesViewModel viewModel)
         {
-            var result = _userPreferenceService.GetUserPreferencesFromId(userId);
+            var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
             return View(result);
         }
 
-        public IActionResult SetUserPreferences(UserPreferencesViewModel model)
+        public IActionResult SetUserPreferences()
         {
-            _userPreferenceService.CreateUserPreferences(model);
+            return View();
+        }
+
+        public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
+        {
+            var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
+            _userPreferenceStore.InsertUserPreferences(dalModel);
             var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
-            return View(result);
+
+            return View("ViewUserPreferences", result);
         }
 
         public IActionResult SearchMealPlanHistory()
@@ -53,11 +66,13 @@ namespace AHBCFinalProject.Controllers
             return View(model);
         }
 
+        /*
         public IActionResult UpdatePreferenceResult(UpdateUserViewModel model)
         {
             var newModel = _userPreferenceService.EditPreference(model);
             return View("ViewUserPreferences", newModel);
         }
+        */
 
         public IActionResult FavoriteMealsView()
         {

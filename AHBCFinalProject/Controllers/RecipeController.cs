@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AHBCFinalProject.DAL;
 using AHBCFinalProject.Models;
 using AHBCFinalProject.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -13,15 +14,19 @@ namespace AHBCFinalProject.Controllers
         private readonly IMealPlanHistoryService _mealPlanHistoryService;
         private readonly IComplexSearchService _complexSearchService;
         private readonly IRecipeByIdService _recipeByIdService;
+        private readonly IUserPreferenceService _userPreferenceService;
+        private readonly IUserPreferenceStore _userPreferenceStore;
 
         public RecipeController(
             IMealPlanHistoryService mealPlanHistoryService,
             IComplexSearchService complexSearchService,
-            IRecipeByIdService recipeByIdService)
+            IRecipeByIdService recipeByIdService,
+            IUserPreferenceService userPreferenceService)
         {
             _mealPlanHistoryService = mealPlanHistoryService;
             _complexSearchService = complexSearchService;
             _recipeByIdService = recipeByIdService;
+            _userPreferenceService = userPreferenceService;
         }
 
         public async Task<IActionResult> ViewRecipes(UserPreferencesViewModel userPreferences)
