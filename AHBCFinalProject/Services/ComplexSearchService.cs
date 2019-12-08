@@ -65,7 +65,7 @@ namespace AHBCFinalProject.Services
             result.GlutenFree = recipeResponse.GlutenFree;
             result.Instructions = recipeResponse.Instructions;
             result.Ketogenic = recipeResponse.Ketogenic;
-            result.lowFodmap = recipeResponse.lowFodmap;
+            result.LowFodmap = recipeResponse.LowFodmap;
             result.Occasions = recipeResponse.Occasions;
             result.Sustainable = recipeResponse.Sustainable;
             result.Vegan = recipeResponse.Vegan;
