@@ -108,6 +108,8 @@ namespace AHBCFinalProject
 
             services.AddSingleton<IUserIDStore, UserIDStore>();
             services.AddSingleton<IUserIdService, UserIdService>();
+            services.AddSingleton<IFavoriteMealsStore, FavoriteMealsStore>();
+            services.AddSingleton<IFavoriteMealService, FavoriteMealService>();
             services.AddSingleton<IMealPlanHistoryService, MealPlanHistoryService>();
             services.AddSingleton<IMealPlanHistoryStore, MealPlanHistoryStore>();
             services.AddSingleton<IUserPreferenceService, UserPreferenceService>();
@@ -116,6 +118,7 @@ namespace AHBCFinalProject
             services.AddSingleton<IRecipeByIdStore, RecipeByIdStore>();
             services.AddSingleton<IComplexSearchService, ComplexSearchService>();
             services.AddSingleton<IComplexSearchStore, ComplexSearchStore>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
