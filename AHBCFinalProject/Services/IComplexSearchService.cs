@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AHBCFinalProject.DAL;
 using AHBCFinalProject.Models;
 
 namespace AHBCFinalProject.Services
 {
     public interface IComplexSearchService
     {
-        Task<RecipeViewModel> GetSeedRecipeFromPreferences(UserPreferencesViewModel viewModel);
-        Task<ListOfRecipesViewModel> GetWeekOfRecipesFromSeed(RecipeViewModel seedRecipe);
-        Task<RecipeViewModel> ViewARecipe(int userId);
+        Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel);
     }
 }

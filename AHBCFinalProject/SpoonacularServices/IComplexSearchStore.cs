@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AHBCFinalProject.SpoonacularServices
 {
-    interface IComplexSearchStore
+    public interface IComplexSearchStore
     {
-        Task<ListOfRecipesResponse> GetRecipesComplexSearch();
+        Task<ListOfRecipesResponse> GetRecipesComplexSearch(UserPreferenceDALModel userPreferenceDAL);
     }
 }
