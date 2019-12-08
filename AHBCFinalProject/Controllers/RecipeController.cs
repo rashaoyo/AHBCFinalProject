@@ -30,6 +30,7 @@ namespace AHBCFinalProject.Controllers
             return View(viewModel);
         }
 
+
         public async Task<IActionResult> ViewRecipe(int id)
         {
             //var viewModel = await _complexSearchService.ViewARecipe(id);  
