@@ -11,18 +11,20 @@ namespace AHBCFinalProject.Services
     {
         private readonly IMealPlanHistoryStore _mealPlanHistoryStore;
         private readonly IUserIdService _userIdService;
+        private readonly IComplexSearchService _complexSearchService;
 
-        public MealPlanHistoryService(IMealPlanHistoryStore mealPlanHistoryStore, IUserIdService userIdService)
+        public MealPlanHistoryService(IMealPlanHistoryStore mealPlanHistoryStore, IUserIdService userIdService, IComplexSearchService complexSearchService)
         {
             _mealPlanHistoryStore = mealPlanHistoryStore;
             _userIdService = userIdService;
+            _complexSearchService = complexSearchService;
         }
                 
         public void AddMealPlanToHistory(RecipeViewModel model, ListOfRecipesViewModel result)  //Might need to change input, based on ComplexSearchService
         {
             var today = DateTime.Today;
 
-            var mealPlanHistoryViewModel = new MealPlanHistoryViewModel //might need to adjust UserId based on how the SetUserIdService is set up
+            var mealPlanHistoryViewModel = new MealPlanHistoryViewModel 
             {   Id = _userIdService.UserId,
                 Sunday = model.Id,
                 Monday = result.ListOfRecipes[0].Id,
@@ -39,7 +41,7 @@ namespace AHBCFinalProject.Services
             
         }
 
-        public MealPlanHistoryViewModel ViewMealPlan(ViewMealPlanViewModel model)
+        public ViewPlanViewModel ViewMealPlan(ViewMealPlanViewModel model)
         {                      
             var dalModel = _mealPlanHistoryStore.ViewWeeklyMealPlan(model);
 
@@ -55,7 +57,27 @@ namespace AHBCFinalProject.Services
                 Saturday = dalModel.Saturday
             };
 
-            return viewModel;
+            var viewPlanViewModel = new ViewPlanViewModel
+            {
+                //SundayId = _complexSearchService.ViewARecipe(dalModel.Sunday),
+                //SundayName = _complexSearchService.ViewARecipe(dalModel.Sunday)
+                //MondayId = _complexSearchService.ViewARecipe(viewModel.Monday).Id,
+                //MondayName
+
+                //TuesdayId = _complexSearchService.ViewARecipe(viewModel.Tuesday).Id,
+                //TuesdayName
+                //WednesdayId = _complexSearchService.ViewARecipe(viewModel.Wednesday),
+                //WednesdviewPlanViewModelayName,
+                //ThursdayId = _complexSearchService.ViewARecipe(viewModel.Thursday),
+                //ThursdayName,
+                //FridayId = _complexSearchService.ViewARecipe(viewModel.Friday),
+                //FridayName,
+                //SaturdayId = _complexSearchService.ViewARecipe(viewModel.Wednesday),
+                //SaturdayName = _complexSearchService.ViewARecipe(viewModel.Sunday).Name
+            };
+
+
+            return viewPlanViewModel;
         }
     }
 }

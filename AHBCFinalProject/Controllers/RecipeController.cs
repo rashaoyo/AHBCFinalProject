@@ -34,8 +34,9 @@ namespace AHBCFinalProject.Controllers
         {
             //var viewModel = await _complexSearchService.ViewARecipe(id);  
 
-            //return View(viewModel);
+            return View();
         }
 
     }
+
 }

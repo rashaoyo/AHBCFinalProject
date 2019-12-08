@@ -42,10 +42,10 @@ namespace AHBCFinalProject.Controllers
         public IActionResult ViewMealPlanResults(ViewMealPlanViewModel model)
         {
             var result = _mealPlanHistoryService.ViewMealPlan(model);
-            return View("ViewMealPlanResults", result);
+            return View(result);
         }
-
-        public IActionResult FavoriteMealsView()
+         
+        public IActionResult FavoriteMealsView() 
         {
             var viewModel = _FavoriteMealService.SelectAllFavoriteMeals();
             return View();
