@@ -22,4 +22,7 @@
   <ItemGroup>
     <Folder Include="Models\Parameters\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="SpoonacularServices\IRandomRecipeStore.cs" />
+  </ItemGroup>
 </Project>
