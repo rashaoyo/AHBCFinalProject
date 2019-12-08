@@ -25,7 +25,7 @@ namespace AHBCFinalProject.Services
 
             var listOfRecipesViewModel = new ListOfRecipesViewModel
             {
-                ListOfRecipes = new List<RecipesViewModel>()
+               // ListOfRecipes = new List<RecipesViewModel>()
 
             };
 
@@ -37,7 +37,7 @@ namespace AHBCFinalProject.Services
                     Title = recipe.Title
                 };
 
-                listOfRecipesViewModel.ListOfRecipes.Add(recipeViewModel);
+               // listOfRecipesViewModel.ListOfRecipes.Add(recipeViewModel);
             }
 
 

@@ -109,6 +109,7 @@ namespace AHBCFinalProject
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddSingleton<IUserIDStore, UserIDStore>();
             services.AddSingleton<IUserIdService, UserIdService>();
             services.AddSingleton<IMealPlanHistoryService, MealPlanHistoryService>();
             services.AddSingleton<IMealPlanHistoryStore, MealPlanHistoryStore>();

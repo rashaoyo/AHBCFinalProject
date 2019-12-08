@@ -40,13 +40,9 @@ namespace AHBCFinalProject.Controllers
             _userIdService = userIdService;
         }
 
-        public void setUserIds()
+        public void setUserIds(string email)
         {
-            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
-            var userId = claim.Value;
-
-            _userIdService.UserId = int.Parse(userId);
+            var id = _userIdService.getUserId(email);
         }
 
 
@@ -57,7 +53,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult Login(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            setUserIds();
+            
             return View();
         }
 
@@ -106,7 +102,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            setUserIds();
+            
             return View();
         }
 
@@ -132,6 +128,10 @@ namespace AHBCFinalProject.Controllers
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
+
+                    // return RedirectToSetUserPrefs();
+                    setUserIds(model.Email);
+
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -477,6 +477,12 @@ namespace AHBCFinalProject.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
         }
+
+        //private IActionResult RedirectToSetUserPrefs()
+        //{
+
+        //    return RedirectToAction("SetUserPreferences", "User");
+        //}
 
         #endregion
     }

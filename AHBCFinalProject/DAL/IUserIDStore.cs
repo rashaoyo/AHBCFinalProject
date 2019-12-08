@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AHBCFinalProject.Services
+namespace AHBCFinalProject.DAL
 {
-    public interface IUserIdService
+    public interface IUserIDStore
     {
-        int UserId { get; set; }
         int getUserId(string email);
     }
 }

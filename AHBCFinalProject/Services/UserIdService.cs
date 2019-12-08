@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AHBCFinalProject.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,12 +8,19 @@ namespace AHBCFinalProject.Services
 {
     public class UserIdService : IUserIdService
     {
-        public int UserId { get; set; }
+        private readonly IUserIDStore _userIDStore;
 
-        public UserIdService(string userId)
+        public UserIdService(IUserIDStore userIdStore)
         {
-            UserId = int.Parse(userId);
+            _userIDStore = userIdStore;
         }
 
+        public int UserId { get; set; }
+
+        public int getUserId(string email)
+        {
+            UserId = _userIDStore.getUserId(email);
+            return UserId;
+        }
     }
 }
