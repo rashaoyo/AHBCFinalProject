@@ -10,7 +10,6 @@ namespace AHBCFinalProject.DAL
 {
     public class UserPreferenceStore : IUserPreferenceStore
     {
-
         private readonly Database _config;
 
         public UserPreferenceStore(AHBCFinalProjectConfiguration config)
@@ -20,17 +19,15 @@ namespace AHBCFinalProject.DAL
 
         public bool InsertUserPreferences(UserPreferenceDALModel dalModel)
         {
-            var sql = $@"INSERT INTO UserPreferences (UserId, Diet, Intolerances) 
-                            VALUES (@{nameof(dalModel.UserId)}), (@{nameof(dalModel.Diet)}), (@{nameof(dalModel.Intolerances)})";
+            var sql = $@"INSERT INTO UserPreferences (UserId, Diet, Intolerances, ExcludedIngredients) 
+                            VALUES (@{nameof(dalModel.UserId)}), (@{nameof(dalModel.Diet)}), (@{nameof(dalModel.Intolerances)}), (@{nameof(dalModel.ExcludedIngredients)})";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
                 var results = connection.Execute(sql, dalModel);
-                
+
                 return true;
-            }
-            
-            
+            }    
         }
 
         public UserPreferenceDALModel SelectUserPreferences(int userId)
@@ -41,7 +38,6 @@ namespace AHBCFinalProject.DAL
             {
                 var results = connection.QueryFirstOrDefault<UserPreferenceDALModel>(sql, new { UserID = userId });
                 return results;
-
             }
         }
 

@@ -37,7 +37,7 @@ namespace AHBCFinalProject.Services
             return result;
         }
 
-        private RecipeViewModel ConvertRecipeResponseToVM(RecipeResponse recipeResponse)
+        public RecipeViewModel ConvertRecipeResponseToVM(RecipeResponse recipeResponse)
         {
             var result = new RecipeViewModel();
 
