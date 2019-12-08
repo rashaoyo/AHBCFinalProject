@@ -15,7 +15,6 @@ namespace AHBCFinalProject.Models
         public int Thursday { get; set; }
         public int Friday { get; set; }
         public int Saturday { get; set; }
-        public string MealName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

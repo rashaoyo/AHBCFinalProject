@@ -11,14 +11,14 @@ namespace AHBCFinalProject.Controllers
     public class RecipeController : Controller
     {
         private readonly IRandomService _randomService;
-        public RecipeController(IRandomService randomService)
+        private readonly IMealPlanHistoryService _mealPlanHistoryService;
+        private readonly IComplexSearchService _complexSearchService;
+
+        public RecipeController(IRandomService randomService, IMealPlanHistoryService mealPlanHistoryService, IComplexSearchService complexSearchService)
         {
             _randomService = randomService;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            _mealPlanHistoryService = mealPlanHistoryService;
+            _complexSearchService = complexSearchService;
         }
 
         public async Task<IActionResult> ViewRecipes()
@@ -26,9 +26,18 @@ namespace AHBCFinalProject.Controllers
             //var viewModel = new ListOfRecipesViewModel();
 
             var viewModel = await _randomService.GetAllRandomRecipes();
-        
+                            
             return View(viewModel);
         }
 
+
+        public async Task<IActionResult> ViewRecipe(int id)
+        {
+            //var viewModel = await _complexSearchService.ViewARecipe(id);  
+
+            return View();
+        }
+
     }
+
 }

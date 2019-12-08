@@ -22,20 +22,33 @@ namespace AHBCFinalProject.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly IUserIdService _userIdService;
 
         public AccountController(
             UserManager<DapperIdentityUser> userManager,
             SignInManager<DapperIdentityUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IUserIdService userIdService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _userIdService = userIdService;
         }
+
+        public void setUserIds()
+        {
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            _userIdService.UserId = int.Parse(userId);
+        }
+
 
         //
         // GET: /Account/Login
@@ -44,6 +57,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult Login(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            setUserIds();
             return View();
         }
 
@@ -92,6 +106,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
+            setUserIds();
             return View();
         }
 

@@ -8,7 +8,7 @@ namespace AHBCFinalProject.Services
 {
     public interface IMealPlanHistoryService
     {
-        void AddMealPlanToHistory(MealPlanHistoryViewModel model);
-        MealPlanHistoryViewModel ViewMealPlan(ViewMealPlanViewModel model);
+        void AddMealPlanToHistory(RecipeViewModel model, ListOfRecipesViewModel result);
+        ViewPlanViewModel ViewMealPlan(ViewMealPlanViewModel model);
     }
 }

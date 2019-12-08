@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Reflection
+// using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,7 +32,7 @@ namespace AHBCFinalProject.Models
         public bool GlutenFree { get; set; }
         public string Instructions { get; set; }
         public bool Ketogenic { get; set; }
-        public bool lowFodmap { get; set; }
+        public bool LowFodmap { get; set; }
         public object[] Occasions { get; set; }
         public bool Sustainable { get; set; }
         public bool Vegan { get; set; }
