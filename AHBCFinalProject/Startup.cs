@@ -31,15 +31,12 @@ namespace AHBCFinalProject
 
         public Startup(IHostingEnvironment env)
         {
-
-
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddJsonFile($"secrets.json", optional: true)
                 .AddUserSecrets<AHBCFinalProjectConfiguration>();
-
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -115,8 +112,11 @@ namespace AHBCFinalProject
             services.AddSingleton<IMealPlanHistoryStore, MealPlanHistoryStore>();
             services.AddSingleton<IUserPreferenceService, UserPreferenceService>();
             services.AddSingleton<IUserPreferenceStore, UserPreferenceStore>();
-            services.AddSingleton<IRandomRecipeStore, RandomRecipeStore>();
-            services.AddSingleton<IRandomService, RandomService>();
+            services.AddSingleton<IRecipeByIdService, RecipeByIdService>();
+            services.AddSingleton<IRecipeByIdStore, RecipeByIdStore>();
+            services.AddSingleton<IComplexSearchService, ComplexSearchService>();
+            services.AddSingleton<IComplexSearchStore, ComplexSearchStore>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
