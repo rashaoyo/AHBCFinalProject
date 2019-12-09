@@ -23,9 +23,9 @@ namespace AHBCFinalProject.DAL
         public void CreateNewUserPrefEntry(int id)
         {
             var dalModel = new UserPreferenceDALModel();
-            dalModel.UserId = id;
+            dalModel.Id = id;
             var sql = $@"INSERT INTO DietaryRestrictions (Id, Diet, Intolerances, ExcludedIngredients) 
-                            VALUES (@{nameof(dalModel.UserId)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
+                            VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
@@ -37,7 +37,7 @@ namespace AHBCFinalProject.DAL
         public bool InsertUserPreferences(UserPreferenceDALModel dalModel)
         {
             var sql = $@"INSERT INTO DietaryRestrictions (Id, Diet, Intolerances, ExcludedIngredients) 
-                            VALUES (@{nameof(dalModel.UserId)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
+                            VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
