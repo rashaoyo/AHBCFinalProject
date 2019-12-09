@@ -20,19 +20,20 @@ namespace AHBCFinalProject.Services
 
         public void CreateUserPreferences(UserPreferencesViewModel model)
         {
-            var dalModel = GetUserDALFromViewModel(model);
+            //var dalModel = GetUserDALFromViewModel(model);
 
-            _userPreferenceStore.InsertUserPreferences(dalModel);
+            //_userPreferenceStore.InsertUserPreferences(dalModel);
+            UpdateUserPreferences(model);
         }
 
-        public UserPreferencesViewModel GetUserPreferencesFromId(int userId)
+        public UserPreferencesViewModel GetUserPreferencesFromId()
         {
-            var dalModel = _userPreferenceStore.SelectUserPreferences(userId);
-            var diet = dalModel.Diet.Split(',');
-            var intolerances = dalModel.Intolerances.Split(',');
+            var dalModel = _userPreferenceStore.SelectUserPreferences();
+            var diet = "" /*dalModel.Diet.Split(',')*/;
+            var intolerances = "" /*dalModel.Intolerances.Split(',')*/;
 
             var viewModel = new UserPreferencesViewModel();
-            viewModel.UserId = userId;
+            viewModel.UserId = _userIdService.UserId;
 
             if (diet.Contains("'Gluten Free'"))
                 viewModel.GlutenFree = true;
@@ -143,9 +144,9 @@ namespace AHBCFinalProject.Services
             return dalModel;
         }
 
-        public UpdateUserViewModel GetUpdatedPreferenceView(int userId)
+        public UpdateUserViewModel GetUpdatedPreferenceView()
         {
-            var dalPreference = _userPreferenceStore.SelectUserPreferences(userId);
+            var dalPreference = _userPreferenceStore.SelectUserPreferences();
             var updatedPreference = new UpdateUserViewModel()
             {
                 Diet = dalPreference.Diet,
@@ -154,6 +155,12 @@ namespace AHBCFinalProject.Services
             };
 
             return updatedPreference;
+        }
+
+        public void UpdateUserPreferences(UserPreferencesViewModel model)
+        {
+            var dalModel = GetUserDALFromViewModel(model);
+            _userPreferenceStore.UpdateUserPreferences(dalModel);
         }
     }
 }

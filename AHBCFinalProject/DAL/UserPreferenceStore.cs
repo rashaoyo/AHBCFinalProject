@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using AHBCFinalProject.Models;
+using AHBCFinalProject.Services;
 using Dapper;
 
 namespace AHBCFinalProject.DAL
@@ -11,16 +12,32 @@ namespace AHBCFinalProject.DAL
     public class UserPreferenceStore : IUserPreferenceStore
     {
         private readonly Database _config;
+        private readonly IUserIdService _userIdService;
 
-        public UserPreferenceStore(AHBCFinalProjectConfiguration config)
+        public UserPreferenceStore(AHBCFinalProjectConfiguration config, IUserIdService userIdService)
         {
             _config = config.Database;
+            _userIdService = userIdService;
+        }
+
+        public void CreateNewUserPrefEntry(int id)
+        {
+            var dalModel = new UserPreferenceDALModel();
+            dalModel.UserId = id;
+            var sql = $@"INSERT INTO DietaryRestrictions (Id, Diet, Intolerances, ExcludedIngredients) 
+                            VALUES (@{nameof(dalModel.UserId)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.Execute(sql, dalModel);
+                
+            }
         }
 
         public bool InsertUserPreferences(UserPreferenceDALModel dalModel)
         {
             var sql = $@"INSERT INTO DietaryRestrictions (Id, Diet, Intolerances, ExcludedIngredients) 
-                            VALUES (3, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
+                            VALUES (@{nameof(dalModel.UserId)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
@@ -30,21 +47,22 @@ namespace AHBCFinalProject.DAL
             }    
         }
 
-        public UserPreferenceDALModel SelectUserPreferences(int userId)
+        public UserPreferenceDALModel SelectUserPreferences()
         {
-            var temp = 3;
-            var sql = @"SELECT * FROM DietaryRestrictions WHERE Id = 3";
+            var userId = _userIdService.UserId;
+            var sql = $@"SELECT * FROM DietaryRestrictions WHERE Id = {userId}";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-                var results = connection.QueryFirstOrDefault<UserPreferenceDALModel>(sql, new { Id = temp });
+                var results = connection.QueryFirstOrDefault<UserPreferenceDALModel>(sql, new { Id = userId });
                 return results;
             }
         }
 
         public bool UpdateUserPreferences(UserPreferenceDALModel dalModel)
         {
-            var sql = $@"UPDATE DietaryRestrictions SET Diet = @{nameof(dalModel.Diet)}, Intolerances = @{nameof(dalModel.Intolerances)}, ExcludedIngredients = @{nameof(dalModel.ExcludedIngredients)} WHERE UserId = @UserId";
+            var UserId = _userIdService.UserId;
+            var sql = $@"UPDATE DietaryRestrictions SET Diet = {nameof(dalModel.Diet)}, Intolerances = {nameof(dalModel.Intolerances)}, ExcludedIngredients = {nameof(dalModel.ExcludedIngredients)} WHERE Id = {UserId}";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
