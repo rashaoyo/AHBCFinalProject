@@ -18,13 +18,14 @@ namespace AHBCFinalProject.DAL
 
         public int getUserId(string email)
         {
-            var sql = @"select Id from IdentityUser where Email = '@email'";
+            var sql = $@"select * from IdentityUser where Email = '{email}'";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-                var result = connection.QueryFirstOrDefault<int>(sql, new { Email = email });
-                //var result = returnedResult.Id;
-                return (result);
+               // var result = connection.QueryFirstOrDefault<int>(sql, new { Email = email });
+                var result = connection.QueryFirstOrDefault<IdentityUserDAL>(sql, new { Email = email });
+                var currentUserId = result.Id;
+                return (currentUserId);
             }
         }
 
