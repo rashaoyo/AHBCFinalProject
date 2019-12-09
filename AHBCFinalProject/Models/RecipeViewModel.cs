@@ -8,7 +8,7 @@ namespace AHBCFinalProject.Models
 {
     public class RecipeViewModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
         public string ImageType { get; set; }

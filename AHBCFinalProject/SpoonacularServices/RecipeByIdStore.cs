@@ -11,7 +11,7 @@ namespace AHBCFinalProject.SpoonacularServices
     {
         private string apiKey = "dc427c57ac7d4169bdb990b3893ebe80";
 
-        public async Task<RecipeResponse> GetRecipeResponseFromId(int recipeId)
+        public async Task<RecipeResponse> GetRecipeResponseFromId(string recipeId)
         {
             using(var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/") })
             {

@@ -6,6 +6,6 @@ namespace AHBCFinalProject.Services
 {
     public interface IRecipeByIdService
     {
-        Task<RecipeViewModel> GetRecipeVMById(int recipeId);
+        Task<RecipeViewModel> GetRecipeVMById(string recipeId);
     }
 }
