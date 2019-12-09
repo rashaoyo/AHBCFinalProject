@@ -16,7 +16,7 @@ namespace AHBCFinalProject.Services
             _complexSearchService = complexSearchService;
         }
 
-        public async Task<RecipeViewModel> GetRecipeVMById(int recipeId)
+        public async Task<RecipeViewModel> GetRecipeVMById(string recipeId)
         {
             var recipeResponse = await _recipeByIdStore.GetRecipeResponseFromId(recipeId);
             var recipeViewModel = _complexSearchService.ConvertRecipeResponseToVM(recipeResponse);

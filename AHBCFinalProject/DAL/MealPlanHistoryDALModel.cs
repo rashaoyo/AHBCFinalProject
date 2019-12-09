@@ -8,13 +8,13 @@ namespace AHBCFinalProject.DAL
     public class MealPlanHistoryDALModel
     {
         public int Id { get; set; }
-        public int Sunday { get; set; }
-        public int Monday { get; set; }
-        public int Tuesday { get; set; }
-        public int Wednesday { get; set; }
-        public int Thursday { get; set; }
-        public int Friday { get; set; }
-        public int Saturday { get; set; }        
+        public string Sunday { get; set; }
+        public string Monday { get; set; }
+        public string Tuesday { get; set; }
+        public string Wednesday { get; set; }
+        public string Thursday { get; set; }
+        public string Friday { get; set; }
+        public string Saturday { get; set; }        
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         

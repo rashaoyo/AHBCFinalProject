@@ -5,6 +5,6 @@ namespace AHBCFinalProject.Models
 {
     public class ListOfRecipesResponse
     {
-        public List<RecipeResponse> Recipes { get; set; }
+        public List<RecipeResponse> Results { get; set; }
     }
 }

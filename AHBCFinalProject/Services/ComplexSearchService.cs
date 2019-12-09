@@ -30,7 +30,7 @@ namespace AHBCFinalProject.Services
                 ListOfRecipes = new List<RecipeViewModel>()
             };
 
-            foreach(var recipe in weekOfRecipesResponse.Recipes)
+            foreach(var recipe in weekOfRecipesResponse.Results)
             {
                 var recipeVM = ConvertRecipeResponseToVM(recipe);
                 result.ListOfRecipes.Add(recipeVM);
@@ -43,7 +43,7 @@ namespace AHBCFinalProject.Services
         {
             var result = new RecipeViewModel();
 
-            result.Id = recipeResponse.Id;
+            result.Id = recipeResponse.id;
             result.Title = recipeResponse.Title;
             result.Image = recipeResponse.Image;
             result.ImageType = recipeResponse.ImageType;
