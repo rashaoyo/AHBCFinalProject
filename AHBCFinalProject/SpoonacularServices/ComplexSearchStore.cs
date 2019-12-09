@@ -50,7 +50,7 @@ namespace AHBCFinalProject.SpoonacularServices
         {
             using (var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/complexSearch") })
             {
-                var result = await httpClient.GetStringAsync($"?apiKey={ApiKey}&fillIngredients=true&includeIngredients=&number=1&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
+                var result = await httpClient.GetStringAsync($"?apiKey={ApiKey}&fillIngredients=true&includeIngredients=&sort=random&number=1&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
                 var seedRecipe = JsonConvert.DeserializeObject<ListOfRecipesResponse>(result);
 
                 var recipeId = seedRecipe.Results[0].id;

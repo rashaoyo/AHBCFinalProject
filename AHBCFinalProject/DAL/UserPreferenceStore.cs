@@ -62,13 +62,42 @@ namespace AHBCFinalProject.DAL
         public bool UpdateUserPreferences(UserPreferenceDALModel dalModel)
         {
             var UserId = _userIdService.UserId;
-            var sql = $@"UPDATE DietaryRestrictions SET Diet = {nameof(dalModel.Diet)}, Intolerances = {nameof(dalModel.Intolerances)}, ExcludedIngredients = {nameof(dalModel.ExcludedIngredients)} WHERE Id = {UserId}";
+            bool success = false;
 
-            using (var connection = new SqlConnection(_config.ConnectionString))
+            if(dalModel.Diet != null)
             {
-                var result = connection.Execute(sql, dalModel);
-                return true;
+                var sql = $@"UPDATE DietaryRestrictions SET Diet = {nameof(dalModel.Diet)} WHERE Id = {UserId}";
+
+                using (var connection = new SqlConnection(_config.ConnectionString))
+                {
+                    var result = connection.Execute(sql, dalModel);
+                    success = true;
+                }
             }
+
+            if(dalModel.Intolerances != null)
+            {
+                var sql = $@"UPDATE DietaryRestrictions SET Intolerances = {nameof(dalModel.Intolerances)} WHERE Id = {UserId}";
+
+                using (var connection = new SqlConnection(_config.ConnectionString))
+                {
+                    var result = connection.Execute(sql, dalModel);
+                    success = true;
+                }
+            }
+
+            if (dalModel.ExcludedIngredients != null)
+            {
+                var sql = $@"UPDATE DietaryRestrictions SET ExcludedIngredients = {nameof(dalModel.ExcludedIngredients)} WHERE Id = {UserId}";
+
+                using (var connection = new SqlConnection(_config.ConnectionString))
+                {
+                    var result = connection.Execute(sql, dalModel);
+                    success = true;
+                }
+            }
+
+            return success;
         }
     }
 }
