@@ -22,7 +22,7 @@ namespace AHBCFinalProject.SpoonacularServices
 
         public async Task<ListOfRecipesResponse> GetRecipesComplexSearch(UserPreferenceDALModel userPreferenceDAL)
         {
-            var seedRecipe = await _recipeByIdStore.GetRecipeResponseFromId("547775"); //await GetSeedRecipe(userPreferenceDAL);
+            var seedRecipe = await GetSeedRecipe(userPreferenceDAL);
             var includeIngredients = ExtractThreeIngredients(seedRecipe);
             var weekOfRecipes = new ListOfRecipesResponse()
             {
@@ -51,9 +51,9 @@ namespace AHBCFinalProject.SpoonacularServices
             using (var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/complexSearch") })
             {
                 var result = await httpClient.GetStringAsync($"?apiKey={ApiKey}&fillIngredients=true&includeIngredients=&number=1&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
-                var seedRecipe = JsonConvert.DeserializeObject<RecipeResponse>(result);
+                var seedRecipe = JsonConvert.DeserializeObject<ListOfRecipesResponse>(result);
 
-                var recipeId = seedRecipe.id;
+                var recipeId = seedRecipe.Results[0].id;
                 return await _recipeByIdStore.GetRecipeResponseFromId(recipeId);
             }
         }
@@ -64,30 +64,27 @@ namespace AHBCFinalProject.SpoonacularServices
             var ingredientNames = new List<string>();
             int ingredientsCount = 0;
 
+            foreach (var ingredient in seedRecipe.ExtendedIngredients)
+            {
+                if(ingredientsCount < 2 &&
+                    (ingredient.Aisle.Contains("Pasta") ||
+                    ingredient.Aisle.Contains("Produce") ||
+                    ingredient.Aisle.Contains("Meat") ||
+                    ingredient.Aisle.Contains("Seafood")))
+                {
+                    extractedIngredients.Add(ingredient);
+                    ingredientsCount++;
+                }
+            }
+
             while(ingredientsCount < 2)
             {
                 foreach (var ingredient in seedRecipe.ExtendedIngredients)
                 {
-                    if(ingredientsCount < 2 &&
-                        (ingredient.Aisle.Contains("Pasta") ||
-                        ingredient.Aisle.Contains("Produce") ||
-                        ingredient.Aisle.Contains("Meat") ||
-                        ingredient.Aisle.Contains("Seafood")))
+                    if (!extractedIngredients.Contains(ingredient))
                     {
                         extractedIngredients.Add(ingredient);
                         ingredientsCount++;
-                    }
-                }
-
-                while(ingredientsCount < 2)
-                {
-                    foreach (var ingredient in seedRecipe.ExtendedIngredients)
-                    {
-                        if (!extractedIngredients.Contains(ingredient))
-                        {
-                            extractedIngredients.Add(ingredient);
-                            ingredientsCount++;
-                        }
                     }
                 }
             }
