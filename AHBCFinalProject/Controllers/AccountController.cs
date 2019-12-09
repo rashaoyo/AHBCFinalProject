@@ -132,10 +132,10 @@ namespace AHBCFinalProject.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
 
-                    // return RedirectToSetUserPrefs();
+                  
                    
                     setUserIds(model.Email);
-
+                    return RedirectToSetUserPrefs();
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -482,11 +482,10 @@ namespace AHBCFinalProject.Controllers
             }
         }
 
-        //private IActionResult RedirectToSetUserPrefs()
-        //{
-
-        //    return RedirectToAction("SetUserPreferences", "User");
-        //}
+        private IActionResult RedirectToSetUserPrefs()
+        {
+            return RedirectToAction("SetUserPreferences", "User");
+        }
 
         #endregion
     }

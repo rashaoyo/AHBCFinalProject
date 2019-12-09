@@ -15,21 +15,27 @@ namespace AHBCFinalProject.Controllers
         private readonly IMealPlanHistoryService _mealPlanHistoryService;
         private readonly IFavoriteMealService _FavoriteMealService;
         private readonly IUserPreferenceStore _userPreferenceStore;
+        
+
+        private readonly IUserIdService _userIdService;
 
         public UserController(IUserPreferenceService userPreferenceService,
             IMealPlanHistoryService mealPlanHistoryService,
             IFavoriteMealService favoriteMealService,
-            IUserPreferenceStore userPreferenceStore)
+            IUserPreferenceStore userPreferenceStore,
+            IUserIdService userIdService)
         {
             _userPreferenceService = userPreferenceService;
             _mealPlanHistoryService = mealPlanHistoryService;
             _FavoriteMealService = favoriteMealService;
             _userPreferenceStore = userPreferenceStore;
+            _userIdService = userIdService;
         }
 
         public IActionResult ViewUserPreferences(UserPreferencesViewModel viewModel)
         {
-            var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
+            var result = _userPreferenceService.GetUserPreferencesFromId(_userIdService.UserId);
+            //var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
             return View(result);
         }
 
@@ -41,10 +47,12 @@ namespace AHBCFinalProject.Controllers
         public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
         {
             var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
-            _userPreferenceStore.InsertUserPreferences(dalModel);
-            var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
+            //_userPreferenceStore.InsertUserPreferences(dalModel);
+            _userPreferenceService.CreateUserPreferences(model);
+            var result = _userPreferenceService.GetUserPreferencesFromId(_userIdService.UserId);
+           // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
 
-            return View("ViewUserPreferences", result);
+            return View(nameof(ViewUserPreferences), result);
         }
 
         public IActionResult SearchMealPlanHistory()
@@ -60,9 +68,10 @@ namespace AHBCFinalProject.Controllers
 
 
 
-        public IActionResult UpdatePreference(int userId)
+        public IActionResult UpdatePreference(/*int userId*/)
         {
-            var model = _userPreferenceService.GetUpdatedPreferenceView(userId);
+            var model = _userPreferenceService.GetUpdatedPreferenceView(_userIdService.UserId);
+            //var model = _userPreferenceService.GetUpdatedPreferenceView(userId);
             return View(model);
         }
 

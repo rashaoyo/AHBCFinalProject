@@ -10,10 +10,12 @@ namespace AHBCFinalProject.Services
     public class UserPreferenceService: IUserPreferenceService
     {
         private readonly IUserPreferenceStore _userPreferenceStore;
+        private readonly IUserIdService _userIdService;
 
-        public UserPreferenceService(IUserPreferenceStore userPreferenceStore)
+        public UserPreferenceService(IUserPreferenceStore userPreferenceStore, IUserIdService userIdService)
         {
             _userPreferenceStore = userPreferenceStore;
+            _userIdService = userIdService;
         }
 
         public void CreateUserPreferences(UserPreferencesViewModel model)
