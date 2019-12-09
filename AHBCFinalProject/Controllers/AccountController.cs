@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AHBCFinalProject.AccountViewModels;
+using AHBCFinalProject.DAL;
 using AHBCFinalProject.Services;
 using Identity.Dapper.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -23,6 +24,7 @@ namespace AHBCFinalProject.Controllers
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly IUserIdService _userIdService;
+        private readonly IUserPreferenceStore _userPreferenceStore;
 
         public AccountController(
             UserManager<DapperIdentityUser> userManager,
@@ -30,7 +32,8 @@ namespace AHBCFinalProject.Controllers
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory,
-            IUserIdService userIdService)
+            IUserIdService userIdService,
+            IUserPreferenceStore userPreferenceStore)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -38,6 +41,7 @@ namespace AHBCFinalProject.Controllers
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
             _userIdService = userIdService;
+            _userPreferenceStore = userPreferenceStore;
         }
 
         public void setUserIds(string email)
@@ -132,11 +136,12 @@ namespace AHBCFinalProject.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
 
-                    // return RedirectToSetUserPrefs();
+                  
                    
                     setUserIds(model.Email);
-
-                    return RedirectToLocal(returnUrl);
+                    _userPreferenceStore.CreateNewUserPrefEntry(_userIdService.UserId);
+                    return RedirectToSetUserPrefs();
+                    //return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
             }
@@ -482,11 +487,10 @@ namespace AHBCFinalProject.Controllers
             }
         }
 
-        //private IActionResult RedirectToSetUserPrefs()
-        //{
-
-        //    return RedirectToAction("SetUserPreferences", "User");
-        //}
+        private IActionResult RedirectToSetUserPrefs()
+        {
+            return RedirectToAction("SetUserPreferences", "User");
+        }
 
         #endregion
     }
