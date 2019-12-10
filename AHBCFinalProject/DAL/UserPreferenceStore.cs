@@ -64,9 +64,9 @@ namespace AHBCFinalProject.DAL
             var UserId = _userIdService.UserId;
             bool success = false;
 
-            if(dalModel.Diet != null)
+            if(dalModel.Diet != null && dalModel.Diet != "")
             {
-                var sql = $@"UPDATE DietaryRestrictions SET Diet = {nameof(dalModel.Diet)} WHERE Id = {UserId}";
+                var sql = $@"UPDATE DietaryRestrictions SET Diet = '" + $@"'{dalModel.Diet}'" + $" WHERE Id = {UserId}";
 
                 using (var connection = new SqlConnection(_config.ConnectionString))
                 {
@@ -75,10 +75,10 @@ namespace AHBCFinalProject.DAL
                 }
             }
 
-            if(dalModel.Intolerances != null)
+            if(dalModel.Intolerances != null && dalModel.Intolerances != "")
             {
-                var sql = $@"UPDATE DietaryRestrictions SET Intolerances = {nameof(dalModel.Intolerances)} WHERE Id = {UserId}";
-
+                var sql = $@"UPDATE DietaryRestrictions SET Intolerances = '" + $@"'{dalModel.Intolerances}'" + $" WHERE Id = {UserId}";
+      
                 using (var connection = new SqlConnection(_config.ConnectionString))
                 {
                     var result = connection.Execute(sql, dalModel);
@@ -86,9 +86,9 @@ namespace AHBCFinalProject.DAL
                 }
             }
 
-            if (dalModel.ExcludedIngredients != null)
+            if (dalModel.ExcludedIngredients != null && dalModel.ExcludedIngredients != "")
             {
-                var sql = $@"UPDATE DietaryRestrictions SET ExcludedIngredients = {nameof(dalModel.ExcludedIngredients)} WHERE Id = {UserId}";
+                var sql = $@"UPDATE DietaryRestrictions SET ExcludedIngredients = '" + $@"'{dalModel.ExcludedIngredients}'" + $" WHERE Id = {UserId}";
 
                 using (var connection = new SqlConnection(_config.ConnectionString))
                 {
