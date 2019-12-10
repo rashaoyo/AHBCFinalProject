@@ -32,7 +32,7 @@ namespace AHBCFinalProject.Controllers
             _userIdService = userIdService;
         }
 
-        public IActionResult ViewUserPreferences(UserPreferencesViewModel viewModel)
+        public IActionResult ViewUserPreferences()
         {
             var result = _userPreferenceService.GetUserPreferencesFromId();
             //var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
@@ -62,10 +62,24 @@ namespace AHBCFinalProject.Controllers
 
         public IActionResult ViewMealPlanResults(ViewMealPlanViewModel model)
         {
-            var result = _mealPlanHistoryService.ViewMealPlanHistory(model);
-            return View(result);
+            try
+            {
+                var result = _mealPlanHistoryService.ViewMealPlanHistory(model);
+                return View(result);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+                // "That date does not exist in the meal plan history"
+            }
         }
 
+        public IActionResult DisplayingBadRequest()
+        {
+            // change this to error later.
+
+            return View();
+        }
 
 
         public IActionResult UpdatePreference(/*int userId*/)
