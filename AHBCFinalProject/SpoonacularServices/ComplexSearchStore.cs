@@ -22,19 +22,16 @@ namespace AHBCFinalProject.SpoonacularServices
 
         public async Task<ListOfRecipesResponse> GetRecipesComplexSearch(UserPreferenceDALModel userPreferenceDAL)
         {
-            var seedRecipe = await GetSeedRecipe(userPreferenceDAL);
-            var includeIngredients = ExtractThreeIngredients(seedRecipe);
             var weekOfRecipes = new ListOfRecipesResponse()
             {
                 Results = new List<RecipeResponse>()
-                {
-                    seedRecipe
-                }
             };
 
             using (var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/complexSearch") })
             {
-                var apiResult = await httpClient.GetStringAsync($"?apiKey={ApiKey}&number=6&includeIngredients={includeIngredients}&fillIngredients=true&sort=random&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
+
+                var apiResult = await httpClient.GetStringAsync($"/recipes/complexSearch?apiKey={ApiKey}&number=7&sort=random&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
+
                 var sixRecipes = JsonConvert.DeserializeObject<ListOfRecipesResponse>(apiResult);
 
                 foreach (var recipe in sixRecipes.Results)
@@ -45,7 +42,7 @@ namespace AHBCFinalProject.SpoonacularServices
                 return weekOfRecipes;
             }
         }
-
+        /*
         private async Task<RecipeResponse> GetSeedRecipe(UserPreferenceDALModel userPreferenceDAL)
         {
             using (var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/complexSearch") })
@@ -96,5 +93,6 @@ namespace AHBCFinalProject.SpoonacularServices
 
             return String.Join(",", ingredientNames);
         }
+        */
     }
 }

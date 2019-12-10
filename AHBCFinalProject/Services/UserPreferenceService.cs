@@ -30,9 +30,9 @@ namespace AHBCFinalProject.Services
         {
             var dalModel = _userPreferenceStore.SelectUserPreferences();
 
-            var diet = ""/*dalModel.Diet.Split(',')*/;
-            var intolerances = ""/*dalModel.Intolerances.Split(',')*/;
-
+            string[] diet = { "" };
+            string[] intolerances = { "" };
+         
 
             if (dalModel.Diet != null)
             {
@@ -43,7 +43,7 @@ namespace AHBCFinalProject.Services
             {
                 intolerances = dalModel.Intolerances.Split(',');
             }
-            
+            */
             var viewModel = new UserPreferencesViewModel();
             viewModel.UserId = _userIdService.UserId;
 
