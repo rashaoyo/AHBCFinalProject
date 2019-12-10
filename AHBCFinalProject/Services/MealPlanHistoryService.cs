@@ -59,31 +59,33 @@ namespace AHBCFinalProject.Services
                 mealPlan.Friday = dalResult.Friday;
                 mealPlan.Saturday = dalResult.Saturday;
 
-                var sunday = await _recipeByIdService.GetRecipeVMById(mealPlan.Sunday);
-                var monday = await _recipeByIdService.GetRecipeVMById(mealPlan.Monday);
-                var tues = await _recipeByIdService.GetRecipeVMById(mealPlan.Tuesday);
-                var wed = await _recipeByIdService.GetRecipeVMById(mealPlan.Wednesday);
-                var thur = await _recipeByIdService.GetRecipeVMById(mealPlan.Thursday);
-                var fri = await _recipeByIdService.GetRecipeVMById(mealPlan.Friday);
-                var sat = await _recipeByIdService.GetRecipeVMById(mealPlan.Saturday);
+                var sunday =  _recipeByIdService.GetRecipeVMById(mealPlan.Sunday);
+                var monday = _recipeByIdService.GetRecipeVMById(mealPlan.Monday);
+                var tues =  _recipeByIdService.GetRecipeVMById(mealPlan.Tuesday);
+                var wed =  _recipeByIdService.GetRecipeVMById(mealPlan.Wednesday);
+                var thur = _recipeByIdService.GetRecipeVMById(mealPlan.Thursday);
+                var fri = _recipeByIdService.GetRecipeVMById(mealPlan.Friday);
+                var sat = _recipeByIdService.GetRecipeVMById(mealPlan.Saturday);
+
+                var result = await Task.WhenAll(sunday, monday, tues, wed, thur, fri, sat);
 
 
                 var viewPlan = new ViewPlanViewModel
                 {
-                    SundayId = sunday.Id,
-                    SundayName = sunday.Title,
-                    MondayId = monday.Id,
-                    MondayName = monday.Title,
-                    TuesdayId = tues.Id,
-                    TuesdayName = tues.Title,
-                    WednesdayId = wed.Id,
-                    WednesdayName = wed.Title,
-                    ThursdayId = thur.Id,
-                    ThursdayName = thur.Title,
-                    FridayId = fri.Id,
-                    FridayName = fri.Title,
-                    SaturdayId = sat.Id,
-                    SaturdayName = sat.Title
+                    SundayId = result[0].Id,
+                    SundayName = result[0].Title,
+                    MondayId = result[1].Id,
+                    MondayName = result[1].Title,
+                    TuesdayId = result[2].Id,
+                    TuesdayName = result[2].Title,
+                    WednesdayId = result[3].Id,
+                    WednesdayName = result[3].Title,
+                    ThursdayId = result[4].Id,
+                    ThursdayName = result[4].Title,
+                    FridayId = result[5].Id,
+                    FridayName = result[5].Title,
+                    SaturdayId = result[6].Id,
+                    SaturdayName = result[6].Title
 
                 };
 
