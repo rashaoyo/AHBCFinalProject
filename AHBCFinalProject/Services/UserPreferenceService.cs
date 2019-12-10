@@ -29,9 +29,11 @@ namespace AHBCFinalProject.Services
         public UserPreferencesViewModel GetUserPreferencesFromId()
         {
             var dalModel = _userPreferenceStore.SelectUserPreferences();
+
             string[] diet = { "" };
             string[] intolerances = { "" };
-            /*
+         
+
             if (dalModel.Diet != null)
             {
                 diet = dalModel.Diet.Split(',');
@@ -100,7 +102,7 @@ namespace AHBCFinalProject.Services
             var intolerances = new List<string>();
             var diets = new List<string>();
 
-            dalModel.UserId = viewModel.UserId;
+            dalModel.Id = viewModel.UserId;
 
             if (viewModel.GlutenFree)
                 diets.Add("'Gluten Free'");
