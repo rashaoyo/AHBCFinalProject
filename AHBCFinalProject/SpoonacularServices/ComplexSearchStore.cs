@@ -12,7 +12,7 @@ namespace AHBCFinalProject.SpoonacularServices
 {
     public class ComplexSearchStore : IComplexSearchStore
     {
-        const string ApiKey = "dc427c57ac7d4169bdb990b3893ebe80";
+        const string ApiKey = "c07baad9b40d44dd9d700eb4928a1970";
         private readonly IRecipeByIdStore _recipeByIdStore;
 
         public ComplexSearchStore(IRecipeByIdStore recipeByIdStore)
@@ -32,9 +32,9 @@ namespace AHBCFinalProject.SpoonacularServices
                 }
             };
 
-            using (var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com") })
+            using (var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/complexSearch") })
             {
-                var apiResult = await httpClient.GetStringAsync($"/recipes/complexSearch?apiKey={ApiKey}&number=6&includeIngredients={includeIngredients}&fillIngredients=true&sort=random&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
+                var apiResult = await httpClient.GetStringAsync($"?apiKey={ApiKey}&number=6&includeIngredients={includeIngredients}&fillIngredients=true&sort=random&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
                 var sixRecipes = JsonConvert.DeserializeObject<ListOfRecipesResponse>(apiResult);
 
                 foreach (var recipe in sixRecipes.Results)

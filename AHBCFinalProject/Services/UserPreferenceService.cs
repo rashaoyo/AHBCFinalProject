@@ -29,8 +29,8 @@ namespace AHBCFinalProject.Services
         public UserPreferencesViewModel GetUserPreferencesFromId()
         {
             var dalModel = _userPreferenceStore.SelectUserPreferences();
-            var diet = dalModel.Diet.Split(',');
-            var intolerances = dalModel.Intolerances.Split(',');
+            var diet = ""/*dalModel.Diet.Split(',')*/;
+            var intolerances = ""/*dalModel.Intolerances.Split(',')*/;
 
             var viewModel = new UserPreferencesViewModel();
             viewModel.UserId = _userIdService.UserId;

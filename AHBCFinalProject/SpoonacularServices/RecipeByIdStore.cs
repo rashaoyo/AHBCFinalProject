@@ -9,7 +9,7 @@ namespace AHBCFinalProject.SpoonacularServices
 {
     public class RecipeByIdStore : IRecipeByIdStore
     {
-        private string apiKey = "dc427c57ac7d4169bdb990b3893ebe80";
+        private string apiKey = "c07baad9b40d44dd9d700eb4928a1970";
 
         public async Task<RecipeResponse> GetRecipeResponseFromId(string recipeId)
         {
