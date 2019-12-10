@@ -7,7 +7,7 @@ namespace AHBCFinalProject.DAL
 {
     public interface IFavoriteMealsStore
     {
-        IEnumerable<FavoriteMealDALModel> SelectAllFavMeals();
+        IEnumerable<FavoriteMealDALModel> SelectAllFavMeals(int userId);
         FavoriteMealDALModel SelectAFavMeal(int recipeId);
         bool InsertAFaveMeal(FavoriteMealDALModel dalModel);
         bool DeleteAFaveMeal(int recipeId);

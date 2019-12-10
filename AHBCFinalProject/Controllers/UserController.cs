@@ -83,11 +83,23 @@ namespace AHBCFinalProject.Controllers
         }
         */
 
+        public IActionResult AddToFavoritesResults(FavoriteMealsViewModel model)
+        {
+            return View(model);
+        }
+
         public IActionResult FavoriteMealsView()
         {
             var viewModel = _FavoriteMealService.SelectAllFavoriteMeals();
             return View();
         }
+
+        public async Task<IActionResult> AddToFavorites(string id)   
+        {
+            var viewMealPlanResults = await _FavoriteMealService.InsertAFavoriteMeal(id);
+            return View(viewMealPlanResults);
+        }
+
 
 
     }

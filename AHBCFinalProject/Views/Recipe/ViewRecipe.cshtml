@@ -8,10 +8,13 @@
 <img src="@Model.Image" />
 
 <ul>
-    @foreach(var ingredient in Model.ExtendedIngredients)
+    @foreach (var ingredient in Model.ExtendedIngredients)
     {
         <li>@ingredient.OriginalName</li>
     }
 </ul>
 
-<p>@Model.Instructions</p>
+<p asp-for="@Model.Instructions">@Model.Instructions</p>
+
+
+<a asp-controller="User" asp-action="AddToFavorites" asp-route-id="@Model.Id" >Add To Favorites</a>

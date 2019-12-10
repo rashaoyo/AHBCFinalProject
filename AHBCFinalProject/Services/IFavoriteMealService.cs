@@ -8,7 +8,7 @@ namespace AHBCFinalProject.Services
 {
     public interface IFavoriteMealService
     {
-        void InsertAFavoriteMeal(int recipeId, string comments, int userId);
+        Task<FavoriteMealsViewModel> InsertAFavoriteMeal(string recipeId);
         void DeleteAFavoriteMeal(int recipeId);
         FavoriteMealsViewModel SelectAllFavoriteMeals();
         RecipeViewModel SelectAFavoriteMeal(int recipeId);
