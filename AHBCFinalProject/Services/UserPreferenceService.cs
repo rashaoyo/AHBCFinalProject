@@ -31,7 +31,7 @@ namespace AHBCFinalProject.Services
             var dalModel = _userPreferenceStore.SelectUserPreferences();
             string[] diet = { "" };
             string[] intolerances = { "" };
-
+            /*
             if (dalModel.Diet != null)
             {
                 diet = dalModel.Diet.Split(',');
@@ -41,7 +41,7 @@ namespace AHBCFinalProject.Services
             {
                 intolerances = dalModel.Intolerances.Split(',');
             }
-            
+            */
             var viewModel = new UserPreferencesViewModel();
             viewModel.UserId = _userIdService.UserId;
 
