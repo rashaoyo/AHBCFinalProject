@@ -1,4 +1,4 @@
-﻿@model UserPreferencesViewModel
+﻿@model AHBCFinalProject.Models.UserPreferencesViewModel
 
 @{
     ViewData["Title"] = "SetUserPreferences";
@@ -10,52 +10,52 @@
 <form asp-controller="User" asp-action="CreateUserPreferences">
     <h4>Are you on any of these common diets?</h4>
 
-    <input type="radio" asp-for="GlutenFree" value="Gluten Free"> Gluten Free
+    <input asp-for="GlutenFree" value="True"> Gluten Free
     <br />
-    <input type="radio" asp-for="Ketogenic" value="Ketogenic"> Ketogenic
+    <input asp-for="Ketogenic" value="True"> Ketogenic
     <br />
-    <input type="radio" asp-for="Vegetarian" value="Vegetarian"> Vegetarian
+    <input asp-for="Vegetarian" value="True"> Vegetarian
     <br />
-    <input type="radio" asp-for="LactoVegetarian" value="Lacto-Vegetarian"> Lacto-Vegetarian
+    <input asp-for="LactoVegetarian" value="True"> Lacto-Vegetarian
     <br />
-    <input type="radio" asp-for="OvoVegetarian" value="Ovo-Vegetarian"> Ovo-Vegetarian
+    <input asp-for="OvoVegetarian" value="True"> Ovo-Vegetarian
     <br />
-    <input type="radio" asp-for="Vegan" value="Vegan"> Vegan
+    <input asp-for="Vegan" value="True"> Vegan
     <br />
-    <input type="radio" asp-for="Pescetarian" value="Pescetarian"> Pescetarian
+    <input asp-for="Pescetarian" value="True"> Pescetarian
     <br />
-    <input type="radio" asp-for="Paleo" value="Paleo"> Paleo
+    <input asp-for="Paleo" value="True"> Paleo
     <br />
-    <input type="radio" asp-for="Primal" value="Primal"> Primal
+    <input asp-for="Primal" value="True"> Primal
     <br />
-    <input type="radio" asp-for="Whole30" value="Whole30"> Whole30
+    <input asp-for="Whole30" value="True"> Whole30
     <br />
 
     <h4>Do you have any of these food intolerances?</h4>
 
-    <input type="radio" asp-for="Dairy" value="Dairy"> Dairy
+    <input asp-for="Dairy" value="True"> Dairy
     <br />
-    <input type="radio" asp-for="Egg" value="Egg"> Egg
+    <input asp-for="Egg" value="True"> Egg
     <br />
-    <input type="radio" asp-for="Gluten" value="Gluten"> Gluten
+    <input asp-for="Gluten" value="True"> Gluten
     <br />
-    <input type="radio" asp-for="Grain" value="Grain"> Grain
+    <input asp-for="Grain" value="True"> Grain
     <br />
-    <input type="radio" asp-for="Peanut" value="Peanut"> Peanut
+    <input asp-for="Peanut" value="True"> Peanut
     <br />
-    <input type="radio" asp-for="Seafood" value="Seafood"> Seafood
+    <input asp-for="Seafood" value="True"> Seafood
     <br />
-    <input type="radio" asp-for="Sesame" value="Sesame"> Sesame
+    <input asp-for="Sesame" value="True"> Sesame
     <br />
-    <input type="radio" asp-for="Shellfish" value="Shellfish"> Shellfish
+    <input asp-for="Shellfish" value="True"> Shellfish
     <br />
-    <input type="radio" asp-for="Soy" value="Soy"> Soy
+    <input asp-for="Soy" value="True"> Soy
     <br />
-    <input type="radio" asp-for="Sulfite" value="Sulfite"> Sulfite
+    <input asp-for="Sulfite" value="True"> Sulfite
     <br />
-    <input type="radio" asp-for="TreeNut" value="Tree Nut"> Tree Nut
+    <input asp-for="TreeNut" value="True"> Tree Nut
     <br />
-    <input type="radio" asp-for="Wheat" value="Wheat"> Wheat
+    <input asp-for="Wheat" value="True"> Wheat
     <br />
 
     <h4>Are there any other foods you can't or won't eat?</h4>
@@ -64,5 +64,5 @@
 
     <p>List ingredients separated by commas (ex: tomato,mango)</p>
 
-    <button type="submit"></button>
+    <button asp-controller="User" asp-action="CreateUserPreferences" asp-route-id="@Model" type="submit">Submit</button>
 </form>

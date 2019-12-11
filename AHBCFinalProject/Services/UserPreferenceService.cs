@@ -43,11 +43,11 @@ namespace AHBCFinalProject.Services
             {
                 intolerances = dalModel.Intolerances.Split(',');
             }
-            */
+            
             var viewModel = new UserPreferencesViewModel();
             viewModel.UserId = _userIdService.UserId;
 
-            if (diet.Contains("'Gluten Free'"))
+            if (diet.Contains("Gluten Free"))
                 viewModel.GlutenFree = true;
             if (diet.Contains("Ketogenic"))
                 viewModel.Ketogenic = true;
@@ -105,7 +105,7 @@ namespace AHBCFinalProject.Services
             dalModel.Id = viewModel.UserId;
 
             if (viewModel.GlutenFree)
-                diets.Add("'Gluten Free'");
+                diets.Add(@"'Gluten Free''");
             if (viewModel.Ketogenic)
                 diets.Add("Ketogenic");
             if (viewModel.Vegetarian)
@@ -125,6 +125,8 @@ namespace AHBCFinalProject.Services
             if (viewModel.Whole30)
                 diets.Add("Whole30");
 
+            if (viewModel.TreeNut)
+                intolerances.Add(@"'Tree Nut''");
             if (viewModel.Dairy)
                 intolerances.Add("Dairy");
             if (viewModel.Egg)
@@ -145,8 +147,6 @@ namespace AHBCFinalProject.Services
                 intolerances.Add("Soy");
             if (viewModel.Sulfite)
                 intolerances.Add("Sulfite");
-            if (viewModel.TreeNut)
-                intolerances.Add("'Tree Nut'");
             if (viewModel.Wheat)
                 intolerances.Add("Wheat");
 
