@@ -43,7 +43,7 @@ namespace AHBCFinalProject.Services
             {
                 intolerances = dalModel.Intolerances.Split(',');
             }
-            */
+            
             var viewModel = new UserPreferencesViewModel();
             viewModel.UserId = _userIdService.UserId;
 

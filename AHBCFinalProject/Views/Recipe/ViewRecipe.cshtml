@@ -6,6 +6,10 @@
 
 <h1>@Model.Title</h1>
 <img src="@Model.Image" />
+@*<figure class="figure">
+    <img src="@Model.Image" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+    <figcaption class="figure-caption text-right">@Model.Title</figcaption>
+</figure>*@
 
 <ul>
     @foreach(var ingredient in Model.ExtendedIngredients)

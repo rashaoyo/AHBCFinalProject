@@ -8,14 +8,18 @@
 
 <div>
     @if (Model.FavoriteMeals.Count > 0)
-    {@foreach (var item in Model.FavoriteMeals)
-        {
-            <li>
-                <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@item.RecipeID">@item.MealName</a>
-                <h3>@item.AdditionalComments</h3>
-                <a asp-controller="User" asp-action="DeleteAFavoriteMeal" asp-route-id="@item.RecipeID">Delete Item</a>
-            </li>
-        }}
+	{
+        {@foreach (var item in Model.FavoriteMeals)
+            {
+                <li>
+                    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@item.RecipeID">@item.MealName</a>
+                    <h3>@item.AdditionalComments</h3>
+                    <a asp-controller="User" asp-action="DeleteAFavoriteMeal" asp-route-id="@item.RecipeID">Delete Item</a>
+                </li>
+            }
+        }
+		 
+	}
 
 </div>
 
