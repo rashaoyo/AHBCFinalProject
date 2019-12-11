@@ -60,9 +60,9 @@ namespace AHBCFinalProject.Controllers
             return View();
         }
 
-        public IActionResult ViewMealPlanResults(ViewMealPlanViewModel model)
+        public async Task<IActionResult> ViewMealPlanResults(ViewMealPlanViewModel model)
         {
-            var result = _mealPlanHistoryService.ViewMealPlanHistory(model);
+            var result = await _mealPlanHistoryService.ViewMealPlanHistory(model);
             return View(result);
         }
 
@@ -83,11 +83,23 @@ namespace AHBCFinalProject.Controllers
         }
         */
 
+        public IActionResult AddToFavoritesResults(FavoriteMealsViewModel model)
+        {
+            return View(model);
+        }
+
         public IActionResult FavoriteMealsView()
         {
             var viewModel = _FavoriteMealService.SelectAllFavoriteMeals();
             return View();
         }
+
+        public async Task<IActionResult> AddToFavorites(string id)   
+        {
+            var viewMealPlanResults = await _FavoriteMealService.InsertAFavoriteMeal(id);
+            return View(viewMealPlanResults);
+        }
+
 
 
     }

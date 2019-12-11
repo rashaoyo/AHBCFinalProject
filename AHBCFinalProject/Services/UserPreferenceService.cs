@@ -33,7 +33,7 @@ namespace AHBCFinalProject.Services
             string[] diet = { "" };
             string[] intolerances = { "" };
          
-
+            /*
             if (dalModel.Diet != null)
             {
                 diet = dalModel.Diet.Split(',');

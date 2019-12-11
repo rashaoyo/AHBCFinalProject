@@ -1,0 +1,41 @@
+﻿@model FavoriteMealsViewModel
+
+@{
+    ViewData["Title"] = "AddToFavoritesResults";
+}
+
+<h1>Add To Favorites Results</h1>
+
+<h2>Favorite Meals</h2>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                @*<th>Favorite Meals</th>*@
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var favMeal in Model.FavoriteMeals)
+            {
+                <tr>
+
+                    <td>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@favMeal.Id">@favMeal.MealName</a>
+               
+
+
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+

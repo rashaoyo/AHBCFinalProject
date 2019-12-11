@@ -11,27 +11,40 @@
     <table>
         <thead>
             <tr>
-                <th>Product Name</th>
-
-
-
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                               
             </tr>
         </thead>
         <tbody>
             @foreach (var weeklyPlan in Model.MealPlans)
             {
                 <tr>
-
                     <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@weeklyPlan.SundayId">@weeklyPlan.SundayName</a>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-mondayid="@weeklyPlan.MondayId">@weeklyPlan.MondayName</a>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-tuesdayid="@weeklyPlan.TuesdayId">@weeklyPlan.TuesdayName</a>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-wednesdayid="@weeklyPlan.WednesdayId">@weeklyPlan.WednesdayName</a>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-thursdayid="@weeklyPlan.ThursdayId">@weeklyPlan.ThursdayName</a>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-fridayid="@weeklyPlan.FridayId">@weeklyPlan.FridayName</a>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-saturdayid="@weeklyPlan.SaturdayId">@weeklyPlan.SaturdayName</a>
-
-
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@weeklyPlan.SundayId">@weeklyPlan.SundayName</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@weeklyPlan.MondayId">@weeklyPlan.MondayName</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@weeklyPlan.TuesdayId">@weeklyPlan.TuesdayName</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@weeklyPlan.WednesdayId">@weeklyPlan.WednesdayName</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@weeklyPlan.ThursdayId">@weeklyPlan.ThursdayName</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@weeklyPlan.FridayId">@weeklyPlan.FridayName</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@weeklyPlan.SaturdayId">@weeklyPlan.SaturdayName</a>                        
                     </td>
 
 

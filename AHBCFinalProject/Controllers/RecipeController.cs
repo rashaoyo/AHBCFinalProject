@@ -32,7 +32,7 @@ namespace AHBCFinalProject.Controllers
         public async Task<IActionResult> ViewRecipes(UserPreferencesViewModel userPreferences)
         {
             var viewModel = await _complexSearchService.GetWeekOfRecipes(userPreferences);
-           // _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
+           _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
 
 
             return View(viewModel);
