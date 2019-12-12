@@ -23,9 +23,29 @@ namespace AHBCFinalProject.Services
 
         }
 
-        public void DeleteAFavoriteMeal(int recipeId)
+        public FavoriteMealsViewModel DeleteAFavoriteMeal(string recipeId)
         {
             _favoriteMealStore.DeleteAFaveMeal(recipeId);
+
+            var dalViewAllFavMeals = _favoriteMealStore.SelectAllFavMeals(_userIdService.UserId);
+            var favMeals = new List<FavoriteMealViewModel>();
+
+            foreach (var dalMeal in dalViewAllFavMeals)
+            {
+                var favMeal = new FavoriteMealViewModel
+                {
+                    Id = dalMeal.Id,
+                    RecipeID = dalMeal.RecipeID,
+                    MealName = dalMeal.MealName,
+                    AdditionalComments = dalMeal.AdditionalComments
+                };
+
+                favMeals.Add(favMeal);
+            }
+
+            var favMealsViewModel = new FavoriteMealsViewModel();
+            favMealsViewModel.FavoriteMeals = favMeals;
+            return favMealsViewModel;
         }
 
         public async Task<FavoriteMealsViewModel> InsertAFavoriteMeal(string recipeId)
@@ -37,32 +57,14 @@ namespace AHBCFinalProject.Services
                 Id = _userIdService.UserId,
                 RecipeID = recipeInfo.Id,
                 MealName = recipeInfo.Title
-                
+
             };
 
             _favoriteMealStore.InsertAFaveMeal(dalModel);
-
-            var dalViewAllFavMeals =_favoriteMealStore.SelectAllFavMeals(dalModel.Id);
-            var favMeals = new List<FavoriteMealViewModel>();
-
-            foreach (var dalMeal in dalViewAllFavMeals)
-            {
-                var favMeal = new FavoriteMealViewModel
-                {
-                    Id = dalMeal.Id,
-                    RecipeID = dalMeal.RecipeID,
-                    MealName = dalMeal.MealName,
-                    AdditionalComments = dalMeal.AdditionalComments                    
-                };
-
-                favMeals.Add(favMeal);
-            }
-
-            var favMealsViewModel = new FavoriteMealsViewModel();
-            favMealsViewModel.FavoriteMeals = favMeals;
-            return favMealsViewModel;
+            return MapFavMealDALtoView(dalModel);
         }
 
+        
         public async Task<ViewFavoriteMealViewModel> SelectAFavoriteMeal(string id)
         {
             var recipeInfo = await _recipeByIdService.GetRecipeVMById(id);
@@ -99,6 +101,8 @@ namespace AHBCFinalProject.Services
                     MealName = dalMeal.MealName,
                     AdditionalComments = dalMeal.AdditionalComments
                 };
+                favMeals.Add(favMeal);
+
             }
 
             var favMealsViewModel = new FavoriteMealsViewModel();
@@ -106,7 +110,41 @@ namespace AHBCFinalProject.Services
             return favMealsViewModel;
         }
 
+        public async Task<ViewFavoriteMealViewModel> UpdateFavoriteMealComments(ViewFavoriteMealViewModel model)
+        {
+            var dalModel = new FavoriteMealDALModel
+            {
+                Id = _userIdService.UserId,
+                RecipeID = model.Id,
+                AdditionalComments = model.AdditionalComments
+            };
 
+            _favoriteMealStore.UpdateFavoriteMealComments(dalModel);
+            var viewModel = await SelectAFavoriteMeal(model.Id);
+            return viewModel;
+        }
 
+        private FavoriteMealsViewModel MapFavMealDALtoView(FavoriteMealDALModel dalModel)
+        {
+            var dalViewAllFavMeals = _favoriteMealStore.SelectAllFavMeals(dalModel.Id);
+            var favMeals = new List<FavoriteMealViewModel>();
+
+            foreach (var dalMeal in dalViewAllFavMeals)
+            {
+                var favMeal = new FavoriteMealViewModel
+                {
+                    Id = dalMeal.Id,
+                    RecipeID = dalMeal.RecipeID,
+                    MealName = dalMeal.MealName,
+                    AdditionalComments = dalMeal.AdditionalComments
+                };
+
+                favMeals.Add(favMeal);
+            }
+
+            var favMealsViewModel = new FavoriteMealsViewModel();
+            favMealsViewModel.FavoriteMeals = favMeals;
+            return favMealsViewModel;
+        }
     }
 }

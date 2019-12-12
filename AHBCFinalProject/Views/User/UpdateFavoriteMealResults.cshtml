@@ -1,6 +1,6 @@
 ﻿@model ViewFavoriteMealViewModel
 @{
-    ViewData["Title"] = "ViewFavoriteMeal";
+    ViewData["Title"] = "UpdateFavoriteMealResults";
 }
 
 <h1>@Model.Title</h1>
@@ -27,4 +27,3 @@
 <a asp-controller="User" asp-action="UpdateFavoriteMeal" asp-route-id="@Model.Id">Edit Additional Comments</a>
 
 <a asp-controller="User" asp-action="DeleteFavoriteMeal" asp-route-id="@Model.Id">Delete from Favorites</a>
-

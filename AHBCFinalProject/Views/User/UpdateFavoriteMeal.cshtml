@@ -1,6 +1,7 @@
 ﻿@model ViewFavoriteMealViewModel
+
 @{
-    ViewData["Title"] = "ViewFavoriteMeal";
+    ViewData["Title"] = "UpdateFavoriteMeal";
 }
 
 <h1>@Model.Title</h1>
@@ -22,9 +23,9 @@
 <p asp-for="@Model.Instructions">@Model.Instructions</p>
 
 <label>Additional Comments:</label>
-<p>@Model.AdditionalComments</p>
+<form>
+    <input type="text" value="@Model.AdditionalComments" asp-for="@Model.AdditionalComments"/>
 
-<a asp-controller="User" asp-action="UpdateFavoriteMeal" asp-route-id="@Model.Id">Edit Additional Comments</a>
+    <button type="submit" asp-controller="User" asp-action="UpdateFavoriteMealResults" asp-route-id="@Model.Id" >Save Comments</button>
 
-<a asp-controller="User" asp-action="DeleteFavoriteMeal" asp-route-id="@Model.Id">Delete from Favorites</a>
-
+</form>
