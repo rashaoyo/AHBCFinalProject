@@ -63,9 +63,26 @@ namespace AHBCFinalProject.Services
             return favMealsViewModel;
         }
 
-        public RecipeViewModel SelectAFavoriteMeal(int recipeId)
+        public async Task<ViewFavoriteMealViewModel> SelectAFavoriteMeal(string id)
         {
-            throw new NotImplementedException();
+            var recipeInfo = await _recipeByIdService.GetRecipeVMById(id);
+
+            var favMealInfo = _favoriteMealStore.SelectAFavMeal(id);
+
+            var viewFavoriteMealViewModel = new ViewFavoriteMealViewModel
+            {
+                Id = recipeInfo.Id,
+                Title = recipeInfo.Title,
+                Image = recipeInfo.Image,
+                Servings = recipeInfo.Servings,
+                HealthScore = recipeInfo.HealthScore,
+                Instructions = recipeInfo.Instructions,
+                ExtendedIngredients = recipeInfo.ExtendedIngredients,
+                AdditionalComments = favMealInfo.AdditionalComments
+            };
+
+            return viewFavoriteMealViewModel;
+
         }
 
         public FavoriteMealsViewModel SelectAllFavoriteMeals()

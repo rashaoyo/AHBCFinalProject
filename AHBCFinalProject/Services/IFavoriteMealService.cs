@@ -11,7 +11,7 @@ namespace AHBCFinalProject.Services
         Task<FavoriteMealsViewModel> InsertAFavoriteMeal(string recipeId);
         void DeleteAFavoriteMeal(int recipeId);
         FavoriteMealsViewModel SelectAllFavoriteMeals();
-        RecipeViewModel SelectAFavoriteMeal(int recipeId);
+        Task<ViewFavoriteMealViewModel> SelectAFavoriteMeal(string recipeId);
 
     }
 }

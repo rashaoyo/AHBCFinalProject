@@ -23,7 +23,7 @@ namespace AHBCFinalProject.Services
         public async Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel)
         {
             var userPreferenceDALModel = _userPreferenceService.GetUserDALFromViewModel(userPreferencesViewModel);
-            var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(userPreferenceDALModel);
+            var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(StringifyPreferencesForAPI(userPreferenceDALModel));
 
             var result = new ListOfRecipesViewModel()
             {
@@ -80,6 +80,73 @@ namespace AHBCFinalProject.Services
             result.WinePairing = recipeResponse.WinePairing;
 
             return result;
+        }
+
+        private UserPreferenceDALModel StringifyPreferencesForAPI(UserPreferenceDALModel userPreferences)
+        {
+            var stringifiedDALModel = new UserPreferenceDALModel();
+
+            var dietSplit = userPreferences.Diet.Split(',');
+            var intolerancesSplit = userPreferences.Intolerances.Split(',');
+            var excludedSplit = userPreferences.ExcludedIngredients.Split(',');
+
+            var newDietSplit = new List<string>();
+            var newIntoleranceSplit = new List<string>();
+            var newExcludedSplit = new List<string>();
+
+            foreach(var diet in dietSplit)
+            {
+                string toAdd;
+
+                if(diet.Contains(' '))
+                {
+                    toAdd = $@"'{diet}'";
+                }
+                else
+                {
+                    toAdd = diet;
+                }
+
+                newDietSplit.Add(toAdd);
+            }
+
+            foreach(var intolerance in intolerancesSplit)
+            {
+                string toAdd;
+
+                if (intolerance.Contains(' '))
+                {
+                    toAdd = $@"'{intolerance}'";
+                }
+                else
+                {
+                    toAdd = intolerance;
+                }
+
+                newIntoleranceSplit.Add(toAdd);
+            }
+
+            foreach (var excludedIngredient in excludedSplit)
+            {
+                string toAdd;
+
+                if (excludedIngredient.Contains(' '))
+                {
+                    toAdd = $@"'{excludedIngredient}'";
+                }
+                else
+                {
+                    toAdd = excludedIngredient;
+                }
+
+                newExcludedSplit.Add(toAdd);
+            }
+
+            stringifiedDALModel.Diet = String.Join(',',newDietSplit);
+            stringifiedDALModel.Intolerances = String.Join(',',newIntoleranceSplit);
+            stringifiedDALModel.ExcludedIngredients = String.Join(',', newExcludedSplit);
+
+            return stringifiedDALModel;
         }
     }
 }

@@ -18,14 +18,6 @@ namespace AHBCFinalProject.Services
             _userIdService = userIdService;
         }
 
-        public void CreateUserPreferences(UserPreferencesViewModel model)
-        {
-            //var dalModel = GetUserDALFromViewModel(model);
-
-            //_userPreferenceStore.InsertUserPreferences(dalModel);
-            UpdateUserPreferences(model);
-        }
-
         public UserPreferencesViewModel GetUserPreferencesFromId()
         {
             var dalModel = _userPreferenceStore.SelectUserPreferences();
@@ -33,7 +25,7 @@ namespace AHBCFinalProject.Services
             string[] diet = { "" };
             string[] intolerances = { "" };
          
-            /*
+            
             if (dalModel.Diet != null)
             {
                 diet = dalModel.Diet.Split(',');
@@ -105,7 +97,7 @@ namespace AHBCFinalProject.Services
             dalModel.Id = viewModel.UserId;
 
             if (viewModel.GlutenFree)
-                diets.Add(@"'Gluten Free''");
+                diets.Add("Gluten Free");
             if (viewModel.Ketogenic)
                 diets.Add("Ketogenic");
             if (viewModel.Vegetarian)
@@ -126,7 +118,7 @@ namespace AHBCFinalProject.Services
                 diets.Add("Whole30");
 
             if (viewModel.TreeNut)
-                intolerances.Add(@"'Tree Nut''");
+                intolerances.Add("Tree Nut");
             if (viewModel.Dairy)
                 intolerances.Add("Dairy");
             if (viewModel.Egg)
@@ -152,6 +144,11 @@ namespace AHBCFinalProject.Services
 
             dalModel.Diet = String.Join(",", diets);
             dalModel.Intolerances = String.Join(",", intolerances);
+
+            if(viewModel.ExcludedIngredients != null)
+            {
+                dalModel.ExcludedIngredients = viewModel.ExcludedIngredients;
+            }
 
             return dalModel;
         }
