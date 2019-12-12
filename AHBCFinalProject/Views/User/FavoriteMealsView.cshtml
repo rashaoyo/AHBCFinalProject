@@ -7,15 +7,26 @@
 <h1>FavoriteMealsView</h1>
 
 <div>
-    @if (Model.FavoriteMeals.Count > 0)
-    {@foreach (var item in Model.FavoriteMeals)
-        {
-            <li>
-                <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@item.RecipeID">@item.MealName</a>
-                <h3>@item.AdditionalComments</h3>
-                <a asp-controller="User" asp-action="DeleteAFavoriteMeal" asp-route-id="@item.RecipeID">Delete Item</a>
-            </li>
-        }}
+    <table class="table table-light table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                @if (Model.FavoriteMeals.Count > 0)
+                {
+                    @foreach (var item in Model.FavoriteMeals)
+                    {
+                        <td>@item.MealName</td>
+                        <td>@item.Type</td>
+                        <td>@item.AdditionalComments</td>
+                    }
+                }
+            </tr>
+        </thead>
 
 </div>
 
+
+@*<li>
+    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@item.RecipeID">@item.MealName</a>
+    <h3>@item.AdditionalComments</h3>
+    <a asp-controller="User" asp-action="DeleteAFavoriteMeal" asp-route-id="@item.RecipeID">Delete Item</a>
+</li>*@
