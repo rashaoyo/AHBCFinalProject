@@ -14,7 +14,9 @@
     }
 </ul>
 
-<p asp-for="@Model.Instructions">@Model.Instructions</p>
+<label>Instructions:</label>
+<p>@Model.Instructions</p>
 
 
 <a asp-controller="User" asp-action="AddToFavorites" asp-route-id="@Model.Id" >Add To Favorites</a>
+

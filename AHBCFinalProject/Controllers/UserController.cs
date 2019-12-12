@@ -100,7 +100,12 @@ namespace AHBCFinalProject.Controllers
             return View(viewMealPlanResults);
         }
 
-
+        public async Task<IActionResult> ViewFavoriteMeal(string id)
+        {
+            var viewModel = await _FavoriteMealService.SelectAFavoriteMeal(id);
+            return View(viewModel);
+        }
+        
 
     }
 }
