@@ -35,6 +35,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult ViewUserPreferences(UserPreferencesViewModel viewModel)
         {
             var result = _userPreferenceService.GetUserPreferencesFromId();
+            //var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
             return View(result);
         }
 
@@ -46,8 +47,10 @@ namespace AHBCFinalProject.Controllers
         public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
         {
             var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
-            _userPreferenceService.UpdateUserPreferences(model);
+            //_userPreferenceStore.InsertUserPreferences(dalModel);
+            _userPreferenceService.CreateUserPreferences(model);
             var result = _userPreferenceService.GetUserPreferencesFromId();
+           // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
 
             return View(nameof(ViewUserPreferences), result);
         }
@@ -68,6 +71,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult UpdatePreference(/*int userId*/)
         {
             var model = _userPreferenceService.GetUpdatedPreferenceView();
+            //var model = _userPreferenceService.GetUpdatedPreferenceView(userId);
             return View(model);
         }
 
@@ -87,7 +91,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult FavoriteMealsView()
         {
             var viewModel = _FavoriteMealService.SelectAllFavoriteMeals();
-            return View();
+            return View(viewModel);
         }
 
         public async Task<IActionResult> AddToFavorites(string id)   
@@ -101,7 +105,20 @@ namespace AHBCFinalProject.Controllers
             var viewModel = await _FavoriteMealService.SelectAFavoriteMeal(id);
             return View(viewModel);
         }
+
+        public async Task<IActionResult> UpdateFavoriteMeal(string id)
+        {
+            var viewModel = await _FavoriteMealService.SelectAFavoriteMeal(id);
+            return View(viewModel);
+        }
+
+        public async Task<IActionResult> UpdateFavoriteMealResults(ViewFavoriteMealViewModel model)
+        {
+            var viewModel = await _FavoriteMealService.UpdateFavoriteMealComments(model);
+            return View(viewModel);
+        }
         
 
     }
+    
 }

@@ -19,7 +19,7 @@ namespace AHBCFinalProject.DAL
 
         public bool DeleteAFaveMeal(int recipeId)
         {
-            var sql = @"delete from FavoriteMeals where recipeId = @recipeId";
+            var sql = @"DELETE FROM FavoriteMeals WHERE recipeId = @recipeId";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
@@ -64,6 +64,16 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        
+        public bool UpdateFavoriteMealComments(FavoriteMealDALModel dalModel)
+        {
+            var sql = $@"UPDATE FavoriteMeals SET AdditionalComments = @{nameof(dalModel.AdditionalComments)} WHERE Id = @{nameof(dalModel.Id)} and RecipeID = @{nameof(dalModel.RecipeID)}";
+
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.Execute(sql, dalModel);
+
+                return true;
+            }
+        }
     }
 }

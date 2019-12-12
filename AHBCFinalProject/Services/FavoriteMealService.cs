@@ -99,6 +99,8 @@ namespace AHBCFinalProject.Services
                     MealName = dalMeal.MealName,
                     AdditionalComments = dalMeal.AdditionalComments
                 };
+                favMeals.Add(favMeal);
+
             }
 
             var favMealsViewModel = new FavoriteMealsViewModel();
@@ -106,7 +108,18 @@ namespace AHBCFinalProject.Services
             return favMealsViewModel;
         }
 
+        public async Task<ViewFavoriteMealViewModel> UpdateFavoriteMealComments(ViewFavoriteMealViewModel model)
+        {
+            var dalModel = new FavoriteMealDALModel
+            {
+                Id = _userIdService.UserId,
+                RecipeID = model.Id,
+                AdditionalComments = model.AdditionalComments
+            };
 
-
+            _favoriteMealStore.UpdateFavoriteMealComments(dalModel);
+            var viewModel = await SelectAFavoriteMeal(model.Id);
+            return viewModel;
+        }
     }
 }
