@@ -36,7 +36,7 @@ namespace AHBCFinalProject.Services
             {
                 Id = _userIdService.UserId,
                 RecipeID = recipeInfo.Id,
-                MealName = recipeInfo.Title
+                //MealName = recipeInfo.Title
                 
             };
 
@@ -51,7 +51,7 @@ namespace AHBCFinalProject.Services
                 {
                     Id = dalMeal.Id,
                     RecipeID = dalMeal.RecipeID,
-                    MealName = dalMeal.MealName,
+                    //MealName = dalMeal.MealName,
                     AdditionalComments = dalMeal.AdditionalComments                    
                 };
 
@@ -79,7 +79,7 @@ namespace AHBCFinalProject.Services
                 {
                     Id = dalMeal.Id,
                     RecipeID = dalMeal.RecipeID,
-                    MealName = dalMeal.MealName,
+                    //MealName = dalMeal.MealName,
                     AdditionalComments = dalMeal.AdditionalComments
                 };
             }

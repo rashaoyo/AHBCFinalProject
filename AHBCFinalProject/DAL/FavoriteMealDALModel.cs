@@ -9,7 +9,7 @@ namespace AHBCFinalProject.DAL
     {
         public int Id { get; set; }
         public string RecipeID { get; set; }
-        public string MealName { get; set; }
+        //public string MealName { get; set; }
         public string AdditionalComments { get; set; }
     }
 }

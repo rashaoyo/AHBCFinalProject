@@ -30,8 +30,10 @@ namespace AHBCFinalProject.DAL
 
         public bool InsertAFaveMeal(FavoriteMealDALModel dalModel)
         {
-            var sql = $@"INSERT INTO FavoriteMeals (Id, RecipeID, MealName, AdditionalComments) 
-                            VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.RecipeID)}, @{nameof(dalModel.MealName)}, @{nameof(dalModel.AdditionalComments)})";
+            //var sql = $@"INSERT INTO FavoriteMeals (Id, RecipeID, MealName, AdditionalComments)
+            //                VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.RecipeID)}, @{nameof(dalModel.MealName)}, @{nameof(dalModel.AdditionalComments)})";
+            var sql = $@"INSERT INTO FavoriteMeals (Id, RecipeID, AdditionalComments)
+                            VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.RecipeID)}, @{nameof(dalModel.AdditionalComments)})";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
@@ -54,8 +56,10 @@ namespace AHBCFinalProject.DAL
 
         public IEnumerable<FavoriteMealDALModel> SelectAllFavMeals(int userId)
         {
-            var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id ORDER BY MealName ASC";
-             
+            //var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id ORDER BY MealName ASC";
+            var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id ORDER BY RecipeId ASC";
+
+
             using (var connection = new SqlConnection(_config.ConnectionString))   
             {
                 var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
