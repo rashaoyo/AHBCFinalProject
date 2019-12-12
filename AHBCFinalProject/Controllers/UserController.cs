@@ -35,7 +35,6 @@ namespace AHBCFinalProject.Controllers
         public IActionResult ViewUserPreferences(UserPreferencesViewModel viewModel)
         {
             var result = _userPreferenceService.GetUserPreferencesFromId();
-            //var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
             return View(result);
         }
 
@@ -47,10 +46,8 @@ namespace AHBCFinalProject.Controllers
         public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
         {
             var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
-            //_userPreferenceStore.InsertUserPreferences(dalModel);
-            _userPreferenceService.CreateUserPreferences(model);
+            _userPreferenceService.UpdateUserPreferences(model);
             var result = _userPreferenceService.GetUserPreferencesFromId();
-           // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
 
             return View(nameof(ViewUserPreferences), result);
         }
@@ -71,7 +68,6 @@ namespace AHBCFinalProject.Controllers
         public IActionResult UpdatePreference(/*int userId*/)
         {
             var model = _userPreferenceService.GetUpdatedPreferenceView();
-            //var model = _userPreferenceService.GetUpdatedPreferenceView(userId);
             return View(model);
         }
 
