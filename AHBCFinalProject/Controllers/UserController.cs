@@ -62,8 +62,16 @@ namespace AHBCFinalProject.Controllers
 
         public async Task<IActionResult> ViewMealPlanResults(ViewMealPlanViewModel model)
         {
-            var result = await _mealPlanHistoryService.ViewMealPlanHistory(model);
-            return View(result);
+            try
+            {
+                var result = await _mealPlanHistoryService.ViewMealPlanHistory(model);
+                return View(result);
+            }
+            catch (Exception)
+            {
+                Response.StatusCode = 400;
+                return View("Error");
+            }
         }
 
 
