@@ -41,7 +41,7 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public FavoriteMealDALModel SelectAFavMeal(int recipeId)
+        public FavoriteMealDALModel SelectAFavMeal(string recipeId)
         {
             var sql = @"SELECT * from FavoriteMeals where RecipeId = @RecipeId";
 
