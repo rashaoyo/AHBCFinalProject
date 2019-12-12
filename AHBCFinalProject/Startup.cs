@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace AHBCFinalProject
 {
@@ -98,6 +99,7 @@ namespace AHBCFinalProject
             
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
