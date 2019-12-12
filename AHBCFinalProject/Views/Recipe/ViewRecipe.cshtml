@@ -5,16 +5,26 @@
 }
 
 <h1>@Model.Title</h1>
-<img src="@Model.Image" />
+@*<img src="@Model.Image" />*@
+<figure class="figure">
+    <img src="@Model.Image" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+    <figcaption class="figure-caption"></figcaption>
+</figure>
 
-<ul>
-    @foreach (var ingredient in Model.ExtendedIngredients)
-    {
-        <li>@ingredient.OriginalName</li>
-    }
-</ul>
+<div class="recipe-ingredients">
+    <table class="col-auto">
+        <h3>Ingredients</h3>
+            <ul>
+                @foreach (var ingredient in Model.ExtendedIngredients)
+                {
+                    <li>@ingredient.Amount @ingredient.Unit @ingredient.OriginalName</li>
+                    @*<li>@ingredient.OriginalName</li>*@
+                }
+            </ul>
+        </table>
+    <div class="span10">
+        <p asp-for="@Model.Instructions">@Model.Instructions</p>
+    </div>
+</div>
 
-<p asp-for="@Model.Instructions">@Model.Instructions</p>
-
-
-<a asp-controller="User" asp-action="AddToFavorites" asp-route-id="@Model.Id" >Add To Favorites</a>
+<a class="btn btn-outline-primary" asp-controller="User" asp-action="AddToFavorites" role="button" asp-route-id="@Model.Id">Add To Favorites</a>
