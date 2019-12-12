@@ -138,10 +138,10 @@ namespace AHBCFinalProject.Controllers
 
                   
                    
-                    setUserIds(model.Email);
-                    _userPreferenceStore.CreateNewUserPrefEntry(_userIdService.UserId);
-                    return RedirectToSetUserPrefs();
-                    //return RedirectToLocal(returnUrl);
+                   // setUserIds(model.Email);
+                   // _userPreferenceStore.CreateNewUserPrefEntry(_userIdService.UserId);
+                    //return RedirectToSetUserPrefs();
+                    return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
             }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAsTW10S+2gUSdGQQP01eqngAAAAACAAAAAAAQZgAAAAEAACAAAACTukwmdTM+9y7f0zvP0GRf0nA7HyR4Uvczh9DTbWSyyAAAAAAOgAAAAAIAACAAAAA4MLqwvT+M1t3O40YWIvsTOhkQe1PcuOw/cOauFgKHrYAAAAAt9egPR6lo6vkNZK5YjYVq3HaH1u6L0oXT1sICgohn0DRIub0LhpnWgXTgfLRwWiaDZXdGkQ/0uheo8VWEk76yf3ZdkO5MSt9nmXlUCn+sA4BGrRRJtAglypMjvUX+7XlJAHcOxjP7aCH5YRw1ureVM7LxNhmyP47ARgKH+6sC/UAAAAC7TRRNhixXIGQ7u44pYwY22PllWJ9hH0G0uws2x5k4oTAKh0gOu3AHy3+xbocbUxO+piIABV0hyBZLEhY3+p5G</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:weekworthdbserver.database.windows.net,1433%3bInitial Catalog=WeekWorthDev_db%3bUser Id=nicholasjborn%40weekworthdbserver%3bPassword=W33kworthadmin</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
