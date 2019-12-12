@@ -10,7 +10,7 @@ namespace AHBCFinalProject.DAL
         IEnumerable<FavoriteMealDALModel> SelectAllFavMeals(int userId);
         FavoriteMealDALModel SelectAFavMeal(string recipeId);
         bool InsertAFaveMeal(FavoriteMealDALModel dalModel);
-        bool DeleteAFaveMeal(int recipeId);
+        bool DeleteAFaveMeal(string recipeId);
         bool UpdateFavoriteMealComments(FavoriteMealDALModel dalModel);
     }
 }

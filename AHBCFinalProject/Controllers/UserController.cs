@@ -44,16 +44,16 @@ namespace AHBCFinalProject.Controllers
             return View();
         }
 
-        public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
-        {
-            var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
-            //_userPreferenceStore.InsertUserPreferences(dalModel);
-            _userPreferenceService.CreateUserPreferences(model);
-            var result = _userPreferenceService.GetUserPreferencesFromId();
-           // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
+        //public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
+        //{
+        //    var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
+        //    //_userPreferenceStore.InsertUserPreferences(dalModel);
+        //    _userPreferenceService.CreateUserPreferences(model);
+        //    var result = _userPreferenceService.GetUserPreferencesFromId();
+        //   // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
 
-            return View(nameof(ViewUserPreferences), result);
-        }
+        //    return View(nameof(ViewUserPreferences), result);
+        //}
 
         public IActionResult SearchMealPlanHistory()
         {
@@ -83,10 +83,10 @@ namespace AHBCFinalProject.Controllers
         }
         */
 
-        public IActionResult AddToFavoritesResults(FavoriteMealsViewModel model)
-        {
-            return View(model);
-        }
+        //public IActionResult AddToFavoritesResults(FavoriteMealsViewModel model)
+        //{
+        //    return View(model);
+        //}
 
         public IActionResult FavoriteMealsView()
         {
@@ -97,7 +97,7 @@ namespace AHBCFinalProject.Controllers
         public async Task<IActionResult> AddToFavorites(string id)   
         {
             var viewMealPlanResults = await _FavoriteMealService.InsertAFavoriteMeal(id);
-            return View(viewMealPlanResults);
+            return View("FavoriteMealsView", viewMealPlanResults);
         }
 
         public async Task<IActionResult> ViewFavoriteMeal(string id)
@@ -117,6 +117,13 @@ namespace AHBCFinalProject.Controllers
             var viewModel = await _FavoriteMealService.UpdateFavoriteMealComments(model);
             return View(viewModel);
         }
+
+        public IActionResult DeleteFavoriteMeal(string id)
+        {
+            var viewModel = _FavoriteMealService.DeleteAFavoriteMeal(id);
+            return View(viewModel);
+        }        
+
         
 
     }

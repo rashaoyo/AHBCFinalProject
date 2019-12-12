@@ -24,4 +24,7 @@
 <label>Additional Comments:</label>
 <p>@Model.AdditionalComments</p>
 
+<a asp-controller="User" asp-action="UpdateFavoriteMeal" asp-route-id="@Model.Id">Edit Additional Comments</a>
+
+<a asp-controller="User" asp-action="DeleteFavoriteMeal" asp-route-id="@Model.Id">Delete from Favorites</a>
 
