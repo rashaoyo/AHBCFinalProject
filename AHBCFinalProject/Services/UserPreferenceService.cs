@@ -37,7 +37,7 @@ namespace AHBCFinalProject.Services
             }
             
             var viewModel = new UserPreferencesViewModel();
-            viewModel.UserId = _userIdService.getUserId();
+            viewModel.UserId = _userIdService.getUserId("2"); //CHANGE BACK TO BLANK
 
             if (diet.Contains("Gluten Free"))
                 viewModel.GlutenFree = true;
@@ -88,7 +88,7 @@ namespace AHBCFinalProject.Services
             return viewModel;
         }
 
-        public UserPreferenceDALModel GetUserDALFromViewModel(UserPreferencesViewModel viewModel)
+        public void SetUserPreferences(UserPreferencesViewModel viewModel)
         {
             var dalModel = new UserPreferenceDALModel();
             var intolerances = new List<string>();
@@ -150,7 +150,9 @@ namespace AHBCFinalProject.Services
                 dalModel.ExcludedIngredients = viewModel.ExcludedIngredients;
             }
 
-            return dalModel;
+            _userPreferenceStore.InsertUserPreferences(dalModel);
+
+
         }
 
         public UpdateUserViewModel GetUpdatedPreferenceView()
@@ -168,7 +170,7 @@ namespace AHBCFinalProject.Services
 
         public void UpdateUserPreferences(UserPreferencesViewModel model)
         {
-            var dalModel = GetUserDALFromViewModel(model);
+            var dalModel = SetUserPreferences(model);
             _userPreferenceStore.UpdateUserPreferences(dalModel);
         }
     }

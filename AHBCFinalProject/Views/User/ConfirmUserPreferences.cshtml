@@ -1,12 +1,13 @@
 ﻿@model UserPreferencesViewModel
 
 @{
-    ViewData["Title"] = "ViewUserPreferences";
+    ViewData["Title"] = "ConfirmUserPreferences";
 }
 
 <h1>ViewUserPreferences</h1>
 
-<form asp-controller="Recipe" asp-action="ViewRecipes">
+<form asp-controller="Recipe" asp-action="ViewRecipes" asp-route-id="@Model.UserId
+      ">
     <h2>Diets</h2>
     Gluten-Free: @Model.GlutenFree<br />
     Ketogenic: @Model.Ketogenic<br />
