@@ -84,7 +84,12 @@ namespace AHBCFinalProject.Services
 
         private UserPreferenceDALModel StringifyPreferencesForAPI(UserPreferenceDALModel userPreferences)
         {
-            var stringifiedDALModel = new UserPreferenceDALModel();
+            var stringifiedDALModel = new UserPreferenceDALModel()
+            {
+                Diet = "",
+                Intolerances = "",
+                ExcludedIngredients = ""
+            };
 
             var dietSplit = userPreferences.Diet.Split(',');
             var intolerancesSplit = userPreferences.Intolerances.Split(',');
@@ -94,58 +99,69 @@ namespace AHBCFinalProject.Services
             var newIntoleranceSplit = new List<string>();
             var newExcludedSplit = new List<string>();
 
-            foreach(var diet in dietSplit)
+            if(dietSplit != null)
             {
-                string toAdd;
-
-                if(diet.Contains(' '))
+                foreach (var diet in dietSplit)
                 {
-                    toAdd = $@"'{diet}'";
-                }
-                else
-                {
-                    toAdd = diet;
+                    string toAdd;
+
+                    if (diet.Contains(' '))
+                    {
+                        toAdd = $@"'{diet}'";
+                    }
+                    else
+                    {
+                        toAdd = diet;
+                    }
+
+                    newDietSplit.Add(toAdd);
                 }
 
-                newDietSplit.Add(toAdd);
+                stringifiedDALModel.Diet = String.Join(',', newDietSplit);
             }
-
-            foreach(var intolerance in intolerancesSplit)
+            
+            if(intolerancesSplit != null)
             {
-                string toAdd;
-
-                if (intolerance.Contains(' '))
+                foreach (var intolerance in intolerancesSplit)
                 {
-                    toAdd = $@"'{intolerance}'";
-                }
-                else
-                {
-                    toAdd = intolerance;
+                    string toAdd;
+
+                    if (intolerance.Contains(' '))
+                    {
+                        toAdd = $@"'{intolerance}'";
+                    }
+                    else
+                    {
+                        toAdd = intolerance;
+                    }
+
+                    newIntoleranceSplit.Add(toAdd);
                 }
 
-                newIntoleranceSplit.Add(toAdd);
+                stringifiedDALModel.Intolerances = String.Join(',', newIntoleranceSplit);
             }
-
-            foreach (var excludedIngredient in excludedSplit)
+            
+            if(excludedSplit !=null)
             {
-                string toAdd;
-
-                if (excludedIngredient.Contains(' '))
+                foreach (var excludedIngredient in excludedSplit)
                 {
-                    toAdd = $@"'{excludedIngredient}'";
-                }
-                else
-                {
-                    toAdd = excludedIngredient;
+                    string toAdd;
+
+                    if (excludedIngredient.Contains(' '))
+                    {
+                        toAdd = $@"'{excludedIngredient}'";
+                    }
+                    else
+                    {
+                        toAdd = excludedIngredient;
+                    }
+
+                    newExcludedSplit.Add(toAdd);
                 }
 
-                newExcludedSplit.Add(toAdd);
+                stringifiedDALModel.ExcludedIngredients = String.Join(',', newExcludedSplit);
             }
-
-            stringifiedDALModel.Diet = String.Join(',',newDietSplit);
-            stringifiedDALModel.Intolerances = String.Join(',',newIntoleranceSplit);
-            stringifiedDALModel.ExcludedIngredients = String.Join(',', newExcludedSplit);
-
+            
             return stringifiedDALModel;
         }
     }
