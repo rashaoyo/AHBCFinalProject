@@ -37,7 +37,7 @@ namespace AHBCFinalProject.Services
             }
             
             var viewModel = new UserPreferencesViewModel();
-            viewModel.UserId = _userIdService.UserId;
+            viewModel.UserId = _userIdService.getUserId();
 
             if (diet.Contains("Gluten Free"))
                 viewModel.GlutenFree = true;
