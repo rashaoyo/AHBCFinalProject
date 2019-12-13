@@ -44,16 +44,16 @@ namespace AHBCFinalProject.Controllers
             return View();
         }
 
-        //public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
-        //{
-        //    var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
-        //    //_userPreferenceStore.InsertUserPreferences(dalModel);
-        //    _userPreferenceService.CreateUserPreferences(model);
-        //    var result = _userPreferenceService.GetUserPreferencesFromId();
-        //   // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
+        public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
+        {
+            var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
+            //_userPreferenceStore.InsertUserPreferences(dalModel);
+            _userPreferenceService.UpdateUserPreferences(model);
+            var result = _userPreferenceService.GetUserPreferencesFromId();
+            // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
 
-        //    return View(nameof(ViewUserPreferences), result);
-        //}
+            return View(nameof(ViewUserPreferences), result);
+        }
 
         public IActionResult SearchMealPlanHistory()
         {
