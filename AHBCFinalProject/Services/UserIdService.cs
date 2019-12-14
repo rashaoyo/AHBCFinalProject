@@ -21,11 +21,10 @@ namespace AHBCFinalProject.Services
 
         public int UserId { get; set; }
 
-        public int getUserId(string email)
+        public void getUserId(string email)
         {
             UserId = _userIDStore.getUserId(email);
-            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return int.Parse(userId);
+
         }
     }
 }

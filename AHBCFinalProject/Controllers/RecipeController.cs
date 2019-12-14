@@ -29,14 +29,14 @@ namespace AHBCFinalProject.Controllers
             _userPreferenceService = userPreferenceService;
         }
 
-        public async Task<IActionResult> ViewRecipes(UserPreferencesViewModel userPreferences)
-        {
-            var viewModel = await _complexSearchService.GetWeekOfRecipes(userPreferences);
-           _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
+        //public async Task<IActionResult> ViewRecipes(UserPreferencesViewModel userPreferences)
+        //{
+        //    var viewModel = await _complexSearchService.GetWeekOfRecipes(userPreferences);
+        //   _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
 
 
-            return View(viewModel);
-        }
+        //    return View(viewModel);
+        //}
 
         public async Task<IActionResult> ViewRecipe(string id)
         {

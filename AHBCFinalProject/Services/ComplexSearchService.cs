@@ -20,24 +20,24 @@ namespace AHBCFinalProject.Services
             _userPreferenceService = userPreferenceService;
         }
 
-        public async Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel)
-        {
-            var userPreferenceDALModel = _userPreferenceService.SetUserPreferences(userPreferencesViewModel);
-            var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(StringifyPreferencesForAPI(userPreferenceDALModel));
+        //public async Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel)
+        //{
+        //    var userPreferenceDALModel = _userPreferenceService.SetUserPreferences(userPreferencesViewModel);
+        //    var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(StringifyPreferencesForAPI(userPreferenceDALModel));
 
-            var result = new ListOfRecipesViewModel()
-            {
-                ListOfRecipes = new List<RecipeViewModel>()
-            };
+        //    var result = new ListOfRecipesViewModel()
+        //    {
+        //        ListOfRecipes = new List<RecipeViewModel>()
+        //    };
 
-            foreach(var recipe in weekOfRecipesResponse.Results)
-            {
-                var recipeVM = ConvertRecipeResponseToVM(recipe);
-                result.ListOfRecipes.Add(recipeVM);
-            }
+        //    foreach(var recipe in weekOfRecipesResponse.Results)
+        //    {
+        //        var recipeVM = ConvertRecipeResponseToVM(recipe);
+        //        result.ListOfRecipes.Add(recipeVM);
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
 
         public RecipeViewModel ConvertRecipeResponseToVM(RecipeResponse recipeResponse)
         {
