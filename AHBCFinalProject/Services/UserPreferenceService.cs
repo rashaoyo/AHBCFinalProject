@@ -11,16 +11,18 @@ namespace AHBCFinalProject.Services
     {
         private readonly IUserPreferenceStore _userPreferenceStore;
         private readonly IUserIdService _userIdService;
+        private readonly int UserID;
 
         public UserPreferenceService(IUserPreferenceStore userPreferenceStore, IUserIdService userIdService)
         {
             _userPreferenceStore = userPreferenceStore;
             _userIdService = userIdService;
+            UserID = _userIdService.UserId;
         }
 
         public UserPreferencesViewModel GetUserPreferencesFromId()
         {
-            var dalModel = _userPreferenceStore.SelectUserPreferences();
+            var dalModel = _userPreferenceStore.SelectUserPreferences(UserID);
 
             string[] diet = { "" };
             string[] intolerances = { "" };
@@ -37,7 +39,7 @@ namespace AHBCFinalProject.Services
             }
             
             var viewModel = new UserPreferencesViewModel();
-            viewModel.UserId = _userIdService.getUserId("2"); //CHANGE BACK TO BLANK
+            viewModel.UserId = UserID; //CHANGE BACK TO BLANK
 
             if (diet.Contains("Gluten Free"))
                 viewModel.GlutenFree = true;
@@ -94,7 +96,7 @@ namespace AHBCFinalProject.Services
             var intolerances = new List<string>();
             var diets = new List<string>();
 
-            dalModel.Id = viewModel.UserId;
+            dalModel.Id = UserID;
 
             if (viewModel.GlutenFree)
                 diets.Add("Gluten Free");
@@ -157,7 +159,7 @@ namespace AHBCFinalProject.Services
 
         public UpdateUserViewModel GetUpdatedPreferenceView()
         {
-            var dalPreference = _userPreferenceStore.SelectUserPreferences();
+            var dalPreference = _userPreferenceStore.SelectUserPreferences(UserID);
             var updatedPreference = new UpdateUserViewModel()
             {
                 Diet = dalPreference.Diet,
@@ -168,10 +170,10 @@ namespace AHBCFinalProject.Services
             return updatedPreference;
         }
 
-        public void UpdateUserPreferences(UserPreferencesViewModel model)
-        {
-            var dalModel = SetUserPreferences(model);
-            _userPreferenceStore.UpdateUserPreferences(dalModel);
-        }
+        //public void UpdateUserPreferences(UserPreferencesViewModel model)
+        //{
+        //    var dalModel = SetUserPreferences(model);
+        //    _userPreferenceStore.UpdateUserPreferences(dalModel);
+        //}
     }
 }

@@ -31,21 +31,14 @@ namespace AHBCFinalProject.Controllers
             _userPreferenceStore = userPreferenceStore;
             _userIdService = userIdService;
         }
-
-        public IActionResult ViewUserPreferences(UserPreferencesViewModel viewModel)
-        {
-            var result = _userPreferenceService.GetUserPreferencesFromId();
-            //var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
-            return View(result);
-        }
-
+             
         public IActionResult SetUserPreferences()
         {
             return View();
         }
 
         public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
-         {
+        {
             _userPreferenceService.SetUserPreferences(model);
             //_userPreferenceService.UpdateUserPreferences(model);
             //var result = _userPreferenceService.GetUserPreferencesFromId();
@@ -53,6 +46,13 @@ namespace AHBCFinalProject.Controllers
 
             return View("ConfirmUserPreferences", model);
         }
+
+        //public IActionResult ViewUserPreferences()
+        //{
+        //    var result = _userPreferenceService.GetUserPreferencesFromId();
+        //    //var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
+        //    return View(result);
+        //}
 
         public IActionResult SearchMealPlanHistory()
         {
@@ -77,8 +77,8 @@ namespace AHBCFinalProject.Controllers
 
         public IActionResult UpdatePreference(/*int userId*/)
         {
+            //var model = _userPreferenceService.GetUpdatedPreferenceView();
             var model = _userPreferenceService.GetUpdatedPreferenceView();
-            //var model = _userPreferenceService.GetUpdatedPreferenceView(userId);
             return View(model);
         }
 

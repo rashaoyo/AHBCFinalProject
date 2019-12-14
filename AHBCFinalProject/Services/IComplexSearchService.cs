@@ -7,7 +7,7 @@ namespace AHBCFinalProject.Services
 {
     public interface IComplexSearchService
     {
-        Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel);
+        //Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel);
         RecipeViewModel ConvertRecipeResponseToVM(RecipeResponse recipeResponse);
 
     }

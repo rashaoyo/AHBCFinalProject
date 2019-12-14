@@ -46,7 +46,7 @@ namespace AHBCFinalProject.Controllers
 
         public void setUserIds(string email)
         {
-            var id = _userIdService.getUserId(email);
+            _userIdService.getUserId(email);
         }
 
 
