@@ -11,33 +11,56 @@ namespace AHBCFinalProject.Services
     {
         private readonly IComplexSearchStore _complexSearchStore;
         private readonly IUserPreferenceService _userPreferenceService;
+        private readonly IUserPreferenceStore _userPreferenceStore;
+        private readonly IUserIdService _userIdService;
+        private readonly int UserID;
 
 
 
-        public ComplexSearchService(IComplexSearchStore complexSearchStore, IUserPreferenceService userPreferenceService)
+        public ComplexSearchService(IComplexSearchStore complexSearchStore, IUserPreferenceService userPreferenceService, IUserPreferenceStore userPreferenceStore, IUserIdService userIdService)
         {
             _complexSearchStore = complexSearchStore;
             _userPreferenceService = userPreferenceService;
+            _userPreferenceStore = userPreferenceStore;
+            _userIdService = userIdService;
+            UserID = _userIdService.UserId;
+
         }
 
-        //public async Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel)
-        //{
-        //    var userPreferenceDALModel = _userPreferenceService.SetUserPreferences(userPreferencesViewModel);
-        //    var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(StringifyPreferencesForAPI(userPreferenceDALModel));
+        public async Task<ListOfRecipesViewModel> GetWeekOfRecipes()
+        {
+            var userPrefDalModel = _userPreferenceStore.SelectUserPreferences(UserID);
+            //var userPreferenceDALModel = _userPreferenceService.SetUserPreferences(userPrefDalModel);
+            //var stringedThings = StringifyPreferencesForAPI(userPrefDalModel);
+            var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(userPrefDalModel);
 
-        //    var result = new ListOfRecipesViewModel()
-        //    {
-        //        ListOfRecipes = new List<RecipeViewModel>()
-        //    };
+            var result = new ListOfRecipesViewModel()
+            {
+                ListOfRecipes = new List<RecipeViewModel>()
+            };
 
-        //    foreach(var recipe in weekOfRecipesResponse.Results)
-        //    {
-        //        var recipeVM = ConvertRecipeResponseToVM(recipe);
-        //        result.ListOfRecipes.Add(recipeVM);
-        //    }
+            foreach (var recipe in weekOfRecipesResponse.Results)
+            {
+                var recipeVM = ConvertRecipeResponseToVM(recipe);
+                result.ListOfRecipes.Add(recipeVM);
+            }
 
-        //    return result;
-        //}
+            return result;
+        }
+
+        private UserPreferenceDALModel GetUpdatedPreferenceView(int id)
+        {
+            var dalPreference = _userPreferenceStore.SelectUserPreferences(id);
+            var dalModel = new UserPreferenceDALModel()
+            {
+                Id = id,
+                Diet = dalPreference.Diet,
+                Intolerances = dalPreference.Intolerances,
+                ExcludedIngredients = dalPreference.ExcludedIngredients
+            };
+
+            return dalModel;
+        }
 
         public RecipeViewModel ConvertRecipeResponseToVM(RecipeResponse recipeResponse)
         {
@@ -82,87 +105,88 @@ namespace AHBCFinalProject.Services
             return result;
         }
 
-        private UserPreferenceDALModel StringifyPreferencesForAPI(UserPreferenceDALModel userPreferences)
-        {
-            var stringifiedDALModel = new UserPreferenceDALModel()
-            {
-                Diet = "",
-                Intolerances = "",
-                ExcludedIngredients = ""
-            };
+        //private UserPreferenceDALModel StringifyPreferencesForAPI(UserPreferenceDALModel userPreferences)
+        //{
+        //    var newDietSplit = new List<string>();
+        //    var newIntoleranceSplit = new List<string>();
+        //    var newExcludedSplit = new List<string>();
 
-            var dietSplit = userPreferences.Diet.Split(',');
-            var intolerancesSplit = userPreferences.Intolerances.Split(',');
-            var excludedSplit = userPreferences.ExcludedIngredients.Split(',');
+        //    var stringifiedDALModel = new UserPreferenceDALModel()
+        //    {
+        //        Id = userPreferences.Id,
+        //        Diet = "",
+        //        Intolerances = "",
+        //        ExcludedIngredients = ""
+        //    };
 
-            var newDietSplit = new List<string>();
-            var newIntoleranceSplit = new List<string>();
-            var newExcludedSplit = new List<string>();
+        //    var dietSplit = userPreferences.Diet.Split(',');
+        //    var intolerancesSplit = userPreferences.Intolerances.Split(',');
+        //    var excludedSplit = userPreferences.ExcludedIngredients.Split(',');
+                     
+        //    if(dietSplit != null)
+        //    {
+        //        foreach (var diet in dietSplit)
+        //        {
+        //            string toAdd;
 
-            if(dietSplit != null)
-            {
-                foreach (var diet in dietSplit)
-                {
-                    string toAdd;
+        //            if (diet.Contains(' '))
+        //            {
+        //                toAdd = $@"'{diet}'";
+        //            }
+        //            else
+        //            {
+        //                toAdd = diet;
+        //            }
 
-                    if (diet.Contains(' '))
-                    {
-                        toAdd = $@"'{diet}'";
-                    }
-                    else
-                    {
-                        toAdd = diet;
-                    }
+        //            newDietSplit.Add(toAdd);
+        //        }
 
-                    newDietSplit.Add(toAdd);
-                }
-
-                stringifiedDALModel.Diet = String.Join(',', newDietSplit);
-            }
+        //        stringifiedDALModel.Diet = String.Join(',', newDietSplit);
+        //    }
             
-            if(intolerancesSplit != null)
-            {
-                foreach (var intolerance in intolerancesSplit)
-                {
-                    string toAdd;
+        //    if(intolerancesSplit != null)
+        //    {
+        //        foreach (var intolerance in intolerancesSplit)
+        //        {
+        //            string toAdd;
 
-                    if (intolerance.Contains(' '))
-                    {
-                        toAdd = $@"'{intolerance}'";
-                    }
-                    else
-                    {
-                        toAdd = intolerance;
-                    }
+        //            if (intolerance.Contains(' '))
+        //            {
+        //                toAdd = $@"'{intolerance}'";
+        //            }
+        //            else
+        //            {
+        //                toAdd = intolerance;
+        //            }
 
-                    newIntoleranceSplit.Add(toAdd);
-                }
+        //            newIntoleranceSplit.Add(toAdd);
+        //        }
 
-                stringifiedDALModel.Intolerances = String.Join(',', newIntoleranceSplit);
-            }
+        //        stringifiedDALModel.Intolerances = String.Join(',', newIntoleranceSplit);
+        //    }
             
-            if(excludedSplit !=null)
-            {
-                foreach (var excludedIngredient in excludedSplit)
-                {
-                    string toAdd;
+        //    if(excludedSplit !=null)
+        //    {
+        //        foreach (var excludedIngredient in excludedSplit)
+        //        {
+        //            string toAdd;
 
-                    if (excludedIngredient.Contains(' '))
-                    {
-                        toAdd = $@"'{excludedIngredient}'";
-                    }
-                    else
-                    {
-                        toAdd = excludedIngredient;
-                    }
+        //            if (excludedIngredient.Contains(' '))
+        //            {
+        //                toAdd = $@"'{excludedIngredient}'";
+        //            }
+        //            else
+        //            {
+        //                toAdd = excludedIngredient;
+        //            }
 
-                    newExcludedSplit.Add(toAdd);
-                }
+        //            newExcludedSplit.Add(toAdd);
+        //        }
 
-                stringifiedDALModel.ExcludedIngredients = String.Join(',', newExcludedSplit);
-            }
+        //        stringifiedDALModel.ExcludedIngredients = String.Join(',', newExcludedSplit);
+        //    }
             
-            return stringifiedDALModel;
-        }
+        //    return stringifiedDALModel;
+        //}
     }
 }
