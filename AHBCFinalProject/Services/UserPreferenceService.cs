@@ -11,17 +11,16 @@ namespace AHBCFinalProject.Services
     {
         private readonly IUserPreferenceStore _userPreferenceStore;
         private readonly IUserIdService _userIdService;
-        private readonly int UserID;
 
         public UserPreferenceService(IUserPreferenceStore userPreferenceStore, IUserIdService userIdService)
         {
             _userPreferenceStore = userPreferenceStore;
             _userIdService = userIdService;
-            UserID = _userIdService.UserId;
         }
 
         public UserPreferencesViewModel GetUserPreferencesFromId()
         {
+            var UserID = _userIdService.getUserId();
             var dalModel = _userPreferenceStore.SelectUserPreferences(UserID);
 
             string[] diet = { "" };
@@ -39,7 +38,7 @@ namespace AHBCFinalProject.Services
             }
             
             var viewModel = new UserPreferencesViewModel();
-            viewModel.UserId = UserID; //CHANGE BACK TO BLANK
+            viewModel.UserId = UserID;
 
             if (diet.Contains("Gluten Free"))
                 viewModel.GlutenFree = true;
@@ -92,6 +91,7 @@ namespace AHBCFinalProject.Services
 
         public void SetUserPreferences(UserPreferencesViewModel viewModel)
         {
+            var UserID = _userIdService.getUserId();
             var dalModel = new UserPreferenceDALModel();
             var intolerances = new List<string>();
             var diets = new List<string>();
@@ -159,6 +159,7 @@ namespace AHBCFinalProject.Services
 
         public UpdateUserViewModel GetUpdatedPreferenceView()
         {
+            var UserID = _userIdService.getUserId();
             var dalPreference = _userPreferenceStore.SelectUserPreferences(UserID);
             var updatedPreference = new UpdateUserViewModel()
             {

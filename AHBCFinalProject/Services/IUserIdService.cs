@@ -8,6 +8,6 @@ namespace AHBCFinalProject.Services
     public interface IUserIdService
     {
         int UserId { get; set; }
-        void getUserId(string email);
+        int getUserId();
     }
 }
