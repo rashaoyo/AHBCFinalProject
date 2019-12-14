@@ -85,6 +85,7 @@ namespace AHBCFinalProject
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -100,6 +101,8 @@ namespace AHBCFinalProject
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //.TryAddTransient<HttpContext>();
+            services.TryAddSingleton<UserManager<DapperIdentityUser>>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

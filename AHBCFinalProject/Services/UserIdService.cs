@@ -14,21 +14,32 @@ namespace AHBCFinalProject.Services
     {
         private readonly IUserIDStore _userIDStore;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly UserManager<DapperIdentityUser> _userManager;
+        //private readonly UserManager<DapperIdentityUser> _userManager;
 
-        public UserIdService(IUserIDStore userIdStore, IHttpContextAccessor httpContextAccessor, UserManager<DapperIdentityUser> userManager)
+        public UserIdService(IUserIDStore userIdStore, IHttpContextAccessor httpContextAccessor/*, UserManager<DapperIdentityUser> userManager*/)
         {
             _userIDStore = userIdStore;
             _httpContextAccessor = httpContextAccessor;
-            _userManager = userManager;
+            //_userManager = userManager;
         }
 
         public int UserId { get; set; }
 
-        public void getUserId(string email)
+        public int getUserId()
         {
-            var emailAddress = ;
-            UserId = _userIDStore.getUserId(email);
+            //Ed's method...
+            //var user = await _userManager.GetUserAsync(_httpContextAccessor.HttpContext.User);
+            //var id = user.Id;
+
+            //Stack overflow method...
+            var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var id = int.Parse(userId);
+            
+            //Custom method...
+            //UserId = _userIDStore.getUserId(email);
+
+
+            return id;
         }
     }
 }
