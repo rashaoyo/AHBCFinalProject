@@ -130,9 +130,35 @@ namespace AHBCFinalProject.Controllers
         {
             var viewModel = _FavoriteMealService.DeleteAFavoriteMeal(id);
             return View(viewModel);
-        }        
+        }
 
-        
+        public IActionResult FMReadyIn1To2Hrs()
+        {
+            var viewModel = _FavoriteMealService.FMReadyIn1To2Hrs();
+            return View("FavoriteMealsView", viewModel);
+        }
+
+        public IActionResult FMReadyIn30Min()
+        {
+            var viewModel = _FavoriteMealService.FMReadyIn30Min();
+            return View("FavoriteMealsView", viewModel);
+        }
+
+        public IActionResult FMReadyIn1Hrs()
+        {
+            var viewModel = _FavoriteMealService.FMReadyIn1Hrs();
+            return View("FavoriteMealsView", viewModel);
+        }
+
+        public IActionResult FMReadyInMoreThan2Hrs()
+        {
+            var viewModel = _FavoriteMealService.FMReadyInMoreThan2Hrs();
+            return View("FavoriteMealsView", viewModel);
+        }
+
+
+
+
 
     }
     
