@@ -22,7 +22,7 @@ namespace AHBCFinalProject.Services
 
         public async Task<ListOfRecipesViewModel> GetWeekOfRecipes(UserPreferencesViewModel userPreferencesViewModel)
         {
-            var userPreferenceDALModel = _userPreferenceService.GetUserDALFromViewModel(userPreferencesViewModel);
+            var userPreferenceDALModel = _userPreferenceService.SetUserPreferences(userPreferencesViewModel);
             var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(StringifyPreferencesForAPI(userPreferenceDALModel));
 
             var result = new ListOfRecipesViewModel()

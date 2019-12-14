@@ -45,14 +45,13 @@ namespace AHBCFinalProject.Controllers
         }
 
         public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
-        {
-            var dalModel = _userPreferenceService.GetUserDALFromViewModel(model);
-            //_userPreferenceStore.InsertUserPreferences(dalModel);
-            _userPreferenceService.UpdateUserPreferences(model);
-            var result = _userPreferenceService.GetUserPreferencesFromId();
+         {
+            _userPreferenceService.SetUserPreferences(model);
+            //_userPreferenceService.UpdateUserPreferences(model);
+            //var result = _userPreferenceService.GetUserPreferencesFromId();
             // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
 
-            return View(nameof(ViewUserPreferences), result);
+            return View("ConfirmUserPreferences", model);
         }
 
         public IActionResult SearchMealPlanHistory()

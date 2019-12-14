@@ -10,7 +10,7 @@ namespace AHBCFinalProject.Services
     public interface IUserPreferenceService
     {
         UserPreferencesViewModel GetUserPreferencesFromId();
-        UserPreferenceDALModel GetUserDALFromViewModel(UserPreferencesViewModel viewModel);
+        void SetUserPreferences(UserPreferencesViewModel viewModel);
         UpdateUserViewModel GetUpdatedPreferenceView();
         void UpdateUserPreferences(UserPreferencesViewModel model);
     }

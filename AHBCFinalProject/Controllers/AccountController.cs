@@ -139,9 +139,9 @@ namespace AHBCFinalProject.Controllers
                   
                    
                    // setUserIds(model.Email);
-                    _userPreferenceStore.CreateNewUserPrefEntry(_userIdService.UserId);
+                    //_userPreferenceStore.CreateNewUserPrefEntry(_userIdService.UserId);
                   //return RedirectToSetUserPrefs();
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToSetUserPrefs(returnUrl);
                 }
                 AddErrors(result);
             }
@@ -487,9 +487,16 @@ namespace AHBCFinalProject.Controllers
             }
         }
 
-        private IActionResult RedirectToSetUserPrefs()
+        private IActionResult RedirectToSetUserPrefs(string returnUrl)
         {
-            return RedirectToAction("SetUserPreferences", "User");
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            else
+            { 
+                return RedirectToAction("SetUserPreferences", "User");
+            }
         }
 
         #endregion
