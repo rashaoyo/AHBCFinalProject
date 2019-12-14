@@ -14,8 +14,8 @@ namespace AHBCFinalProject.Controllers
         private readonly IMealPlanHistoryService _mealPlanHistoryService;
         private readonly IComplexSearchService _complexSearchService;
         private readonly IRecipeByIdService _recipeByIdService;
-        private readonly IUserPreferenceService _userPreferenceService;
-        private readonly IUserPreferenceStore _userPreferenceStore;
+        //private readonly IUserPreferenceService _userPreferenceService;
+        //private readonly IUserPreferenceStore _userPreferenceStore;
 
         public RecipeController(
             IMealPlanHistoryService mealPlanHistoryService,
@@ -26,17 +26,17 @@ namespace AHBCFinalProject.Controllers
             _mealPlanHistoryService = mealPlanHistoryService;
             _complexSearchService = complexSearchService;
             _recipeByIdService = recipeByIdService;
-            _userPreferenceService = userPreferenceService;
+            //_userPreferenceService = userPreferenceService;
         }
 
-        //public async Task<IActionResult> ViewRecipes(UserPreferencesViewModel userPreferences)
-        //{
-        //    var viewModel = await _complexSearchService.GetWeekOfRecipes(userPreferences);
-        //   _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
+        public async Task<IActionResult> ViewRecipes()
+        {
+            var viewModel = await _complexSearchService.GetWeekOfRecipes();
+           _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
 
 
-        //    return View(viewModel);
-        //}
+            return View(viewModel);
+        }
 
         public async Task<IActionResult> ViewRecipe(string id)
         {
