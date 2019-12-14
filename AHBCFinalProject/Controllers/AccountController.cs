@@ -44,9 +44,9 @@ namespace AHBCFinalProject.Controllers
             _userPreferenceStore = userPreferenceStore;
         }
 
-        public void setUserIds(string email)
+        public void setUserIds()
         {
-            _userIdService.getUserId(email);
+            _userIdService.getUserId();
         }
 
 
@@ -57,7 +57,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult Login(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            
+
             return View();
         }
 
@@ -77,7 +77,7 @@ namespace AHBCFinalProject.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    setUserIds(model.Email);
+                    setUserIds();
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -107,9 +107,9 @@ namespace AHBCFinalProject.Controllers
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            
-           
-            
+
+
+
             return View();
         }
 
@@ -136,12 +136,11 @@ namespace AHBCFinalProject.Controllers
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
 
-                  
-                   
-                   // setUserIds(model.Email);
-                    //_userPreferenceStore.CreateNewUserPrefEntry(_userIdService.UserId);
-                  //return RedirectToSetUserPrefs();
-                    return RedirectToSetUserPrefs(returnUrl);
+
+                    // var userId = _userIdService.getUserId();
+                    // await _userPreferenceStore.CreateNewUserPrefEntry();
+
+                    return await RedirectToSetUserPrefs(returnUrl);
                 }
                 AddErrors(result);
             }
@@ -487,15 +486,27 @@ namespace AHBCFinalProject.Controllers
             }
         }
 
-        private IActionResult RedirectToSetUserPrefs(string returnUrl)
+        //private async Task<IActionResult> CreatePreferenceDataTableRow()
+        //{
+        //    await _userPreferenceStore.CreateNewUserPrefEntry();
+
+        //    return true;
+        //}
+
+
+        private async Task<IActionResult> RedirectToSetUserPrefs(string returnUrl)
         {
+
+
+            
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
             else
-            { 
-                return RedirectToAction("SetUserPreferences", "User");
+            {
+                return RedirectToAction("CreateUserPreferencesTable", "User");
+              
             }
         }
 
