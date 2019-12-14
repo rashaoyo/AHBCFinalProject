@@ -4,27 +4,36 @@
 }
 
 <h1>@Model.Title</h1>
+<figure class="figure">
+    <img src="@Model.Image" class="figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+    <figcaption class="figure-caption"></figcaption>
+</figure>
 
-<img src="@Model.Image" />
-
-<ul>
-    @foreach (var ingredient in Model.ExtendedIngredients)
-    {
-        <li>@ingredient.OriginalName</li>
-    }
-</ul>
-
-<ul>
+<ul class="">
     <li>Servings: @Model.Servings</li>
-    <li>HealthScore: @Model.HealthScore</li>
+    <li>Ready In Minutes: @Model.ReadyInMinutes</li>
+    <li>Health Score: @Model.HealthScore</li>
 </ul>
 
+<div class="recipe-ingredients">
+    <table class="col-auto">
+        <h3>Ingredients</h3>
+        <ul>
+            @foreach (var ingredient in Model.ExtendedIngredients)
+            {
+                <li>@ingredient.Amount @ingredient.Unit @ingredient.OriginalName</li>
+            }
+        </ul>
+    </table>
+</div>
+
+<h3>Instructions</h3>
 <p asp-for="@Model.Instructions">@Model.Instructions</p>
 
-<label>Additional Comments:</label>
+
+<h3>Additional Comments</h3>
 <p>@Model.AdditionalComments</p>
 
-<a asp-controller="User" asp-action="UpdateFavoriteMeal" asp-route-id="@Model.Id">Edit Additional Comments</a>
-
-<a asp-controller="User" asp-action="DeleteFavoriteMeal" asp-route-id="@Model.Id">Delete from Favorites</a>
+<a class="btn btn-outline-success" asp-controller="User" asp-action="UpdateFavoriteMeal" role="button" asp-route-id="@Model.Id">Edit Additional Comments</a>
+<a class="btn btn-outline-success" asp-controller="User" asp-action="DeleteFavoriteMeal" role="button" asp-route-id="@Model.Id">Delete from Favorites</a>
 

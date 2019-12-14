@@ -25,7 +25,7 @@ namespace AHBCFinalProject.Services
         {
             //UserId = _userIDStore.getUserId(email);
             var userId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            return int.Parse(userId);
+            return int.Parse("4");
         }
     }
 }
