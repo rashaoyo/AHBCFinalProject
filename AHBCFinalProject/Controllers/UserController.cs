@@ -15,6 +15,7 @@ namespace AHBCFinalProject.Controllers
         private readonly IMealPlanHistoryService _mealPlanHistoryService;
         private readonly IFavoriteMealService _FavoriteMealService;
         private readonly IUserPreferenceStore _userPreferenceStore;
+        private readonly IUserIDStore _userIdStore;
         
 
         private readonly IUserIdService _userIdService;
@@ -23,16 +24,26 @@ namespace AHBCFinalProject.Controllers
             IMealPlanHistoryService mealPlanHistoryService,
             IFavoriteMealService favoriteMealService,
             IUserPreferenceStore userPreferenceStore,
-            IUserIdService userIdService)
+            IUserIdService userIdService,
+            IUserIDStore userIdStore)
         {
             _userPreferenceService = userPreferenceService;
             _mealPlanHistoryService = mealPlanHistoryService;
             _FavoriteMealService = favoriteMealService;
             _userPreferenceStore = userPreferenceStore;
             _userIdService = userIdService;
+            _userIdStore = userIdStore;
         }
              
-        public IActionResult SetUserPreferences()
+
+        public async Task<IActionResult> CreateUserPreferencesTable()
+        {
+            await _userPreferenceStore.CreateNewUserPrefEntry();
+            return RedirectToAction(nameof(SetUserPreferences), "User");
+            
+        }
+
+        public async Task<IActionResult> SetUserPreferences()
         {
             return View();
         }
@@ -40,10 +51,6 @@ namespace AHBCFinalProject.Controllers
         public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
         {
             _userPreferenceService.SetUserPreferences(model);
-            //_userPreferenceService.UpdateUserPreferences(model);
-            //var result = _userPreferenceService.GetUserPreferencesFromId();
-            // var result = _userPreferenceService.GetUserPreferencesFromId(model.UserId);
-
             return View("ConfirmUserPreferences", model);
         }
 
