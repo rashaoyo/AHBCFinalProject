@@ -40,6 +40,7 @@ namespace AHBCFinalProject.Controllers
             return View();
         }
         
+
         public IActionResult UpdateUserPreferences(UserPreferencesViewModel model)
         {
             _userPreferenceService.SetUserPreferences(model);
