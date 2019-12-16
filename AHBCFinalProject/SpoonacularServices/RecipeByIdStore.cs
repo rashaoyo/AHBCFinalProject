@@ -19,7 +19,5 @@ namespace AHBCFinalProject.SpoonacularServices
                 return JsonConvert.DeserializeObject<RecipeResponse>(result);
             }
         }
-
-       
     }
 }

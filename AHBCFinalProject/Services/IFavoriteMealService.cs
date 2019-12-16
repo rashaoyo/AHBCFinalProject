@@ -17,9 +17,5 @@ namespace AHBCFinalProject.Services
         FavoriteMealsViewModel FMReadyInMoreThan2Hrs();
         Task<ViewFavoriteMealViewModel> SelectAFavoriteMeal(string recipeId);
         Task<ViewFavoriteMealViewModel> UpdateFavoriteMealComments(ViewFavoriteMealViewModel model);
-
-
-
-
     }
 }

@@ -12,7 +12,5 @@ namespace AHBCFinalProject.DAL
         bool InsertUserPreferences(UserPreferenceDALModel dalModel);
         bool UpdateUserPreferences(UserPreferenceDALModel dalModel);
         Task CreateNewUserPrefEntry();
-
-
     }
 }

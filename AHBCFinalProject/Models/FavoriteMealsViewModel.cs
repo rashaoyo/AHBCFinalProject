@@ -9,6 +9,5 @@ namespace AHBCFinalProject.Models
     public class FavoriteMealsViewModel
     {
         public List<FavoriteMealViewModel> FavoriteMeals { get; set; }
-
     }
 }

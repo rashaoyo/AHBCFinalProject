@@ -15,24 +15,16 @@ namespace AHBCFinalProject.Controllers
         private readonly IMealPlanHistoryService _mealPlanHistoryService;
         private readonly IFavoriteMealService _FavoriteMealService;
         private readonly IUserPreferenceStore _userPreferenceStore;
-        private readonly IUserIDStore _userIdStore;
-        
-
-        private readonly IUserIdService _userIdService;
 
         public UserController(IUserPreferenceService userPreferenceService,
             IMealPlanHistoryService mealPlanHistoryService,
             IFavoriteMealService favoriteMealService,
-            IUserPreferenceStore userPreferenceStore,
-            IUserIdService userIdService,
-            IUserIDStore userIdStore)
+            IUserPreferenceStore userPreferenceStore)
         {
             _userPreferenceService = userPreferenceService;
             _mealPlanHistoryService = mealPlanHistoryService;
             _FavoriteMealService = favoriteMealService;
             _userPreferenceStore = userPreferenceStore;
-            _userIdService = userIdService;
-            _userIdStore = userIdStore;
         }
              
 
@@ -53,13 +45,6 @@ namespace AHBCFinalProject.Controllers
             _userPreferenceService.SetUserPreferences(model);
             return View("ConfirmUserPreferences", model);
         }
-
-        //public IActionResult ViewUserPreferences()
-        //{
-        //    var result = _userPreferenceService.GetUserPreferencesFromId();
-        //    //var result = _userPreferenceService.GetUserPreferencesFromId(viewModel.UserId);
-        //    return View(result);
-        //}
 
         public IActionResult SearchMealPlanHistory()
         {
@@ -83,25 +68,11 @@ namespace AHBCFinalProject.Controllers
 
 
 
-        public IActionResult UpdatePreference(/*int userId*/)
+        public IActionResult UpdatePreference()
         {
-            //var model = _userPreferenceService.GetUpdatedPreferenceView();
             var model = _userPreferenceService.GetUpdatedPreferenceView();
             return View(model);
         }
-
-        /*
-        public IActionResult UpdatePreferenceResult(UpdateUserViewModel model)
-        {
-            var newModel = _userPreferenceService.EditPreference(model);
-            return View("ViewUserPreferences", newModel);
-        }
-        */
-
-        //public IActionResult AddToFavoritesResults(FavoriteMealsViewModel model)
-        //{
-        //    return View(model);
-        //}
 
         public IActionResult FavoriteMealsView()
         {
@@ -162,11 +133,5 @@ namespace AHBCFinalProject.Controllers
             var viewModel = _FavoriteMealService.FMReadyInMoreThan2Hrs();
             return View("FavoriteMealsView", viewModel);
         }
-
-
-
-
-
-    }
-    
+    }   
 }

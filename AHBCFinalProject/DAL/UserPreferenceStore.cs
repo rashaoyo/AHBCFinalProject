@@ -31,7 +31,6 @@ namespace AHBCFinalProject.DAL
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
                 var results = await connection.ExecuteAsync(sql, dalModel);
-                
             }
         }
 
@@ -50,7 +49,6 @@ namespace AHBCFinalProject.DAL
 
         public UserPreferenceDALModel SelectUserPreferences(int userId)
         {
-             
             var sql = $@"SELECT * FROM DietaryRestrictions WHERE Id = {userId}";
 
             using (var connection = new SqlConnection(_config.ConnectionString))

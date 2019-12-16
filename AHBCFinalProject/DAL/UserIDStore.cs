@@ -22,9 +22,7 @@ namespace AHBCFinalProject.DAL
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-               // var result = connection.QueryFirstOrDefault<int>(sql, new { Email = email });
                 var result = connection.QueryFirstOrDefault<IdentityUserDAL>(sql, new { Email = email });
-                //var currentUserId = result.Id;
                 return (result.Id);
             }
         }
@@ -35,7 +33,5 @@ namespace AHBCFinalProject.DAL
             public string Username { get; set; }
             public string Email { get; set; }
         }
-
-
     }
 }

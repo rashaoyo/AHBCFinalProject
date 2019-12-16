@@ -9,7 +9,5 @@ namespace AHBCFinalProject.Models
     {
         public string Title { get; set; }
         public int RecipeId { get; set; }
-
-       
     }
 }

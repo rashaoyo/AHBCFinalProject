@@ -13,18 +13,17 @@ namespace AHBCFinalProject.SpoonacularServices
     public class ComplexSearchStore : IComplexSearchStore
     {
         const string ApiKey = "c07baad9b40d44dd9d700eb4928a1970";
-        private readonly IRecipeByIdStore _recipeByIdStore;
+
         private readonly IUserPreferenceStore _userPreferenceStore;
         private readonly IUserIdService _userIdService;
 
-        public ComplexSearchStore(IRecipeByIdStore recipeByIdStore, IUserPreferenceStore userPreferenceStore, IUserIdService userIdService)
+        public ComplexSearchStore(IUserPreferenceStore userPreferenceStore, IUserIdService userIdService)
         {
-            _recipeByIdStore = recipeByIdStore;
             _userPreferenceStore = userPreferenceStore;
             _userIdService = userIdService;
         }
 
-        public async Task<ListOfRecipesResponse> GetRecipesComplexSearch(/*UserPreferenceDALModel userPreferenceDAL*/)
+        public async Task<ListOfRecipesResponse> GetRecipesComplexSearch()
         {
             var id = _userIdService.getUserId();
             var userPreferenceDAL = _userPreferenceStore.SelectUserPreferences(id);
@@ -38,9 +37,9 @@ namespace AHBCFinalProject.SpoonacularServices
 
                 var apiResult = await httpClient.GetStringAsync($"?apiKey={ApiKey}&number=7&sort=random&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
 
-                var sixRecipes = JsonConvert.DeserializeObject<ListOfRecipesResponse>(apiResult);
+                var sevenRecipes = JsonConvert.DeserializeObject<ListOfRecipesResponse>(apiResult);
 
-                foreach (var recipe in sixRecipes.Results)
+                foreach (var recipe in sevenRecipes.Results)
                 {
                     weekOfRecipes.Results.Add(recipe);
                 }
@@ -48,57 +47,5 @@ namespace AHBCFinalProject.SpoonacularServices
                 return weekOfRecipes;
             }
         }
-        /*
-        private async Task<RecipeResponse> GetSeedRecipe(UserPreferenceDALModel userPreferenceDAL)
-        {
-            using (var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/complexSearch") })
-            {
-                var result = await httpClient.GetStringAsync($"?apiKey={ApiKey}&fillIngredients=true&includeIngredients=&sort=random&number=1&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
-                var seedRecipe = JsonConvert.DeserializeObject<ListOfRecipesResponse>(result);
-
-                var recipeId = seedRecipe.Results[0].id;
-                return await _recipeByIdStore.GetRecipeResponseFromId(recipeId);
-            }
-        }
-
-        private string ExtractThreeIngredients(RecipeResponse seedRecipe)
-        {
-            var extractedIngredients = new List<Extendedingredient>();
-            var ingredientNames = new List<string>();
-            int ingredientsCount = 0;
-
-            foreach (var ingredient in seedRecipe.ExtendedIngredients)
-            {
-                if(ingredientsCount < 2 &&
-                    (ingredient.Aisle.Contains("Pasta") ||
-                    ingredient.Aisle.Contains("Produce") ||
-                    ingredient.Aisle.Contains("Meat") ||
-                    ingredient.Aisle.Contains("Seafood")))
-                {
-                    extractedIngredients.Add(ingredient);
-                    ingredientsCount++;
-                }
-            }
-
-            while(ingredientsCount < 2)
-            {
-                foreach (var ingredient in seedRecipe.ExtendedIngredients)
-                {
-                    if (!extractedIngredients.Contains(ingredient))
-                    {
-                        extractedIngredients.Add(ingredient);
-                        ingredientsCount++;
-                    }
-                }
-            }
-
-            foreach (var ingredient in extractedIngredients)
-            {
-                ingredientNames.Add($"'{ingredient.Name}'");
-            }
-
-            return String.Join(",", ingredientNames);
-        }
-        */
     }
 }

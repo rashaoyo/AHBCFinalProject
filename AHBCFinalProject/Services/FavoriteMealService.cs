@@ -13,14 +13,11 @@ namespace AHBCFinalProject.Services
         private readonly IUserIdService _userIdService;
         private readonly IRecipeByIdService _recipeByIdService;
 
-        //public string userId { get; set; }
-
         public FavoriteMealService(IFavoriteMealsStore favoriteMealStore, IUserIdService userIdService, IRecipeByIdService recipeByIdService)
         {
             _favoriteMealStore = favoriteMealStore;
             _userIdService = userIdService;
             _recipeByIdService = recipeByIdService;
-
         }
 
         public FavoriteMealsViewModel DeleteAFavoriteMeal(string recipeId)
@@ -194,7 +191,6 @@ namespace AHBCFinalProject.Services
                     AdditionalComments = dalMeal.AdditionalComments
                 };
                 favMeals.Add(favMeal);
-
             }
 
             var favMealsViewModel = new FavoriteMealsViewModel();

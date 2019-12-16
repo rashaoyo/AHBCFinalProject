@@ -43,8 +43,6 @@ namespace AHBCFinalProject.Models
         public string[] DishTypes { get; set; }
         public Extendedingredient[] ExtendedIngredients { get; set; }
         public Winepairing WinePairing { get; set; }
-
         public string AdditionalComments { get; set; }
-
     }
 }
