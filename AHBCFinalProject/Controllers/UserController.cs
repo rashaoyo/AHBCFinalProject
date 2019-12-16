@@ -40,6 +40,7 @@ namespace AHBCFinalProject.Controllers
             return View();
         }
         
+
         public IActionResult UpdateUserPreferences(UserPreferencesViewModel model)
         {
             _userPreferenceService.SetUserPreferences(model);
@@ -56,10 +57,10 @@ namespace AHBCFinalProject.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ViewCurrentMealPlan()
+        public async Task<IActionResult> ViewPlan()
         {
             var viewModel = await _mealPlanHistoryService.ViewCurrentMealPlan();
-            return View("ViewMealPlanResults", viewModel);
+            return View(viewModel);
         }
         
         public async Task<IActionResult> ViewMealPlanResults(ViewMealPlanViewModel model)
