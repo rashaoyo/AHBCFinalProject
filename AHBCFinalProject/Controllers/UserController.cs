@@ -56,6 +56,12 @@ namespace AHBCFinalProject.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ViewCurrentMealPlan()
+        {
+            var viewModel = await _mealPlanHistoryService.ViewCurrentMealPlan();
+            return View("ViewMealPlanResults", viewModel);
+        }
+        
         public async Task<IActionResult> ViewMealPlanResults(ViewMealPlanViewModel model)
         {
             try

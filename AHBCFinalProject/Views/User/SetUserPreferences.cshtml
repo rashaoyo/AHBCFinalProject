@@ -10,8 +10,10 @@
 <form asp-controller="User" asp-action="UpdateUserPreferences">
     <h4>Are you on any of these common diets?</h4>
 
+    <label asp-for="GlutenFree"></label>
     <input asp-for="GlutenFree" value="True"> Gluten Free
     <br />
+    <label asp-for="Ketogenic"></label>
     <input asp-for="Ketogenic" value="True"> Ketogenic
     <br />
     <input asp-for="Vegetarian" value="True"> Vegetarian
@@ -60,7 +62,7 @@
 
     <h4>Are there any other foods you can't or won't eat?</h4>
 
-    <input asp-for="ExcludedIngredients"/><br />
+    <input asp-for="ExcludedIngredients" /><br />
 
     <p>List ingredients separated by commas (ex: tomato,mango)</p>
 
