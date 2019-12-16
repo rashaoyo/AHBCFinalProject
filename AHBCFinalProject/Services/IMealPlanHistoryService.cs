@@ -10,5 +10,6 @@ namespace AHBCFinalProject.Services
     {
         void AddMealPlanToHistory(ListOfRecipesViewModel result);
         Task<MPsViewModel> ViewMealPlanHistory(ViewMealPlanViewModel model);
+        Task<ViewPlanViewModel> ViewCurrentMealPlan();
     }
 }
