@@ -27,10 +27,20 @@ namespace AHBCFinalProject.Controllers
         
         public async Task<IActionResult> ViewRecipes()
         {
-            var viewModel = await _complexSearchService.GetWeekOfRecipes();
-           _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
 
-            return View(viewModel);
+            try
+            {
+                var viewModel = await _mealPlanHistoryService.ViewCurrentMealPlan();
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                var viewModel = await _complexSearchService.GetWeekOfRecipes();
+                _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
+
+                return View(viewModel);
+            }
+            
         }
         
         public async Task<IActionResult> ViewRecipe(string id)
