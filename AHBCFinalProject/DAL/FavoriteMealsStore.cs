@@ -64,7 +64,6 @@ namespace AHBCFinalProject.DAL
             {
                 var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
                 return results;
-
             }
         }
 
@@ -89,7 +88,6 @@ namespace AHBCFinalProject.DAL
             {
                 var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId}) ?? new List<FavoriteMealDALModel>();
                 return results;
-
             }
         }
 
@@ -102,7 +100,6 @@ namespace AHBCFinalProject.DAL
             {
                 var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
                 return results;
-
             }
         }
 
@@ -115,7 +112,6 @@ namespace AHBCFinalProject.DAL
             {
                 var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
                 return results;
-
             }
         }
 
@@ -128,7 +124,6 @@ namespace AHBCFinalProject.DAL
             {
                 var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
                 return results;
-
             }
         }
     }

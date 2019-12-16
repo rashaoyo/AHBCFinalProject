@@ -8,7 +8,5 @@ namespace AHBCFinalProject.Models
     public class MPsViewModel
     {
         public IEnumerable<ViewPlanViewModel> MealPlans { get; set; }
-
-    }
-       
+    }  
 }

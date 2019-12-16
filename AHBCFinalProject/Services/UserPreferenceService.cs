@@ -153,8 +153,6 @@ namespace AHBCFinalProject.Services
             }
 
             _userPreferenceStore.InsertUserPreferences(dalModel);
-
-
         }
 
         public UpdateUserViewModel GetUpdatedPreferenceView()
@@ -170,11 +168,5 @@ namespace AHBCFinalProject.Services
 
             return updatedPreference;
         }
-
-        //public void UpdateUserPreferences(UserPreferencesViewModel model)
-        //{
-        //    var dalModel = SetUserPreferences(model);
-        //    _userPreferenceStore.UpdateUserPreferences(dalModel);
-        //}
     }
 }

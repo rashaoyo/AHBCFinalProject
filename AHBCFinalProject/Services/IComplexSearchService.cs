@@ -9,6 +9,5 @@ namespace AHBCFinalProject.Services
     {
         Task<ListOfRecipesViewModel> GetWeekOfRecipes();
         RecipeViewModel ConvertRecipeResponseToVM(RecipeResponse recipeResponse);
-
     }
 }

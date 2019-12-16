@@ -108,8 +108,6 @@ namespace AHBCFinalProject.Controllers
         {
             ViewData["ReturnUrl"] = returnUrl;
 
-
-
             return View();
         }
 

@@ -39,14 +39,7 @@ namespace AHBCFinalProject.DAL
             {
                 var results = connection.Query<MealPlanHistoryDALModel>(sql, dalModel);
                 return results;
-
             }
         }
-
-        //public MealPlanHistoryDALModel GetCurrentMealPlan()
-        //{
-
-
-        //}
     }
 }

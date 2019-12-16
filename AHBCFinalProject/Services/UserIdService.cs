@@ -12,18 +12,12 @@ namespace AHBCFinalProject.Services
 {
     public class UserIdService : IUserIdService
     {
-        private readonly IUserIDStore _userIDStore;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        //private readonly UserManager<DapperIdentityUser> _userManager;
 
-        public UserIdService(IUserIDStore userIdStore, IHttpContextAccessor httpContextAccessor/*, UserManager<DapperIdentityUser> userManager*/)
+        public UserIdService(IHttpContextAccessor httpContextAccessor)
         {
-            _userIDStore = userIdStore;
             _httpContextAccessor = httpContextAccessor;
-            //_userManager = userManager;
         }
-
-     
 
         public int getUserId()
         {
@@ -37,7 +31,6 @@ namespace AHBCFinalProject.Services
             
             //Custom method...
             //UserId = _userIDStore.getUserId(email);
-
 
             return id;
         }

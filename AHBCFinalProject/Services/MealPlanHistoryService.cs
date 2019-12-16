@@ -69,7 +69,6 @@ namespace AHBCFinalProject.Services
 
                 var result = await Task.WhenAll(sunday, monday, tues, wed, thur, fri, sat);
 
-
                 var viewPlan = new ViewPlanViewModel
                 {
                     SundayId = result[0].Id,
@@ -95,11 +94,7 @@ namespace AHBCFinalProject.Services
             var mpsViewModel = new MPsViewModel();
             mpsViewModel.MealPlans = viewMealPlansModel;
 
-
             return mpsViewModel;
         }
-
-        
     }
 }
-
