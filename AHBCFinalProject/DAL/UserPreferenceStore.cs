@@ -34,18 +34,18 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public bool InsertUserPreferences(UserPreferenceDALModel dalModel)
-        {
-            var sql = $@"INSERT INTO DietaryRestrictions (Id, Diet, Intolerances, ExcludedIngredients) 
-                            VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
+        //public bool InsertUserPreferences(UserPreferenceDALModel dalModel)
+        //{
+        //    var sql = $@"INSERT INTO DietaryRestrictions (Id, Diet, Intolerances, ExcludedIngredients) 
+        //                    VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
 
-            using (var connection = new SqlConnection(_config.ConnectionString))
-            {
-                var results = connection.Execute(sql, dalModel);
+        //    using (var connection = new SqlConnection(_config.ConnectionString))
+        //    {
+        //        var results = connection.Execute(sql, dalModel);
 
-                return true;
-            }    
-        }
+        //        return true;
+        //    }    
+        //}
 
         public UserPreferenceDALModel SelectUserPreferences(int userId)
         {
