@@ -41,15 +41,57 @@ namespace AHBCFinalProject.Services
             _mealPlanHistoryStore.InsertWeeklyMealPlan(mealPlanHistoryViewModel);
         }
 
+        public async Task<ViewPlanViewModel> ViewCurrentMealPlan()
+        {
+            var currentViewModel = new CurrentMPViewModel
+            {
+                Id = _userIdService.getUserId(),
+                TodaysDate = DateTime.Today                
+            };
+
+            var currentMP =_mealPlanHistoryStore.ViewCurrentMealPlan(currentViewModel);
+
+            var sunday = _recipeByIdService.GetRecipeVMById(currentMP.Sunday);
+            var monday = _recipeByIdService.GetRecipeVMById(currentMP.Monday);
+            var tues = _recipeByIdService.GetRecipeVMById(currentMP.Tuesday);
+            var wed = _recipeByIdService.GetRecipeVMById(currentMP.Wednesday);
+            var thur = _recipeByIdService.GetRecipeVMById(currentMP.Thursday);
+            var fri = _recipeByIdService.GetRecipeVMById(currentMP.Friday);
+            var sat = _recipeByIdService.GetRecipeVMById(currentMP.Saturday);
+
+            var result = await Task.WhenAll(sunday, monday, tues, wed, thur, fri, sat);
+
+            var viewMealPlan = new ViewPlanViewModel
+            {
+                SundayId = result[0].Id,
+                SundayName = result[0].Title,
+                MondayId = result[1].Id,
+                MondayName = result[1].Title,
+                TuesdayId = result[2].Id,
+                TuesdayName = result[2].Title,
+                WednesdayId = result[3].Id,
+                WednesdayName = result[3].Title,
+                ThursdayId = result[4].Id,
+                ThursdayName = result[4].Title,
+                FridayId = result[5].Id,
+                FridayName = result[5].Title,
+                SaturdayId = result[6].Id,
+                SaturdayName = result[6].Title
+            };
+
+            return viewMealPlan;
+        }
+
+
         public async Task<MPsViewModel> ViewMealPlanHistory(ViewMealPlanViewModel model)
         {
             model.TodaysDate = DateTime.Today;
 
             var dalResults = _mealPlanHistoryStore.ViewWeeklyMealPlan(model);
             var viewMealPlansModel = new List<ViewPlanViewModel>();
-            
+
             foreach (var dalResult in dalResults)
-            {                             
+            {
                 var mealPlan = new MealPlanHistoryViewModel();
                 mealPlan.Sunday = dalResult.Sunday;
                 mealPlan.Monday = dalResult.Monday;
@@ -59,10 +101,10 @@ namespace AHBCFinalProject.Services
                 mealPlan.Friday = dalResult.Friday;
                 mealPlan.Saturday = dalResult.Saturday;
 
-                var sunday =  _recipeByIdService.GetRecipeVMById(mealPlan.Sunday);
+                var sunday = _recipeByIdService.GetRecipeVMById(mealPlan.Sunday);
                 var monday = _recipeByIdService.GetRecipeVMById(mealPlan.Monday);
-                var tues =  _recipeByIdService.GetRecipeVMById(mealPlan.Tuesday);
-                var wed =  _recipeByIdService.GetRecipeVMById(mealPlan.Wednesday);
+                var tues = _recipeByIdService.GetRecipeVMById(mealPlan.Tuesday);
+                var wed = _recipeByIdService.GetRecipeVMById(mealPlan.Wednesday);
                 var thur = _recipeByIdService.GetRecipeVMById(mealPlan.Thursday);
                 var fri = _recipeByIdService.GetRecipeVMById(mealPlan.Friday);
                 var sat = _recipeByIdService.GetRecipeVMById(mealPlan.Saturday);

@@ -31,7 +31,7 @@ namespace AHBCFinalProject.Services
             {
                 var favMeal = new FavoriteMealViewModel
                 {
-                    Id = dalMeal.Id,
+                    Id = _userIdService.getUserId(),
                     RecipeID = dalMeal.RecipeID,
                     MealName = dalMeal.MealName,
                     AdditionalComments = dalMeal.AdditionalComments
@@ -54,7 +54,7 @@ namespace AHBCFinalProject.Services
             {
                 var favMeal = new FavoriteMealViewModel
                 {
-                    Id = dalMeal.Id,
+                    Id = _userIdService.getUserId(),
                     RecipeID = dalMeal.RecipeID,
                     MealName = dalMeal.MealName,
                     ReadyInMinutes = dalMeal.ReadyInMinutes,
@@ -77,7 +77,7 @@ namespace AHBCFinalProject.Services
             {
                 var favMeal = new FavoriteMealViewModel
                 {
-                    Id = dalMeal.Id,
+                    Id = _userIdService.getUserId(),
                     RecipeID = dalMeal.RecipeID,
                     MealName = dalMeal.MealName,
                     ReadyInMinutes = dalMeal.ReadyInMinutes,
@@ -100,7 +100,7 @@ namespace AHBCFinalProject.Services
             {
                 var favMeal = new FavoriteMealViewModel
                 {
-                    Id = dalMeal.Id,
+                    Id = _userIdService.getUserId(),
                     RecipeID = dalMeal.RecipeID,
                     MealName = dalMeal.MealName,
                     ReadyInMinutes = dalMeal.ReadyInMinutes,
@@ -123,7 +123,7 @@ namespace AHBCFinalProject.Services
             {
                 var favMeal = new FavoriteMealViewModel
                 {
-                    Id = dalMeal.Id,
+                    Id = _userIdService.getUserId(),
                     RecipeID = dalMeal.RecipeID,
                     MealName = dalMeal.MealName,
                     ReadyInMinutes = dalMeal.ReadyInMinutes,
@@ -185,7 +185,7 @@ namespace AHBCFinalProject.Services
             {
                 var favMeal = new FavoriteMealViewModel
                 {
-                    Id = dalMeal.Id,
+                    Id = _userIdService.getUserId(),
                     RecipeID = dalMeal.RecipeID,
                     MealName = dalMeal.MealName,
                     AdditionalComments = dalMeal.AdditionalComments
@@ -221,7 +221,7 @@ namespace AHBCFinalProject.Services
             {
                 var favMeal = new FavoriteMealViewModel
                 {
-                    Id = dalMeal.Id,
+                    Id = _userIdService.getUserId(),
                     RecipeID = dalMeal.RecipeID,
                     MealName = dalMeal.MealName,
                     AdditionalComments = dalMeal.AdditionalComments
