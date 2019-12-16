@@ -6,6 +6,13 @@
     <UserSecretsId>78b43415-3798-4110-9270-2c013ec26784</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.30" />
@@ -21,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Parameters\" />
+    <Folder Include="Content\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="SpoonacularServices\IRandomRecipeStore.cs" />

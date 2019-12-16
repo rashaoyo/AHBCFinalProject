@@ -7,54 +7,44 @@
     ViewData["Title"] = "Log in";
 }
 
-<h2>@ViewData["Title"].</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section>
-            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                <h4>Use a local account to log in.</h4>
-                <hr />
+<div class="container">
+    @*<img src="https://live.staticflickr.com/65535/49224599768_b56ace7661_o.jpg" id="bg" alt="bg_img" style="height: 100%; width: 100%;" />*@                
+    <div class="centered">
+        <h2 >@ViewData["Title"].</h2>
+        <hr />
+            <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                    
                 <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Email" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
+                <label asp-for="Email"></label>
+                <div class="col-md-12">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
+
+                <label asp-for="Password"></label>
+                <div class="col-md-12">
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <label asp-for="RememberMe">
-                                <input asp-for="RememberMe" />
-                                @Html.DisplayNameFor(m => m.RememberMe)
-                            </label>
-                        </div>
-                    </div>
+         
+                <hr />
+                <div>
+                    <label asp-for="RememberMe" class="checkbox">
+                        <input asp-for="RememberMe" />
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </label>
+                    <button type="submit" class="btn btn-outline-secondary btn-sm">Log in</button>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-default">Log in</button>
-                    </div>
-                </div>
-                <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
-                </p>
-                <p>
-                    <a asp-action="ForgotPassword">Forgot your password?</a>
-                </p>
+        
+                <ul style="list-style: none; margin:0; padding:0">
+                    <li><a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-success">Create an account</a></li>
+                    <li><a asp-action="ForgotPassword" class="text-success">Forgot your password?</a></li>
+                </ul>
+                      
             </form>
-        </section>
+
+        @section Scripts {
+            @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+        }
     </div>
 </div>
-
-@section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-}

@@ -4,6 +4,8 @@
 @inject SignInManager<DapperIdentityUser> SignInManager
 @inject UserManager<DapperIdentityUser> UserManager
 
+
+
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
