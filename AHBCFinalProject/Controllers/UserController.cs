@@ -36,7 +36,7 @@ namespace AHBCFinalProject.Controllers
         }
              
 
-        public async Task<IActionResult> gTable()
+        public async Task<IActionResult> CreateUserPreferencesTable()
         {
             await _userPreferenceStore.CreateNewUserPrefEntry();
             return RedirectToAction(nameof(SetUserPreferences), "User");

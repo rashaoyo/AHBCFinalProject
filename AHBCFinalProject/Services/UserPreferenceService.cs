@@ -152,7 +152,7 @@ namespace AHBCFinalProject.Services
                 dalModel.ExcludedIngredients = viewModel.ExcludedIngredients;
             }
 
-            _userPreferenceStore.InsertUserPreferences(dalModel);
+            _userPreferenceStore.UpdateUserPreferences(dalModel);
 
 
         }
