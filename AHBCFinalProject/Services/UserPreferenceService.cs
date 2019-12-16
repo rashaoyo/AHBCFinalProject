@@ -146,13 +146,14 @@ namespace AHBCFinalProject.Services
 
             dalModel.Diet = String.Join(",", diets);
             dalModel.Intolerances = String.Join(",", intolerances);
+            dalModel.ExcludedIngredients = "";
 
             if(viewModel.ExcludedIngredients != null)
             {
                 dalModel.ExcludedIngredients = viewModel.ExcludedIngredients;
             }
             
-            _userPreferenceStore.InsertUserPreferences(dalModel);
+            _userPreferenceStore.UpdateUserPreferences(dalModel);
         }
 
         public UpdateUserViewModel GetUpdatedPreferenceView()
