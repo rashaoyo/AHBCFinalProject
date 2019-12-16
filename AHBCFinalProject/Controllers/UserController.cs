@@ -83,7 +83,7 @@ namespace AHBCFinalProject.Controllers
         public async Task<IActionResult> AddToFavorites(string id)   
         {
             var viewMealPlanResults = await _FavoriteMealService.InsertAFavoriteMeal(id);
-            return View("FavoriteMealsView", viewMealPlanResults);
+            return View(nameof(FavoriteMealsView), viewMealPlanResults);
         }
 
         public async Task<IActionResult> ViewFavoriteMeal(string id)
