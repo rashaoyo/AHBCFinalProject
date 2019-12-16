@@ -48,6 +48,7 @@ namespace AHBCFinalProject.DAL
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
                 var results = connection.QueryFirst<MealPlanHistoryDALModel>(sql, model);
+ 
                 return results;
             }
         }

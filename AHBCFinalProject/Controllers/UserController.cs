@@ -15,16 +15,19 @@ namespace AHBCFinalProject.Controllers
         private readonly IMealPlanHistoryService _mealPlanHistoryService;
         private readonly IFavoriteMealService _FavoriteMealService;
         private readonly IUserPreferenceStore _userPreferenceStore;
+        private readonly IComplexSearchService _complexSearchService;
 
         public UserController(IUserPreferenceService userPreferenceService,
             IMealPlanHistoryService mealPlanHistoryService,
             IFavoriteMealService favoriteMealService,
-            IUserPreferenceStore userPreferenceStore)
+            IUserPreferenceStore userPreferenceStore,
+            IComplexSearchService complexSearchService)
         {
             _userPreferenceService = userPreferenceService;
             _mealPlanHistoryService = mealPlanHistoryService;
             _FavoriteMealService = favoriteMealService;
             _userPreferenceStore = userPreferenceStore;
+            _complexSearchService = complexSearchService;
         }
              
 
@@ -44,7 +47,7 @@ namespace AHBCFinalProject.Controllers
         public IActionResult UpdateUserPreferences(UserPreferencesViewModel model)
         {
             _userPreferenceService.SetUserPreferences(model);
-            return View("ConfirmUserPreferences", model);
+            return View(nameof(ConfirmUserPreferences), model);
         }
 
         public IActionResult ConfirmUserPreferences(UserPreferencesViewModel model)
@@ -59,8 +62,20 @@ namespace AHBCFinalProject.Controllers
 
         public async Task<IActionResult> ViewPlan()
         {
-            var viewModel = await _mealPlanHistoryService.ViewCurrentMealPlan();
-            return View(viewModel);
+            try
+            {
+                var viewModel = await _mealPlanHistoryService.ViewCurrentMealPlan();
+
+                return View(viewModel);
+            }
+            catch(Exception)
+            {
+                var listOfRecipes = await _complexSearchService.GetWeekOfRecipes();
+                _mealPlanHistoryService.AddMealPlanToHistory(listOfRecipes);
+
+                var viewModel = await _mealPlanHistoryService.ViewCurrentMealPlan();
+                return View(viewModel);
+            }
         }
         
         public async Task<IActionResult> ViewMealPlanResults(ViewMealPlanViewModel model)
@@ -79,11 +94,11 @@ namespace AHBCFinalProject.Controllers
 
 
 
-        public IActionResult UpdatePreference()
-        {
-            var model = _userPreferenceService.GetUpdatedPreferenceView();
-            return View(model);
-        }
+        //public IActionResult UpdatePreference()
+        //{
+        //    var model = _userPreferenceService.GetUpdatedPreferenceView();
+        //    return View(model);
+        //}
 
         public IActionResult FavoriteMealsView()
         {
