@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +15,7 @@ namespace AHBCFinalProject.Controllers
         private readonly IComplexSearchService _complexSearchService;
         private readonly IRecipeByIdService _recipeByIdService;
         private readonly IUserPreferenceService _userPreferenceService;
-        private readonly IUserPreferenceStore _userPreferenceStore;
+        //private readonly IUserPreferenceStore _userPreferenceStore;
 
         public RecipeController(
             IMealPlanHistoryService mealPlanHistoryService,
@@ -28,14 +28,23 @@ namespace AHBCFinalProject.Controllers
             _recipeByIdService = recipeByIdService;
             _userPreferenceService = userPreferenceService;
         }
+        
+        public async Task<IActionResult> ViewRecipes()
+        {
+            var viewModel = await _complexSearchService.GetWeekOfRecipes();
+           _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
 
-        //public async Task<IActionResult> ViewRecipes(UserPreferencesViewModel userPreferences)
+
+            return View(viewModel);
+        }
+
+        //public async Task<IActionResult> ViewCurrentMealPlan()
         //{
-        //    var viewModel = await _complexSearchService.GetWeekOfRecipes(userPreferences);
-        //    _mealPlanHistoryService.AddMealPlanToHistory(viewModel);
-
-
-        //    return View(viewModel);
+        //    var todaysDate = DateTime.Now;
+        //    var searchHistoryDAL = new ViewMealPlanViewModel();
+        //    searchHistoryDAL.TodaysDate
+        //    var currentMealPlan = _mealPlanHistoryService
+                
         //}
 
         public async Task<IActionResult> ViewRecipe(string id)

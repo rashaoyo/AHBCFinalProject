@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using AHBCFinalProject.Services;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,10 +12,12 @@ namespace AHBCFinalProject.DAL
     public class FavoriteMealsStore: IFavoriteMealsStore
     {
         private readonly Database _config;
+        private readonly IUserIdService _userIdService;
 
-        public FavoriteMealsStore(AHBCFinalProjectConfiguration config)
+        public FavoriteMealsStore(AHBCFinalProjectConfiguration config, IUserIdService userIdService)
         {
             _config = config.Database;
+            _userIdService = userIdService;
         }
 
         public bool DeleteAFaveMeal(string recipeId)
@@ -52,8 +55,9 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMeals(int userId)
+        public IEnumerable<FavoriteMealDALModel> SelectAllFavMeals()
         {
+            var userId = _userIdService.getUserId();
             var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id ORDER BY MealName ASC";
              
             using (var connection = new SqlConnection(_config.ConnectionString))   
@@ -76,8 +80,9 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn1To2Hrs(int userId)
+        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn1To2Hrs()
         {
+            var userId = _userIdService.getUserId();
             var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 60 AND 120 ORDER BY MealName ASC";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
@@ -88,8 +93,9 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn30Min(int userId)
+        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn30Min()
         {
+            var userId = _userIdService.getUserId();
             var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 0 AND 30 ORDER BY MealName ASC";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
@@ -100,8 +106,9 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn1Hr(int userId)
+        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn1Hr()
         {
+            var userId = _userIdService.getUserId();
             var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 30 AND 60 ORDER BY MealName ASC";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
@@ -112,8 +119,9 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyInMoreThan2Hrs(int userId)
+        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyInMoreThan2Hrs()
         {
+            var userId = _userIdService.getUserId();
             var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 30 AND 60 ORDER BY MealName ASC";
 
             using (var connection = new SqlConnection(_config.ConnectionString))

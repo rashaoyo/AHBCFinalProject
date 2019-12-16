@@ -20,16 +20,17 @@ namespace AHBCFinalProject.DAL
             _userIdService = userIdService;
         }
 
-        public void CreateNewUserPrefEntry(int id)
+        public async Task CreateNewUserPrefEntry()
         {
+            var userId = _userIdService.getUserId();
             var dalModel = new UserPreferenceDALModel();
-            dalModel.Id = id;
+            dalModel.Id = userId;
             var sql = $@"INSERT INTO DietaryRestrictions (Id, Diet, Intolerances, ExcludedIngredients) 
                             VALUES (@{nameof(dalModel.Id)}, @{nameof(dalModel.Diet)}, @{nameof(dalModel.Intolerances)}, @{nameof(dalModel.ExcludedIngredients)})";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
-                var results = connection.Execute(sql, dalModel);
+                var results = await connection.ExecuteAsync(sql, dalModel);
                 
             }
         }
@@ -61,7 +62,7 @@ namespace AHBCFinalProject.DAL
 
         public bool UpdateUserPreferences(UserPreferenceDALModel dalModel)
         {
-            var UserId = _userIdService.UserId;
+            var UserId = _userIdService.getUserId();
             bool success = false;
 
             if(dalModel.Diet != null && dalModel.Diet != "")

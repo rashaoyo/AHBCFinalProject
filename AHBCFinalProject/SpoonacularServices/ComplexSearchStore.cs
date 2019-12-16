@@ -14,14 +14,20 @@ namespace AHBCFinalProject.SpoonacularServices
     {
         const string ApiKey = "c07baad9b40d44dd9d700eb4928a1970";
         private readonly IRecipeByIdStore _recipeByIdStore;
+        private readonly IUserPreferenceStore _userPreferenceStore;
+        private readonly IUserIdService _userIdService;
 
-        public ComplexSearchStore(IRecipeByIdStore recipeByIdStore)
+        public ComplexSearchStore(IRecipeByIdStore recipeByIdStore, IUserPreferenceStore userPreferenceStore, IUserIdService userIdService)
         {
             _recipeByIdStore = recipeByIdStore;
+            _userPreferenceStore = userPreferenceStore;
+            _userIdService = userIdService;
         }
 
-        public async Task<ListOfRecipesResponse> GetRecipesComplexSearch(UserPreferenceDALModel userPreferenceDAL)
+        public async Task<ListOfRecipesResponse> GetRecipesComplexSearch(/*UserPreferenceDALModel userPreferenceDAL*/)
         {
+            var id = _userIdService.getUserId();
+            var userPreferenceDAL = _userPreferenceStore.SelectUserPreferences(id);
             var weekOfRecipes = new ListOfRecipesResponse()
             {
                 Results = new List<RecipeResponse>()
@@ -30,7 +36,7 @@ namespace AHBCFinalProject.SpoonacularServices
             using (var httpClient = new HttpClient { BaseAddress = new Uri("https://api.spoonacular.com/recipes/complexSearch") })
             {
 
-                var apiResult = await httpClient.GetStringAsync($"/recipes/complexSearch?apiKey={ApiKey}&number=7&sort=random&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
+                var apiResult = await httpClient.GetStringAsync($"?apiKey={ApiKey}&number=7&sort=random&diet={userPreferenceDAL.Diet}&intolerances={userPreferenceDAL.Intolerances}&excludeIngredients={userPreferenceDAL.ExcludedIngredients}&type='main course'&instructionsRequired=true");
 
                 var sixRecipes = JsonConvert.DeserializeObject<ListOfRecipesResponse>(apiResult);
 

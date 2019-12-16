@@ -25,7 +25,7 @@ namespace AHBCFinalProject.Services
             var today = DateTime.Today;
 
             var mealPlanHistoryViewModel = new MealPlanHistoryViewModel 
-            {   Id = _userIdService.UserId,
+            {   Id = _userIdService.getUserId(),
                 Sunday = result.ListOfRecipes[0].Id,
                 Monday = result.ListOfRecipes[1].Id,
                 Tuesday = result.ListOfRecipes[2].Id, 
