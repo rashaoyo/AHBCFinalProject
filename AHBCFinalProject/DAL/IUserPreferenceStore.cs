@@ -9,7 +9,7 @@ namespace AHBCFinalProject.DAL
     public interface IUserPreferenceStore
     {
         UserPreferenceDALModel SelectUserPreferences(int userId);
-        bool InsertUserPreferences(UserPreferenceDALModel dalModel);
+        //bool InsertUserPreferences(UserPreferenceDALModel dalModel);
         bool UpdateUserPreferences(UserPreferenceDALModel dalModel);
         Task CreateNewUserPrefEntry();
     }
