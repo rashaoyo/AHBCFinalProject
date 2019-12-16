@@ -5,23 +5,25 @@
 
 <h1>View All Recipes</h1>
 
-<div>
-    <table class="table table-light table-striped table-bordered table table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th>Title</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var recipe in Model.ListOfRecipes)
-            {
+<div class="container">
+    <img src="https://live.staticflickr.com/65535/49224599768_b56ace7661_o.jpg" id="bg" alt="bg_img" style="height: 100%; width: 100%;" />
+    <div class="centered">
+        <table class="table table-bordered table table-hover">
+            <thead class="card-header-pills">
                 <tr>
-                    <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@recipe.Id">@recipe.Title</a>
-
-                    </td>
+                    <th class="font-weight-bold" id="LoR_header">List of Recipes</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var recipe in Model.ListOfRecipes)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="Recipe" asp-action="ViewRecipe" class="text-secondary" asp-route-id="@recipe.Id">@recipe.Title</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>
 </div>
