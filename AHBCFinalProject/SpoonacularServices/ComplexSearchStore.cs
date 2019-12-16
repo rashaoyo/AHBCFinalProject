@@ -14,14 +14,20 @@ namespace AHBCFinalProject.SpoonacularServices
     {
         const string ApiKey = "c07baad9b40d44dd9d700eb4928a1970";
         private readonly IRecipeByIdStore _recipeByIdStore;
+        private readonly IUserPreferenceStore _userPreferenceStore;
+        private readonly IUserIdService _userIdService;
 
-        public ComplexSearchStore(IRecipeByIdStore recipeByIdStore)
+        public ComplexSearchStore(IRecipeByIdStore recipeByIdStore, IUserPreferenceStore userPreferenceStore, IUserIdService userIdService)
         {
             _recipeByIdStore = recipeByIdStore;
+            _userPreferenceStore = userPreferenceStore;
+            _userIdService = userIdService;
         }
 
-        public async Task<ListOfRecipesResponse> GetRecipesComplexSearch(UserPreferenceDALModel userPreferenceDAL)
+        public async Task<ListOfRecipesResponse> GetRecipesComplexSearch(/*UserPreferenceDALModel userPreferenceDAL*/)
         {
+            var id = _userIdService.getUserId();
+            var userPreferenceDAL = _userPreferenceStore.SelectUserPreferences(id);
             var weekOfRecipes = new ListOfRecipesResponse()
             {
                 Results = new List<RecipeResponse>()

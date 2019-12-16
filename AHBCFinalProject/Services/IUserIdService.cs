@@ -7,7 +7,7 @@ namespace AHBCFinalProject.Services
 {
     public interface IUserIdService
     {
-        int UserId { get; set; }
+    
         int getUserId();
     }
 }

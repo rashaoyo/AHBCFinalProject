@@ -23,7 +23,7 @@ namespace AHBCFinalProject.Services
             //_userManager = userManager;
         }
 
-        public int UserId { get; set; }
+     
 
         public int getUserId()
         {

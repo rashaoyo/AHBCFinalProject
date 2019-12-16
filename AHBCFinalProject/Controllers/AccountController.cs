@@ -77,7 +77,7 @@ namespace AHBCFinalProject.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    setUserIds();
+                   // setUserIds();
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

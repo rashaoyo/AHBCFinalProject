@@ -36,7 +36,7 @@ namespace AHBCFinalProject.Controllers
         }
              
 
-        public async Task<IActionResult> CreateUserPreferencesTable()
+        public async Task<IActionResult> gTable()
         {
             await _userPreferenceStore.CreateNewUserPrefEntry();
             return RedirectToAction(nameof(SetUserPreferences), "User");
@@ -47,8 +47,8 @@ namespace AHBCFinalProject.Controllers
         {
             return View();
         }
-
-        public IActionResult CreateUserPreferences(UserPreferencesViewModel model)
+        
+        public IActionResult UpdateUserPreferences(UserPreferencesViewModel model)
         {
             _userPreferenceService.SetUserPreferences(model);
             return View("ConfirmUserPreferences", model);
@@ -65,6 +65,7 @@ namespace AHBCFinalProject.Controllers
         {
             return View();
         }
+
 
         public async Task<IActionResult> ViewMealPlanResults(ViewMealPlanViewModel model)
         {

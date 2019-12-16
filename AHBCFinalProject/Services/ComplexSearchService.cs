@@ -13,7 +13,7 @@ namespace AHBCFinalProject.Services
         private readonly IUserPreferenceService _userPreferenceService;
         private readonly IUserPreferenceStore _userPreferenceStore;
         private readonly IUserIdService _userIdService;
-        private readonly int UserID;
+       
 
 
 
@@ -23,16 +23,17 @@ namespace AHBCFinalProject.Services
             _userPreferenceService = userPreferenceService;
             _userPreferenceStore = userPreferenceStore;
             _userIdService = userIdService;
-            UserID = _userIdService.UserId;
+            
 
         }
 
         public async Task<ListOfRecipesViewModel> GetWeekOfRecipes()
         {
+            var UserID =  _userIdService.getUserId();
             var userPrefDalModel = _userPreferenceStore.SelectUserPreferences(UserID);
             //var userPreferenceDALModel = _userPreferenceService.SetUserPreferences(userPrefDalModel);
             //var stringedThings = StringifyPreferencesForAPI(userPrefDalModel);
-            var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(userPrefDalModel);
+            var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch();
 
             var result = new ListOfRecipesViewModel()
             {
