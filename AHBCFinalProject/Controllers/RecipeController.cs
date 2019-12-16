@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,7 +28,7 @@ namespace AHBCFinalProject.Controllers
             _recipeByIdService = recipeByIdService;
             _userPreferenceService = userPreferenceService;
         }
-
+        
         public async Task<IActionResult> ViewRecipes()
         {
             var viewModel = await _complexSearchService.GetWeekOfRecipes();
@@ -46,8 +46,6 @@ namespace AHBCFinalProject.Controllers
         //    var currentMealPlan = _mealPlanHistoryService
                 
         //}
-
-
 
         public async Task<IActionResult> ViewRecipe(string id)
         {
