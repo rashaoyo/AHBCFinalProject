@@ -46,11 +46,15 @@ namespace AHBCFinalProject.Controllers
             return View("ConfirmUserPreferences", model);
         }
 
+        public IActionResult ConfirmUserPreferences(UserPreferencesViewModel model)
+        {
+            return View(model);
+        }
+
         public IActionResult SearchMealPlanHistory()
         {
             return View();
         }
-
 
         public async Task<IActionResult> ViewMealPlanResults(ViewMealPlanViewModel model)
         {

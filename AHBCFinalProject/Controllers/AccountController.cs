@@ -504,7 +504,6 @@ namespace AHBCFinalProject.Controllers
             else
             {
                 return RedirectToAction("CreateUserPreferencesTable", "User");
-              
             }
         }
 
