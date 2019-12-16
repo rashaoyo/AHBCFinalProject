@@ -21,7 +21,7 @@ html {
 
 
 .container{
-    position: relative;
+    position: center;
     text-align: center;
     color: white;
     
@@ -43,11 +43,16 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.ImageBG {
+    background-image: url('https://live.staticflickr.com/65535/49218747761_b277a14ccb_n.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
 
 
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
 }
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
@@ -71,8 +76,15 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
+    background-image: url('https://live.staticflickr.com/65535/49224599768_3dcfb61fe4_h.jpg');
+    background-size: initial;
+    background-position: center;
+    background-repeat: no-repeat;
+    /*margin: auto;*/
 }
+
+
 .footer {
   position: absolute;
   bottom: 0;

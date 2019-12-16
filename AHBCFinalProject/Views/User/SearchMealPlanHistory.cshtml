@@ -4,16 +4,20 @@
     ViewData["Title"] = "SearchMealPlanHistory";
 }
 
+<div class="container">
+    <div class="centered">
+        <div>
+            <form asp-controller="User" asp-action="ViewMealPlanResults" method="post">
+
+                <label>Select Meals From:</label>
+                <input type="date" asp-for="StartDate" min="12-1-2019" />
+
+                <input type="submit" value="Search" class="btn btn-default" />
+            </form>
+        </div>
+    </div>
+</div>
 <h1>View a previous meal plan by entering a date.</h1>
 
 
-<div>
-    <form asp-controller="User" asp-action="ViewMealPlanResults" method="post">
-
-        <label>Select Meals From:</label>
-        <input type="date" asp-for="StartDate" min="12-1-2019" />
-
-        <input type="submit" value="Search" class="btn btn-default" />
-    </form>
-</div>
 
