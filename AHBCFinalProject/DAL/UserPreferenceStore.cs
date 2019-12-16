@@ -62,7 +62,7 @@ namespace AHBCFinalProject.DAL
 
         public bool UpdateUserPreferences(UserPreferenceDALModel dalModel)
         {
-            var UserId = _userIdService.UserId;
+            var UserId = _userIdService.getUserId();
             bool success = false;
 
             if(dalModel.Diet != null && dalModel.Diet != "")

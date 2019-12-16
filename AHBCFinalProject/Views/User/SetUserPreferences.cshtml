@@ -7,7 +7,7 @@
 <h1>Set your preferences!</h1>
 
 
-<form asp-controller="User" asp-action="CreateUserPreferences">
+<form asp-controller="User" asp-action="UpdateUserPreferences">
     <h4>Are you on any of these common diets?</h4>
 
     <input asp-for="GlutenFree" value="True"> Gluten Free
@@ -64,5 +64,5 @@
 
     <p>List ingredients separated by commas (ex: tomato,mango)</p>
 
-    <button asp-controller="User" asp-action="CreateUserPreferences" type="submit">Submit</button>
+    <button asp-controller="User" asp-action="UpdateUserPreferences" type="submit">Submit</button>
 </form>

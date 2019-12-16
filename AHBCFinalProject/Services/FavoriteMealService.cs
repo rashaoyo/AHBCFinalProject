@@ -27,7 +27,7 @@ namespace AHBCFinalProject.Services
         {
             _favoriteMealStore.DeleteAFaveMeal(recipeId);
 
-            var dalViewAllFavMeals = _favoriteMealStore.SelectAllFavMeals(_userIdService.getUserId());
+            var dalViewAllFavMeals = _favoriteMealStore.SelectAllFavMeals();
             var favMeals = new List<FavoriteMealViewModel>();
 
             foreach (var dalMeal in dalViewAllFavMeals)
@@ -50,7 +50,7 @@ namespace AHBCFinalProject.Services
 
         public FavoriteMealsViewModel FMReadyIn1Hrs()
         {
-            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn1Hr(_userIdService.getUserId());
+            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn1Hr();
             var favMeals = new List<FavoriteMealViewModel>();
 
             foreach (var dalMeal in allMeals)
@@ -73,7 +73,7 @@ namespace AHBCFinalProject.Services
 
         public FavoriteMealsViewModel FMReadyIn1To2Hrs()
         {
-            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn1To2Hrs(_userIdService.getUserId());
+            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn1To2Hrs();
             var favMeals = new List<FavoriteMealViewModel>();
 
             foreach (var dalMeal in allMeals)
@@ -96,7 +96,7 @@ namespace AHBCFinalProject.Services
 
         public FavoriteMealsViewModel FMReadyIn30Min()
         {
-            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn30Min(_userIdService.getUserId());
+            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn30Min();
             var favMeals = new List<FavoriteMealViewModel>();
 
             foreach (var dalMeal in allMeals)
@@ -119,7 +119,7 @@ namespace AHBCFinalProject.Services
 
         public FavoriteMealsViewModel FMReadyInMoreThan2Hrs()
         {
-            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyInMoreThan2Hrs(_userIdService.getUserId());
+            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyInMoreThan2Hrs();
             var favMeals = new List<FavoriteMealViewModel>();
 
             foreach (var dalMeal in allMeals)
@@ -181,7 +181,7 @@ namespace AHBCFinalProject.Services
 
         public FavoriteMealsViewModel SelectAllFavoriteMeals()
         {
-            var allMeals = _favoriteMealStore.SelectAllFavMeals(_userIdService.getUserId());
+            var allMeals = _favoriteMealStore.SelectAllFavMeals();
             var favMeals = new List<FavoriteMealViewModel>();
 
             foreach (var dalMeal in allMeals)
@@ -218,7 +218,7 @@ namespace AHBCFinalProject.Services
 
         private FavoriteMealsViewModel MapFavMealDALtoView(FavoriteMealDALModel dalModel)
         {
-            var dalViewAllFavMeals = _favoriteMealStore.SelectAllFavMeals(dalModel.Id);
+            var dalViewAllFavMeals = _favoriteMealStore.SelectAllFavMeals();
             var favMeals = new List<FavoriteMealViewModel>();
 
             foreach (var dalMeal in dalViewAllFavMeals)

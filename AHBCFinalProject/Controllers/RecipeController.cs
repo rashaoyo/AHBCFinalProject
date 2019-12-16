@@ -38,6 +38,17 @@ namespace AHBCFinalProject.Controllers
             return View(viewModel);
         }
 
+        //public async Task<IActionResult> ViewCurrentMealPlan()
+        //{
+        //    var todaysDate = DateTime.Now;
+        //    var searchHistoryDAL = new ViewMealPlanViewModel();
+        //    searchHistoryDAL.TodaysDate
+        //    var currentMealPlan = _mealPlanHistoryService
+                
+        //}
+
+
+
         public async Task<IActionResult> ViewRecipe(string id)
         {
             var viewModel = await _recipeByIdService.GetRecipeVMById(id);

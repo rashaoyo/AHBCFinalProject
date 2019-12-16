@@ -33,7 +33,7 @@ namespace AHBCFinalProject.Services
             var userPrefDalModel = _userPreferenceStore.SelectUserPreferences(UserID);
             //var userPreferenceDALModel = _userPreferenceService.SetUserPreferences(userPrefDalModel);
             //var stringedThings = StringifyPreferencesForAPI(userPrefDalModel);
-            var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch(userPrefDalModel);
+            var weekOfRecipesResponse = await _complexSearchStore.GetRecipesComplexSearch();
 
             var result = new ListOfRecipesViewModel()
             {
