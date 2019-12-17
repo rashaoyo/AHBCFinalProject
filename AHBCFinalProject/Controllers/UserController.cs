@@ -83,7 +83,7 @@ namespace AHBCFinalProject.Controllers
             try
             {
                 var result = await _mealPlanHistoryService.ViewMealPlanHistory(model);
-                return View(result);
+                return View("ViewPlan", result);
             }
             catch (Exception)
             {

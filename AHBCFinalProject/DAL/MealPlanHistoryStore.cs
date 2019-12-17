@@ -52,5 +52,16 @@ namespace AHBCFinalProject.DAL
                 return results;
             }
         }
+
+        public MealPlanHistoryDALModel SearchPastMealPlans(ViewMealPlanViewModel model)
+        {
+            var sql = $@"SELECT * FROM AllMealPlans WHERE Id = @{nameof(model.Id)} AND @{nameof(model.StartDate)} BETWEEN StartDate AND EndDate";
+            using (var connection = new SqlConnection(_config.ConnectionString))
+            {
+                var results = connection.QueryFirst<MealPlanHistoryDALModel>(sql, model);
+
+                return results;
+            }
+        }
     }
 }
