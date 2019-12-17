@@ -4,37 +4,32 @@
     ViewData["Title"] = "DeleteFavoriteMeal";
 }
 
-<h1>Favorite Meals</h1>
+    <div class="container">
+        <img src="https://live.staticflickr.com/65535/49224599768_b56ace7661_o.jpg" id="bg" alt="bg_img" style="height: 100%; width: 100%;" />
+        <div class="centered">
 
+            <h1>Favorite Meals</h1>
 
-<div>
-    <table>
-        <thead>
-            <tr>
-              
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var favMeal in Model.FavoriteMeals)
+                        {
+                            <tr>
 
+                                <td>
+                                    <a asp-controller="User" asp-action="ViewFavoriteMeal" asp-route-id="@favMeal.RecipeID">@favMeal.MealName</a>
 
-
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var favMeal in Model.FavoriteMeals)
-            {
-                <tr>
-
-                    <td>
-                        <a asp-controller="User" asp-action="ViewFavoriteMeal" asp-route-id="@favMeal.RecipeID">@favMeal.MealName</a>
-               
-
-
-                    </td>
-
-
-                </tr>
-            }
-        </tbody>
-    </table>
-
-
-</div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
