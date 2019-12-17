@@ -6,29 +6,6 @@
 
 <h1>FavoriteMealsView</h1>
 
-<div>
-    <label>Sunday:</label>
-    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.SundayId">@Model.SundayName</a>
-
-    <label>Monday:</label>
-    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.MondayId">@Model.MondayName</a>
-
-    <label asp-for="@Model.TuesdayName">Tuesday:</label>
-    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.TuesdayId">@Model.TuesdayName</a>
-
-    <label asp-for="@Model.WednesdayName">Wednesday:</label>
-    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.WednesdayId">@Model.WednesdayName</a>
-
-    <label asp-for="@Model.ThursdayName">Thursday:</label>
-    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.ThursdayId">@Model.ThursdayName</a>
-
-    <label asp-for="@Model.FridayName">Friday:</label>
-    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.FridayId">@Model.FridayName</a>
-
-    <label asp-for="@Model.SaturdayName">Saturday:</label>
-    <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.SaturdayId">@Model.SaturdayName</a>
-
-<div class="container">
     @*<img src="https://live.staticflickr.com/65535/49224599768_b56ace7661_o.jpg" id="bg" alt="bg_img" style="height: 100%; width: 100%;" />*@
     <div class="centered">
         <table class="table table-bordered table table-hover">
@@ -55,12 +32,12 @@
                 </tr>
                 <tr>
                     <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.WednesdayId">Model.WednesdayName</a>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.WednesdayId">@Model.WednesdayName</a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.ThursdayId">Model.ThursdayName</a>
+                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.ThursdayId">@Model.ThursdayName</a>
                     </td>
                 </tr>
                 <tr>
