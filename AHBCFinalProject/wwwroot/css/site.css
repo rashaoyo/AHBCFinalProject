@@ -78,7 +78,8 @@ body {
     background-size: initial;
     background-position: center;
     background-repeat: no-repeat;*/
-    margin: auto;
+    /*margin: auto;*/
+    width: 100%;
 }
 
 
