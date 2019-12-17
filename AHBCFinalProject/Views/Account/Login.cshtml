@@ -7,12 +7,13 @@
     ViewData["Title"] = "Log in";
 }
 
-<div class="container">
-    <div class="centered">
-        <h2 >@ViewData["Title"].</h2>
-        <hr />
+    <div class="container">
+        <img src="https://live.staticflickr.com/65535/49224599768_b56ace7661_o.jpg" id="bg" alt="bg_img" style="height: 100%; width: 100%;" />
+        <div class="centered">
+            <h2>@ViewData["Title"].</h2>
+            <hr />
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                    
+
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <label asp-for="Email"></label>
                 <div class="col-md-12">
@@ -25,7 +26,7 @@
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-         
+
                 <hr />
                 <div>
                     <label asp-for="RememberMe" class="checkbox">
@@ -34,16 +35,16 @@
                     </label>
                     <button type="submit" class="btn btn-outline-secondary btn-sm">Log in</button>
                 </div>
-        
+
                 <ul style="list-style: none; margin:0; padding:0">
                     <li><a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" class="text-success">Create an account</a></li>
                     <li><a asp-action="ForgotPassword" class="text-success">Forgot your password?</a></li>
                 </ul>
-                      
+
             </form>
 
-        @section Scripts {
-            @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-        }
+            @section Scripts {
+                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+            }
+        </div>
     </div>
-</div>

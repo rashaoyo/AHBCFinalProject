@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Content\**" />
     <Compile Remove="NewFolder\**" />
+    <Content Remove="Content\**" />
     <Content Remove="NewFolder\**" />
+    <EmbeddedResource Remove="Content\**" />
     <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="Content\**" />
     <None Remove="NewFolder\**" />
   </ItemGroup>
 
@@ -28,7 +32,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Parameters\" />
-    <Folder Include="Content\Image\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="SpoonacularServices\IRandomRecipeStore.cs" />
