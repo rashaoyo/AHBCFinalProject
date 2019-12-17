@@ -6,9 +6,11 @@ using AHBCFinalProject.Models;
 using AHBCFinalProject.Services;
 using AHBCFinalProject.DAL;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AHBCFinalProject.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
         private readonly IUserPreferenceService _userPreferenceService;
@@ -28,8 +30,7 @@ namespace AHBCFinalProject.Controllers
             _FavoriteMealService = favoriteMealService;
             _userPreferenceStore = userPreferenceStore;
             _complexSearchService = complexSearchService;
-        }
-             
+        }             
 
         public async Task<IActionResult> CreateUserPreferencesTable()
         {
@@ -84,6 +85,7 @@ namespace AHBCFinalProject.Controllers
             {
                 var result = await _mealPlanHistoryService.ViewMealPlanHistory(model);
                 return View("ViewPlan", result);
+
             }
             catch (Exception)
             {
