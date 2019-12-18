@@ -4,73 +4,74 @@
     ViewData["Title"] = "SetUserPreferences";
 }
 
-    <div class="container">
-        <img src="https://live.staticflickr.com/65535/49224599768_b56ace7661_o.jpg" id="bg" alt="bg_img" style="height: 100%; width: 100%;" />
-        <div class="centered">
-            <h1>Set your preferences!</h1>
+<div class="container">
+    <div class="centered">
+        <h2>Set your preferences!</h2>
 
-            <form asp-controller="User" asp-action="UpdateUserPreferences">
-                <h4>Are you on any of these common diets?</h4>
+        <form asp-controller="User" asp-action="UpdateUserPreferences">
+            <h5>Are you on any of these common diets?</h5>
+            <table id="userTable">
+                <tr>
+                    <td><input asp-for="GlutenFree" value="True"> Gluten Free</td>
+                    <td><input asp-for="Ketogenic" value="True"> Ketogenic</td>
+                </tr>
+                <tr>
+                    <td><input asp-for="Vegetarian" value="True"> Vegetarian</td>
+                    <td><input asp-for="LactoVegetarian" value="True"> Lacto-Vegetarian</td>
+                </tr>
+                <tr>
+                    <td><input asp-for="OvoVegetarian" value="True"> Ovo-Vegetarian</td>
+                    <td><input asp-for="Vegan" value="True"> Vegan</td>
+                </tr>
+                <tr>
+                    <td><input asp-for="Pescetarian" value="True"> Pescetarian</td>
+                    <td><input asp-for="Paleo" value="True"> Paleo</td>
+                </tr><tr>
+                            <td><input asp-for="Primal" value="True"> Primal</td>
+                    <td><input asp-for="Whole30" value="True"> Whole30</td>
+                </tr>
+            </table>
+               
 
-                <input asp-for="GlutenFree" value="True"> Gluten Free
-                <br />
-                <input asp-for="Ketogenic" value="True"> Ketogenic
-                <br />
-                <input asp-for="Vegetarian" value="True"> Vegetarian
-                <br />
-                <input asp-for="LactoVegetarian" value="True"> Lacto-Vegetarian
-                <br />
-                <input asp-for="OvoVegetarian" value="True"> Ovo-Vegetarian
-                <br />
-                <input asp-for="Vegan" value="True"> Vegan
-                <br />
-                <input asp-for="Pescetarian" value="True"> Pescetarian
-                <br />
-                <input asp-for="Paleo" value="True"> Paleo
-                <br />
-                <input asp-for="Primal" value="True"> Primal
-                <br />
-                <input asp-for="Whole30" value="True"> Whole30
-                <br />
+            <h5>Do you have any of these food intolerances?</h5>
 
-                <h4>Do you have any of these food intolerances?</h4>
-
-                <input asp-for="Dairy" value="True"> Dairy
-                <br />
-                <input asp-for="Egg" value="True"> Egg
-                <br />
-                <input asp-for="Gluten" value="True"> Gluten
-                <br />
-                <input asp-for="Grain" value="True"> Grain
-                <br />
-                <input asp-for="Peanut" value="True"> Peanut
-                <br />
-                <input asp-for="Seafood" value="True"> Seafood
-                <br />
-                <input asp-for="Sesame" value="True"> Sesame
-                <br />
-                <input asp-for="Shellfish" value="True"> Shellfish
-                <br />
-                <input asp-for="Soy" value="True"> Soy
-                <br />
-                <input asp-for="Sulfite" value="True"> Sulfite
-                <br />
-                <input asp-for="TreeNut" value="True"> Tree Nut
-                <br />
-                <input asp-for="Wheat" value="True"> Wheat
-                <br />
+            <table id="userTable">
+                <tr>
+                    <td><input asp-for="Dairy" value="True"> Dairy</td>
+                    <td><input asp-for="Egg" value="True"> Egg</td>
+                </tr>
+                <tr>
+                    <td><input asp-for="Gluten" value="True"> Gluten</td>
+                    <td><input asp-for="Grain" value="True"> Grain</td>
+                </tr>
+                <tr>
+                    <td><input asp-for="Peanut" value="True"> Peanut</td>
+                    <td><input asp-for="Seafood" value="True"> Seafood</td>
+                </tr>
+                <tr>
+                    <td><input asp-for="Sesame" value="True"> Sesame</td>
+                    <td><input asp-for="Shellfish" value="True"> Shellfish</td>
+                </tr>
+                <tr>
+                    <td><input asp-for="Soy" value="True"> Soy</td>
+                    <td><input asp-for="Sulfite" value="True"> Sulfite</td>
+                </tr>
+                <tr>
+                    <td><input asp-for="TreeNut" value="True"> Tree Nut</td>
+                    <td><input asp-for="Wheat" value="True"> Wheat</td>
+                </tr>
+            </table>
+               
+            <h4>Are there any other foods you can't or won't eat?</h4>
 
 
-                <h4>Are there any other foods you can't or won't eat?</h4>
+            <div class="col-auto">
+                <input asp-for="ExcludedIngredients" class="form-control" /><br />
+            </div>
 
+            <p>List ingredients separated by commas (ex: tomato,mango)</p>
 
-                <div class="col-auto">
-                    <input asp-for="ExcludedIngredients" class="form-control" /><br />
-                </div>
-
-                <p>List ingredients separated by commas (ex: tomato,mango)</p>
-
-                <button asp-controller="User" asp-action="UpdateUserPreferences" type="submit" class="btn btn-outline-secondary btn-sm">Submit</button>
-            </form>
-        </div>
+            <button asp-controller="User" asp-action="UpdateUserPreferences" type="submit" class="btn btn-outline-secondary btn-sm">Submit</button>
+        </form>
     </div>
+</div>

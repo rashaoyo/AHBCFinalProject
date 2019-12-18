@@ -4,53 +4,52 @@
     ViewData["Title"] = "ViewPlan";
 }
 
-<h1>FavoriteMealsView</h1>
-
-    @*<img src="https://live.staticflickr.com/65535/49224599768_b56ace7661_o.jpg" id="bg" alt="bg_img" style="height: 100%; width: 100%;" />*@
+<div class="container">
     <div class="centered">
-        <table class="table table-bordered table table-hover">
-            <thead class="card-header-pills">
-                <tr>
-                    <th class="font-weight-bold" id="LoR_header">This week's recipes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid=@Model.SundayId>@Model.SundayName</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.MondayId">@Model.MondayName</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.TuesdayId">@Model.TuesdayName</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.WednesdayId">@Model.WednesdayName</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.ThursdayId">@Model.ThursdayName</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.FridayId">@Model.FridayName</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-sundayid="@Model.SaturdayId">@Model.SaturdayName</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    @*<h1>FavoriteMealsView</h1>*@
+            <table class="table table-bordered table table-hover">
+                <thead class="card-header-pills">
+                    <tr>
+                        <th class="font-weight-bold" id="LoR_header">This week's recipes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <a asp-controller="Recipe" asp-action="ViewRecipe" class="text-secondary" asp-route-sundayid=@Model.SundayId>@Model.SundayName</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-controller="Recipe" asp-action="ViewRecipe" class="text-secondary" asp-route-sundayid="@Model.MondayId">@Model.MondayName</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-controller="Recipe" asp-action="ViewRecipe" class="text-secondary" asp-route-sundayid="@Model.TuesdayId">@Model.TuesdayName</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-controller="Recipe" asp-action="ViewRecipe" class="text-secondary" asp-route-sundayid="@Model.WednesdayId">@Model.WednesdayName</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-controller="Recipe" asp-action="ViewRecipe" class="text-secondary" asp-route-sundayid="@Model.ThursdayId">@Model.ThursdayName</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-controller="Recipe" asp-action="ViewRecipe" class="text-secondary" asp-route-sundayid="@Model.FridayId">@Model.FridayName</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-controller="Recipe" asp-action="ViewRecipe" class="text-secondary" asp-route-sundayid="@Model.SaturdayId">@Model.SaturdayName</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
 </div>
-
