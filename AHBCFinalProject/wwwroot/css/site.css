@@ -22,7 +22,8 @@ html {
 
 
 .container{
-    position: relative;
+    /*position: relative;*/
+    position: center;
     text-align: center;
     color: black;
 }
@@ -35,6 +36,16 @@ html {
     color: black;
 }
 
+.preferences-row{
+    float: left;
+    width: 50%;
+}
+
+.row-after{
+    content: "";
+    display: table;
+    clear: both;
+}
 
 #LoR_header {
     color: #FFFFFF;
