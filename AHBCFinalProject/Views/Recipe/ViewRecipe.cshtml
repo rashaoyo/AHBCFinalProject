@@ -7,37 +7,33 @@
 
 
 <div class="container">
-    <img src="https://live.staticflickr.com/65535/49224599768_b56ace7661_o.jpg" id="bg" alt="bg_img" style="height: 100%; width: 100%;" />
-
-    <div class="centered">
       
-            <h3>@Model.Title</h3>
-            <figure class="figure">
-                <img src="@Model.Image" class="figure-img img-fluid rounded">
-                <figcaption class="figure-caption"></figcaption>
-            </figure>
-
-            <div class="recipe-ingredients">
-                <table class="col-auto">
-                    <h4 class="bs-tooltip-left">Ingredients</h4>
-                    @*<ul style="list-style: none; margin:0; padding:0">*@
-                    <ul class="text-left" style="list-style: none">
-                        @foreach (var ingredient in Model.ExtendedIngredients)
-                        {
-                            <li>@ingredient.Amount @ingredient.Unit @ingredient.OriginalName</li>
-                        }
-                    </ul>
-                </table>
-                <div class="offset-1">
-                    <h4>Instructions</h4>
-                    <p>@Model.Instructions</p>
-                </div>
-                @*<div class="span10">
-                <p asp-for="@Model.Instructions">@Model.Instructions</p>
-            </div>*@
+    <h3>@Model.Title</h3>
+    
+    <div class="recipe-ingredients">
+        <div class="col-auto">
+            <h4 class="ingredients-header">Ingredients</h4>
+            @*<ul style="list-style: none; margin:0; padding:0">*@
+            <ul class="text-left" style="list-style: none">
+                @foreach (var ingredient in Model.ExtendedIngredients)
+                {
+                    <li>@ingredient.Amount @ingredient.Unit @ingredient.OriginalName</li>
+                }
+            </ul>
+            <div class="recipe-img">
+                <figure class="figure">
+                    <img src="@Model.Image" class="figure-img img-fluid rounded">
+                    <figcaption class="figure-caption"></figcaption>
+                </figure>
             </div>
-            <a class="btn btn-outline-secondary" asp-controller="User" asp-action="AddToFavorites" role="button" asp-route-id="@Model.Id">Add To Favorites<br /></a>
+        </div>
+        <div class="recipe-instructions offset-1">
+            <h4>Instructions</h4>
+            <p>@Model.Instructions</p>
+        </div>
     </div>
+    <a class="btn btn-outline-secondary" asp-controller="User" asp-action="AddToFavorites" role="button" asp-route-id="@Model.Id">Add To Favorites<br /></a>
+
 </div>
 
 
