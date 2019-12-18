@@ -7,10 +7,56 @@
 <div class="container">
     <div class="centered">
 
-        <h1>ViewUserPreferences</h1>
+        <h3>ViewUserPreferences</h3>
 
         <form asp-controller="User" asp-action="ViewPlan">
-            <h2>Diets</h2>
+            <h5>Diets</h5>
+            <table id="userTable" class="preferences-row">
+                <tr class="row-after">
+                    <td>Gluten-Free: @Model.GlutenFree</td>
+                    <td>Ketogenic: @Model.Ketogenic</td>
+                    <td>Vegetarian: @Model.Vegetarian</td>
+                    <td>Lacto-Vegetarian: @Model.LactoVegetarian</td>
+                    <td>Ovo-Vegetarian: @Model.OvoVegetarian</td>
+                </tr>
+                <tr>
+                    <td>Vegan: @Model.Vegan</td>
+                    <td>Pescetarian: @Model.Pescetarian</td>
+                    <td>Paleo: @Model.Paleo</td>
+                    <td>Primal: @Model.Primal</td>
+                    <td>Whole30: @Model.Whole30</td>
+                </tr>
+               
+            </table>
+
+            <h5>Intolerances</h5>
+            <table id="userTable">
+                <tr>
+                    <td>Dairy: @Model.Dairy</td>
+                    <td>Egg: @Model.Egg</td>
+                </tr>
+                <tr>
+                    <td>Gluten: @Model.Gluten</td>
+                    <td>Grain: @Model.Grain</td>
+                </tr>
+                <tr>
+                    <td>Peanut: @Model.Peanut</td>
+                    <td>Seafood: @Model.Seafood</td>
+                </tr>
+                <tr>
+                    <td>Sesame: @Model.Sesame</td>
+                    <td>Shellfish: @Model.Shellfish</td>
+                </tr>
+                <tr>
+                    <td>Soy: @Model.Soy</td>
+                    <td>Sulfite: @Model.Sulfite</td>
+                </tr>
+                <tr>
+                    <td>Tree Nut: @Model.TreeNut</td>
+                    <td>Wheat: @Model.Wheat</td>
+                </tr>
+            </table>
+            @*<h4>Diets</h4>
             Gluten-Free: @Model.GlutenFree<br />
             Ketogenic: @Model.Ketogenic<br />
             Vegetarian: @Model.Vegetarian<br />
@@ -20,9 +66,9 @@
             Pescetarian: @Model.Pescetarian<br />
             Paleo: @Model.Paleo<br />
             Primal: @Model.Primal<br />
-            Whole30: @Model.Whole30<br />
+            Whole30: @Model.Whole30<br />*@
 
-            <h2>Intolerances</h2>
+            @*<h4>Intolerances</h4>
             Dairy: @Model.Dairy<br />
             Egg: @Model.Egg<br />
             Gluten: @Model.Gluten<br />
@@ -34,7 +80,7 @@
             Soy: @Model.Soy<br />
             Sulfite: @Model.Sulfite<br />
             Tree Nut: @Model.TreeNut<br />
-            Wheat: @Model.Wheat<br />
+            Wheat: @Model.Wheat<br />*@
             Excluded Ingredients: @Model.ExcludedIngredients<br />
 
             <button type="submit" class="btn btn-outline-secondary btn-sm">Get Recipes!</button>
