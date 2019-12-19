@@ -10,8 +10,8 @@ namespace AHBCFinalProject.Models
     {
         [HiddenInput]
         public int UserId { get; set; }
-        public string Diet { get; set; }
-        public string Intolerances { get; set; }
-        public string ExcludedIngredients { get; set; }
+        public List<string> Diet { get; set; }
+        public List<string> Intolerances { get; set; }
+        public List<string> ExcludedIngredients { get; set; }
     }
 }

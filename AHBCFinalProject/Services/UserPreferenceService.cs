@@ -156,18 +156,75 @@ namespace AHBCFinalProject.Services
             _userPreferenceStore.UpdateUserPreferences(dalModel);
         }
 
-        public UpdateUserViewModel GetUpdatedPreferenceView()
+        public UpdateUserViewModel GetUpdatedPreferenceView(UserPreferencesViewModel prefModel)
         {
             var UserID = _userIdService.getUserId();
-            var dalPreference = _userPreferenceStore.SelectUserPreferences(UserID);
-            var updatedPreference = new UpdateUserViewModel()
-            {
-                Diet = dalPreference.Diet,
-                Intolerances = dalPreference.Intolerances,
-                ExcludedIngredients = dalPreference.ExcludedIngredients
-            };
+            var prefViewModel = new UpdateUserViewModel();
+            var intolerances = new List<string>();
+            var diets = new List<string>();
 
-            return updatedPreference;
+            prefViewModel.UserId = UserID;
+
+            if (prefModel.GlutenFree)
+                diets.Add("Gluten Free");
+            if (prefModel.Ketogenic)
+                diets.Add("Ketogenic");
+            if (prefModel.Vegetarian)
+                diets.Add("Vegetarian");
+            if (prefModel.LactoVegetarian)
+                diets.Add("Lacto-Vegetarian");
+            if (prefModel.OvoVegetarian)
+                diets.Add("Ovo-Vegetarian");
+            if (prefModel.Vegan)
+                diets.Add("Vegan");
+            if (prefModel.Pescetarian)
+                diets.Add("Pescetarian");
+            if (prefModel.Paleo)
+                diets.Add("Paleo");
+            if (prefModel.Primal)
+                diets.Add("Primal");
+            if (prefModel.Whole30)
+                diets.Add("Whole30");
+
+            if (prefModel.TreeNut)
+                intolerances.Add("Tree Nut");
+            if (prefModel.Dairy)
+                intolerances.Add("Dairy");
+            if (prefModel.Egg)
+                intolerances.Add("Egg");
+            if (prefModel.Gluten)
+                intolerances.Add("Gluten");
+            if (prefModel.Grain)
+                intolerances.Add("Grain");
+            if (prefModel.Peanut)
+                intolerances.Add("Peanut");
+            if (prefModel.Seafood)
+                intolerances.Add("Seafood");
+            if (prefModel.Sesame)
+                intolerances.Add("Sesame");
+            if (prefModel.Shellfish)
+                intolerances.Add("Shellfish");
+            if (prefModel.Soy)
+                intolerances.Add("Soy");
+            if (prefModel.Sulfite)
+                intolerances.Add("Sulfite");
+            if (prefModel.Wheat)
+                intolerances.Add("Wheat");
+
+            prefViewModel.Diet = diets;
+            prefViewModel.Intolerances = intolerances;
+
+            if (prefModel.ExcludedIngredients != null)
+            {
+                var excludedIngredients = prefModel.ExcludedIngredients.Split(',');
+
+                foreach (var ingredient in excludedIngredients)
+                {
+                    prefViewModel.ExcludedIngredients.Add(ingredient);
+                }
+            }
+
+            return prefViewModel;
         }
     }
 }
