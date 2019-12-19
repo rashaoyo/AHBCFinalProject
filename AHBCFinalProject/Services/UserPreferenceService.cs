@@ -162,6 +162,7 @@ namespace AHBCFinalProject.Services
             var prefViewModel = new UpdateUserViewModel();
             var intolerances = new List<string>();
             var diets = new List<string>();
+            var excluded = new List<string>();
 
             prefViewModel.UserId = UserID;
 
@@ -213,6 +214,7 @@ namespace AHBCFinalProject.Services
 
             prefViewModel.Diet = diets;
             prefViewModel.Intolerances = intolerances;
+            prefViewModel.ExcludedIngredients = excluded;
 
             if (prefModel.ExcludedIngredients != null)
             {
@@ -220,7 +222,8 @@ namespace AHBCFinalProject.Services
 
                 foreach (var ingredient in excludedIngredients)
                 {
-                    prefViewModel.ExcludedIngredients.Add(ingredient);
+                    var capitalIngredient = char.ToUpper(ingredient[0]) + ingredient.Substring(1);
+                    prefViewModel.ExcludedIngredients.Add(capitalIngredient);
                 }
             }
 
