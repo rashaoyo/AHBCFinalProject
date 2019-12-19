@@ -45,97 +45,97 @@ namespace AHBCFinalProject.Services
             return favMealsViewModel;
         }
 
-        public FavoriteMealsViewModel FMReadyIn1Hrs()
-        {
-            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn1Hr();
-            var favMeals = new List<FavoriteMealViewModel>();
+        //public FavoriteMealsViewModel FMReadyIn1Hrs()
+        //{
+        //    var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn1Hr();
+        //    var favMeals = new List<FavoriteMealViewModel>();
 
-            foreach (var dalMeal in allMeals)
-            {
-                var favMeal = new FavoriteMealViewModel
-                {
-                    Id = _userIdService.getUserId(),
-                    RecipeID = dalMeal.RecipeID,
-                    MealName = dalMeal.MealName,
-                    ReadyInMinutes = dalMeal.ReadyInMinutes,
-                    AdditionalComments = dalMeal.AdditionalComments
-                };
-                favMeals.Add(favMeal);
-            }
+        //    foreach (var dalMeal in allMeals)
+        //    {
+        //        var favMeal = new FavoriteMealViewModel
+        //        {
+        //            Id = _userIdService.getUserId(),
+        //            RecipeID = dalMeal.RecipeID,
+        //            MealName = dalMeal.MealName,
+        //            ReadyInMinutes = dalMeal.ReadyInMinutes,
+        //            AdditionalComments = dalMeal.AdditionalComments
+        //        };
+        //        favMeals.Add(favMeal);
+        //    }
 
-            var favMealsViewModel = new FavoriteMealsViewModel();
-            favMealsViewModel.FavoriteMeals = favMeals;
-            return favMealsViewModel;
-        }
+        //    var favMealsViewModel = new FavoriteMealsViewModel();
+        //    favMealsViewModel.FavoriteMeals = favMeals;
+        //    return favMealsViewModel;
+        //}
 
-        public FavoriteMealsViewModel FMReadyIn1To2Hrs()
-        {
-            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn1To2Hrs();
-            var favMeals = new List<FavoriteMealViewModel>();
+        //public FavoriteMealsViewModel FMReadyIn1To2Hrs()
+        //{
+        //    var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn1To2Hrs();
+        //    var favMeals = new List<FavoriteMealViewModel>();
 
-            foreach (var dalMeal in allMeals)
-            {
-                var favMeal = new FavoriteMealViewModel
-                {
-                    Id = _userIdService.getUserId(),
-                    RecipeID = dalMeal.RecipeID,
-                    MealName = dalMeal.MealName,
-                    ReadyInMinutes = dalMeal.ReadyInMinutes,
-                    AdditionalComments = dalMeal.AdditionalComments
-                };
-                favMeals.Add(favMeal);
-            }
+        //    foreach (var dalMeal in allMeals)
+        //    {
+        //        var favMeal = new FavoriteMealViewModel
+        //        {
+        //            Id = _userIdService.getUserId(),
+        //            RecipeID = dalMeal.RecipeID,
+        //            MealName = dalMeal.MealName,
+        //            ReadyInMinutes = dalMeal.ReadyInMinutes,
+        //            AdditionalComments = dalMeal.AdditionalComments
+        //        };
+        //        favMeals.Add(favMeal);
+        //    }
 
-            var favMealsViewModel = new FavoriteMealsViewModel();
-            favMealsViewModel.FavoriteMeals = favMeals;
-            return favMealsViewModel;
-        }
+        //    var favMealsViewModel = new FavoriteMealsViewModel();
+        //    favMealsViewModel.FavoriteMeals = favMeals;
+        //    return favMealsViewModel;
+        //}
 
-        public FavoriteMealsViewModel FMReadyIn30Min()
-        {
-            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn30Min();
-            var favMeals = new List<FavoriteMealViewModel>();
+        //public FavoriteMealsViewModel FMReadyIn30Min()
+        //{
+        //    var allMeals = _favoriteMealStore.SelectAllFavMealsReadyIn30Min();
+        //    var favMeals = new List<FavoriteMealViewModel>();
 
-            foreach (var dalMeal in allMeals)
-            {
-                var favMeal = new FavoriteMealViewModel
-                {
-                    Id = _userIdService.getUserId(),
-                    RecipeID = dalMeal.RecipeID,
-                    MealName = dalMeal.MealName,
-                    ReadyInMinutes = dalMeal.ReadyInMinutes,
-                    AdditionalComments = dalMeal.AdditionalComments
-                };
-                favMeals.Add(favMeal);
-            }
+        //    foreach (var dalMeal in allMeals)
+        //    {
+        //        var favMeal = new FavoriteMealViewModel
+        //        {
+        //            Id = _userIdService.getUserId(),
+        //            RecipeID = dalMeal.RecipeID,
+        //            MealName = dalMeal.MealName,
+        //            ReadyInMinutes = dalMeal.ReadyInMinutes,
+        //            AdditionalComments = dalMeal.AdditionalComments
+        //        };
+        //        favMeals.Add(favMeal);
+        //    }
 
-            var favMealsViewModel = new FavoriteMealsViewModel();
-            favMealsViewModel.FavoriteMeals = favMeals;
-            return favMealsViewModel;
-        }
+        //    var favMealsViewModel = new FavoriteMealsViewModel();
+        //    favMealsViewModel.FavoriteMeals = favMeals;
+        //    return favMealsViewModel;
+        //}
 
-        public FavoriteMealsViewModel FMReadyInMoreThan2Hrs()
-        {
-            var allMeals = _favoriteMealStore.SelectAllFavMealsReadyInMoreThan2Hrs();
-            var favMeals = new List<FavoriteMealViewModel>();
+        //public FavoriteMealsViewModel FMReadyInMoreThan2Hrs()
+        //{
+        //    var allMeals = _favoriteMealStore.SelectAllFavMealsReadyInMoreThan2Hrs();
+        //    var favMeals = new List<FavoriteMealViewModel>();
 
-            foreach (var dalMeal in allMeals)
-            {
-                var favMeal = new FavoriteMealViewModel
-                {
-                    Id = _userIdService.getUserId(),
-                    RecipeID = dalMeal.RecipeID,
-                    MealName = dalMeal.MealName,
-                    ReadyInMinutes = dalMeal.ReadyInMinutes,
-                    AdditionalComments = dalMeal.AdditionalComments
-                };
-                favMeals.Add(favMeal);
-            }
+        //    foreach (var dalMeal in allMeals)
+        //    {
+        //        var favMeal = new FavoriteMealViewModel
+        //        {
+        //            Id = _userIdService.getUserId(),
+        //            RecipeID = dalMeal.RecipeID,
+        //            MealName = dalMeal.MealName,
+        //            ReadyInMinutes = dalMeal.ReadyInMinutes,
+        //            AdditionalComments = dalMeal.AdditionalComments
+        //        };
+        //        favMeals.Add(favMeal);
+        //    }
 
-            var favMealsViewModel = new FavoriteMealsViewModel();
-            favMealsViewModel.FavoriteMeals = favMeals;
-            return favMealsViewModel;
-        }
+        //    var favMealsViewModel = new FavoriteMealsViewModel();
+        //    favMealsViewModel.FavoriteMeals = favMeals;
+        //    return favMealsViewModel;
+        //}
 
         public async Task<FavoriteMealsViewModel> InsertAFavoriteMeal(string recipeId)
         {

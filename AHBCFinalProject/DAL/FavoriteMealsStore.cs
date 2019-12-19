@@ -80,52 +80,53 @@ namespace AHBCFinalProject.DAL
             }
         }
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn1To2Hrs()
-        {
-            var userId = _userIdService.getUserId();
-            var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 60 AND 120 ORDER BY MealName ASC";
+        //public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn1To2Hrs()
+        //{
+        //    var userId = _userIdService.getUserId();
+        //    var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 60 AND 120 ORDER BY MealName ASC";
 
-            using (var connection = new SqlConnection(_config.ConnectionString))
-            {
-                var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId}) ?? new List<FavoriteMealDALModel>();
-                return results;
-            }
-        }
+        //    using (var connection = new SqlConnection(_config.ConnectionString))
+        //    {
+        //        var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId}) ?? new List<FavoriteMealDALModel>();
+        //        return results;
+        //    }
+        //}
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn30Min()
-        {
-            var userId = _userIdService.getUserId();
-            var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 0 AND 30 ORDER BY MealName ASC";
+        //public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn30Min()
+        //{
+        //    var userId = _userIdService.getUserId();
+        //    var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 0 AND 30 ORDER BY MealName ASC";
 
-            using (var connection = new SqlConnection(_config.ConnectionString))
-            {
-                var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
-                return results;
-            }
-        }
+        //    using (var connection = new SqlConnection(_config.ConnectionString))
+        //    {
+        //        var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
+        //        return results;
+        //    }
+        //}
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn1Hr()
-        {
-            var userId = _userIdService.getUserId();
-            var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 30 AND 60 ORDER BY MealName ASC";
+        //public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyIn1Hr()
+        //{
+        //    var userId = _userIdService.getUserId();
+        //    var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 30 AND 60 ORDER BY MealName ASC";
 
-            using (var connection = new SqlConnection(_config.ConnectionString))
-            {
-                var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
-                return results;
-            }
-        }
+        //    using (var connection = new SqlConnection(_config.ConnectionString))
+        //    {
+        //        var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
+        //        return results;
+        //    }
+        //}
 
-        public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyInMoreThan2Hrs()
-        {
-            var userId = _userIdService.getUserId();
-            var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 30 AND 60 ORDER BY MealName ASC";
+        //public IEnumerable<FavoriteMealDALModel> SelectAllFavMealsReadyInMoreThan2Hrs()
+        //{
+        //    var userId = _userIdService.getUserId();
+        //    var sql = @"SELECT * FROM FavoriteMeals WHERE Id = @Id AND ReadyInMinutes BETWEEN 30 AND 60 ORDER BY MealName ASC";
 
-            using (var connection = new SqlConnection(_config.ConnectionString))
-            {
-                var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
-                return results;
-            }
-        }
+        //    using (var connection = new SqlConnection(_config.ConnectionString))
+        //    {
+        //        var results = connection.Query<FavoriteMealDALModel>(sql, new { Id = userId }) ?? new List<FavoriteMealDALModel>();
+        //        return results;
+        //    }
+        //}
+
     }
 }

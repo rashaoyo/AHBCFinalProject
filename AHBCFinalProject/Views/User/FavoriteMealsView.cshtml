@@ -8,7 +8,7 @@
     <div class="centered">
         <h3>Favorite Meals</h3>
 
-        <div class="dropdown">
+        @*<div class="dropdown">
             <button class="dropbtn">Ready in minutes...</button>
             <div class="dropdown-content">
                 <a asp-controller="User" asp-action="FMReadyIn30Min">Ready In 30Min</a>
@@ -16,25 +16,19 @@
                 <a asp-controller="User" asp-action="FMReadyIn1To2Hrs">Ready In 1 to 2Hrs</a>
                 <a asp-controller="User" asp-action="FMReadyInMoreThan2Hrs">Ready In 2Hrs or More</a>
             </div>
-        </div>
-
-        <div>
-            <table>
-                @*<thead>
+        </div>*@
+       
+        <table>
+            <tbody>
+                @foreach (var favMeal in Model.FavoriteMeals)
+                {
                     <tr>
+                        <td>
+                            <a asp-controller="User" asp-action="ViewFavoriteMeal" asp-route-id="@favMeal.RecipeID">@favMeal.MealName</a>
+                        </td>
                     </tr>
-                </thead>*@
-                <tbody>
-                    @foreach (var favMeal in Model.FavoriteMeals)
-                    {
-                        <tr>
-                            <td>
-                                <a asp-controller="User" asp-action="ViewFavoriteMeal" asp-route-id="@favMeal.RecipeID">@favMeal.MealName</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
