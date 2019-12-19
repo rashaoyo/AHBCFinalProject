@@ -41,7 +41,7 @@
         }
 
         <h5>Excluded Ingredients</h5>
-        @if (Model.ExcludedIngredients != null)
+        @if (Model.ExcludedIngredients.Any())
         {
             <ul style="list-style:none; padding:0px">
                 @foreach(var excluded in Model.ExcludedIngredients)
