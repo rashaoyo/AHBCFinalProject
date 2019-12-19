@@ -4,28 +4,43 @@
     ViewData["Title"] = "UpdateFavoriteMeal";
 }
 
-<h1>@Model.Title</h1>
+<div class="container">
 
-<img src="@Model.Image" />
+    <h3>@Model.Title</h3>
 
-<ul>
-    @foreach (var ingredient in Model.ExtendedIngredients)
-    {
-        <li>@ingredient.OriginalName</li>
-    }
-</ul>
+    <div class="recipe-ingredients">
+        <div class="col-auto">
+            <h4 class="ingredients-header">Ingredients</h4>
+            @*<ul style="list-style: none; margin:0; padding:0">*@
+            <ul class="text-left" style="list-style: none">
+                @foreach (var ingredient in Model.ExtendedIngredients)
+                {
+                    <li>@ingredient.Amount @ingredient.Unit @ingredient.OriginalName</li>
+                }
+            </ul>
+            <div class="recipe-img">
+                <figure class="figure">
+                    <img src="@Model.Image" class="figure-img img-fluid rounded">
+                    <figcaption class="figure-caption"></figcaption>
+                </figure>
+            </div>
+            <ul class="text-left" style="list-style: none">
+                <li>Servings: @Model.Servings</li>
+                <li>HealthScore: @Model.HealthScore</li>
+            </ul>
+        </div>
+        <div class="recipe-instructions offset-1">
+            <h4>Instructions</h4>
+            <p>@Model.Instructions</p>
+        </div>
+        <label>Additional Comments:</label>
+        <form>
+            <input type="text" value="@Model.AdditionalComments" asp-for="@Model.AdditionalComments" />
 
-<ul>
-    <li>Servings: @Model.Servings</li>
-    <li>HealthScore: @Model.HealthScore</li>
-</ul>
+            <button type="submit" asp-controller="User" asp-action="UpdateFavoriteMealResults" asp-route-id="@Model.Id">Save Comments</button>
 
-<p asp-for="@Model.Instructions">@Model.Instructions</p>
+        </form>
+    </div>
+    <a class="btn btn-outline-secondary" asp-controller="User" asp-action="AddToFavorites" role="button" asp-route-id="@Model.Id">Add To Favorites<br /></a>
 
-<label>Additional Comments:</label>
-<form>
-    <input type="text" value="@Model.AdditionalComments" asp-for="@Model.AdditionalComments"/>
-
-    <button type="submit" asp-controller="User" asp-action="UpdateFavoriteMealResults" asp-route-id="@Model.Id" >Save Comments</button>
-
-</form>
+</div>
