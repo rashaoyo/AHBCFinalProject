@@ -34,8 +34,9 @@ namespace AHBCFinalProject.DAL
         public bool InsertAFaveMeal(FavoriteMealDALModel dalModel)
         {
             var Id = _userIdService.getUserId();
-            var sql = $@"INSERT INTO FavoriteMeals (Id, RecipeID, MealName, ReadyInMinutes, AdditionalComments) 
-                            VALUES ({Id}, {dalModel.RecipeID}, '{dalModel.MealName}',{dalModel.ReadyInMinutes}, '{dalModel.AdditionalComments}')";
+            //var sql = $@"INSERT INTO FavoriteMeals (Id, RecipeID, MealName, ReadyInMinutes, AdditionalComments) 
+            var sql = $@"INSERT INTO FavoriteMeals (Id, RecipeID, MealName, AdditionalComments) 
+                            VALUES ({Id}, {dalModel.RecipeID}, '{dalModel.MealName}', '{dalModel.AdditionalComments}')";
 
             using (var connection = new SqlConnection(_config.ConnectionString))
             {
