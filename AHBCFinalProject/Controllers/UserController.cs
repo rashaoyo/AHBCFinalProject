@@ -48,10 +48,11 @@ namespace AHBCFinalProject.Controllers
         public IActionResult UpdateUserPreferences(UserPreferencesViewModel model)
         {
             _userPreferenceService.SetUserPreferences(model);
-            return View(nameof(ConfirmUserPreferences), model);
+            var viewModel = _userPreferenceService.GetUpdatedPreferenceView(model);
+            return View(nameof(ConfirmUserPreferences), viewModel);
         }
 
-        public IActionResult ConfirmUserPreferences(UserPreferencesViewModel model)
+        public IActionResult ConfirmUserPreferences(UpdateUserViewModel model)
         {
             return View(model);
         }
