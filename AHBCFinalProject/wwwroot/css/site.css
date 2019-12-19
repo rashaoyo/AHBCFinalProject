@@ -59,6 +59,10 @@ html {
     width: 75%;
 }
 
+.text-left{
+    width: 40%;
+}
+
 
 
 
@@ -157,6 +161,7 @@ body {
 }
 .recipe-img img {
     width: 400px;
+    padding-right: 5%
 }
 .recipe-ingredients ul {
     float: left;
